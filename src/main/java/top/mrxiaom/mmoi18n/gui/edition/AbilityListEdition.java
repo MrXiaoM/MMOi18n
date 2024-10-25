@@ -11,6 +11,7 @@ import net.Indyuce.mmoitems.util.MMOUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -40,24 +41,26 @@ public class AbilityListEdition extends EditionInventory {
 	@Override
 	public void arrangeInventory() {
 		int n = 0;
+		ConfigurationSection sectionAbility = getEditedSection().getConfigurationSection("ability");
 
-		if (getEditedSection().contains("ability"))
-			for (String key : getEditedSection().getConfigurationSection("ability").getKeys(false)) {
-				String abilityFormat = getEditedSection().getString("ability." + key + ".type");
-				RegisteredSkill ability = abilityFormat != null
-						&& MMOItems.plugin.getSkills().hasSkill(abilityFormat = abilityFormat.toUpperCase().replace(" ", "_").replace("-", "_"))
-								? MMOItems.plugin.getSkills().getSkill(abilityFormat)
-								: null;
+		if (sectionAbility != null) for (String key : sectionAbility.getKeys(false)) {
+			String abilityFormat = getEditedSection().getString("ability." + key + ".type");
+			RegisteredSkill ability = abilityFormat != null
+					&& MMOItems.plugin.getSkills().hasSkill(abilityFormat = abilityFormat.toUpperCase().replace(" ", "_").replace("-", "_"))
+					? MMOItems.plugin.getSkills().getSkill(abilityFormat)
+					: null;
 
-                TriggerType castMode;
-                try {
-                    castMode = TriggerType.valueOf(UtilityMethods.enumName(getEditedSection().getString("ability." + key + ".mode")));
-                } catch (RuntimeException exception) {
-                    castMode = null;
-                }
+			TriggerType castMode;
+			try {
+				String s = getEditedSection().getString("ability." + key + ".mode");
+				castMode = s == null ? null : TriggerType.valueOf(UtilityMethods.enumName(s));
+			} catch (RuntimeException exception) {
+				castMode = null;
+			}
 
-				final ItemStack abilityItem = new ItemStack(Material.BLAZE_POWDER);
-				ItemMeta abilityItemMeta = abilityItem.getItemMeta();
+			final ItemStack abilityItem = new ItemStack(Material.BLAZE_POWDER);
+			ItemMeta abilityItemMeta = abilityItem.getItemMeta();
+			if (abilityItemMeta != null) {
 				abilityItemMeta.setDisplayName(ability != null ? ChatColor.GREEN + ability.getName() : ChatColor.RED + "! 未选择能力 !");
 				List<String> abilityItemLore = new ArrayList<>();
 				abilityItemLore.add("");
@@ -65,18 +68,21 @@ public class AbilityListEdition extends EditionInventory {
 				abilityItemLore.add("");
 
 				boolean check = false;
-				if (ability != null)
-					for (String modifier : getEditedSection().getConfigurationSection("ability." + key).getKeys(false))
-						if (!modifier.equals("type") && !modifier.equals("mode") && ability.getHandler().getModifiers().contains(modifier))
-							try {
-								abilityItemLore.add(
-										ChatColor.GRAY + "* " + UtilityMethods.caseOnWords(modifier.toLowerCase().replace("-", " ")) + ": " + ChatColor.GOLD
-												+ new NumericStatFormula(getEditedSection().get("ability." + key + "." + modifier)));
-								check = true;
-							} catch (IllegalArgumentException exception) {
-								abilityItemLore.add(ChatColor.GRAY + "* " + UtilityMethods.caseOnWords(modifier.toLowerCase().replace("-", " ")) + ": "
-										+ ChatColor.GOLD + "无法读取");
-							}
+				ConfigurationSection section = getEditedSection().getConfigurationSection("ability." + key);
+				if (ability != null && section != null) for (String modifier : section.getKeys(false))
+					if (!modifier.equals("type") && !modifier.equals("mode") && ability.getHandler().getParameters().contains(modifier)) {
+						String mod = modifier.toLowerCase().replace("-", " ");
+						try {
+							Object formula = section.get(modifier);
+							if (formula == null) continue;
+							abilityItemLore.add(ChatColor.GRAY + "* " + UtilityMethods.caseOnWords(mod) + ": "
+									+ ChatColor.GOLD + new NumericStatFormula(formula));
+							check = true;
+						} catch (IllegalArgumentException exception) {
+							abilityItemLore.add(ChatColor.GRAY + "* " + UtilityMethods.caseOnWords(mod) + ": "
+									+ ChatColor.GOLD + "无法读取");
+						}
+					}
 				if (check)
 					abilityItemLore.add("");
 
@@ -84,19 +90,21 @@ public class AbilityListEdition extends EditionInventory {
 				abilityItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键 移除.");
 				abilityItemMeta.setLore(abilityItemLore);
 				abilityItemMeta.getPersistentDataContainer().set(CONFIG_KEY, PersistentDataType.STRING, key);
-				abilityItem.setItemMeta(abilityItemMeta);
-
-				inventory.setItem(slots[n++], abilityItem);
 			}
+			abilityItem.setItemMeta(abilityItemMeta);
+
+			inventory.setItem(slots[n++], abilityItem);
+		}
+
 
 		ItemStack glass = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
 		ItemMeta glassMeta = glass.getItemMeta();
-		glassMeta.setDisplayName(ChatColor.RED + "- 没有能力 -");
+		if (glassMeta != null) glassMeta.setDisplayName(ChatColor.RED + "- 没有能力 -");
 		glass.setItemMeta(glassMeta);
 
 		ItemStack add = new ItemStack(Material.WRITABLE_BOOK);
 		ItemMeta addMeta = add.getItemMeta();
-		addMeta.setDisplayName(ChatColor.GREEN + "添加能力...");
+		if (addMeta != null) addMeta.setDisplayName(ChatColor.GREEN + "添加能力...");
 		add.setItemMeta(addMeta);
 		put(add, "add_an_ability");
 
@@ -113,38 +121,40 @@ public class AbilityListEdition extends EditionInventory {
 		if (event.getInventory() != event.getClickedInventory() || !MMOUtils.isMetaItem(item, false))
 			return;
 
+		ConfigurationSection section = getEditedSection().getConfigurationSection("ability");
 		if (has(item, "add_an_ability")) {
-			if (!getEditedSection().contains("ability")) {
+			if (section == null) {
 				getEditedSection().createSection("ability.ability1");
 				registerTemplateEdition();
 				return;
 			}
 
-			if (getEditedSection().getConfigurationSection("ability").getKeys(false).size() > 6) {
+			if (section.getKeys(false).size() > 6) {
 				player.sendMessage(MMOItems.plugin.getPrefix() + ChatColor.RED + "每个物品不能添加超过6个能力.");
 				return;
 			}
 
-			for (int j = 1; j < 8; j++)
-				if (!getEditedSection().getConfigurationSection("ability").contains("ability" + j)) {
+			for (int j = 1; j < 8; j++) {
+				if (section.contains("ability" + j)) continue;
 
-                    // (Fixes MMOItems#1575) Initialize sample ability to avoid console logs
-                    final String tag = "ability" + j;
-                    getEditedSection().set("ability." + tag + ".type", "FIREBOLT");
-                    getEditedSection().set("ability." + tag + ".mode", "RIGHT_CLICK");
-                    registerTemplateEdition();
-					return;
-				}
+				// (Fixes MMOItems#1575) Initialize sample ability to avoid console logs
+				final String tag = "ability" + j;
+				getEditedSection().set("ability." + tag + ".type", "FIREBOLT");
+				getEditedSection().set("ability." + tag + ".mode", "RIGHT_CLICK");
+				registerTemplateEdition();
+				return;
+			}
 		}
 
-		final String tag = item.getItemMeta().getPersistentDataContainer().get(CONFIG_KEY, PersistentDataType.STRING);
-		if (tag == null || tag.equals("")) return;
+		ItemMeta meta = item.getItemMeta();
+		final String tag = meta == null ? null : meta.getPersistentDataContainer().get(CONFIG_KEY, PersistentDataType.STRING);
+		if (tag == null || tag.isEmpty()) return;
 
 		if (event.getAction() == InventoryAction.PICKUP_ALL)
 			new AbilityEdition(player, template, tag).open(this);
 
 		if (event.getAction() == InventoryAction.PICKUP_HALF) {
-			if (getEditedSection().contains("ability") && getEditedSection().getConfigurationSection("ability").contains(tag)) {
+			if (section != null && section.contains(tag)) {
 				getEditedSection().set("ability." + tag, null);
 				registerTemplateEdition();
 				player.sendMessage(MMOItems.plugin.getPrefix() + "成功移除能力 " + ChatColor.GOLD + tag + ChatColor.DARK_GRAY + " (内部ID)" + ChatColor.GRAY + ".");

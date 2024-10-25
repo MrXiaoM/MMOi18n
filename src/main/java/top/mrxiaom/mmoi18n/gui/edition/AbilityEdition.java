@@ -31,9 +31,7 @@ import static top.mrxiaom.mmoi18n.gui.ItemTag.put;
 public class AbilityEdition extends EditionInventory {
 	private final String configKey;
 
-	private RegisteredSkill ability;
-
-	private static final DecimalFormat MODIFIER_FORMAT = new DecimalFormat("0.###");
+    private static final DecimalFormat MODIFIER_FORMAT = new DecimalFormat("0.###");
 	private static final int[] slots = { 23, 24, 25, 32, 33, 34, 41, 42, 43, 50, 51, 52 };
 	private static final NamespacedKey ABILITY_MOD_KEY = new NamespacedKey(MMOItems.plugin, "AbilityModifier");
 
@@ -54,20 +52,22 @@ public class AbilityEdition extends EditionInventory {
 
 		String configString = getEditedSection().getString("ability." + configKey + ".type");
 		String format = configString == null ? "" : configString.toUpperCase().replace(" ", "_").replace("-", "_").replaceAll("[^A-Z_]", "");
-		ability = MMOItems.plugin.getSkills().hasSkill(format) ? MMOItems.plugin.getSkills().getSkill(format) : null;
+        RegisteredSkill ability = MMOItems.plugin.getSkills().hasSkill(format) ? MMOItems.plugin.getSkills().getSkill(format) : null;
 
 		ItemStack abilityItem = new ItemStack(Material.BLAZE_POWDER);
 		ItemMeta abilityItemMeta = abilityItem.getItemMeta();
-		abilityItemMeta.setDisplayName(ChatColor.GREEN + "能力");
-		List<String> abilityItemLore = new ArrayList<>();
-		abilityItemLore.add(ChatColor.GRAY + "选择武器可施展的能力.");
-		abilityItemLore.add("");
-		abilityItemLore.add(
-				ChatColor.GRAY + "当前值: " + (ability == null ? ChatColor.RED + "未选择能力." : ChatColor.GOLD + ability.getName()));
-		abilityItemLore.add("");
-		abilityItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 左键 选择.");
-		abilityItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键 重置.");
-		abilityItemMeta.setLore(abilityItemLore);
+		if (abilityItemMeta != null) {
+			abilityItemMeta.setDisplayName(ChatColor.GREEN + "能力");
+			List<String> abilityItemLore = new ArrayList<>();
+			abilityItemLore.add(ChatColor.GRAY + "选择武器可施展的能力.");
+			abilityItemLore.add("");
+			abilityItemLore.add(
+					ChatColor.GRAY + "当前值: " + (ability == null ? ChatColor.RED + "未选择能力." : ChatColor.GOLD + ability.getName()));
+			abilityItemLore.add("");
+			abilityItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 左键 选择.");
+			abilityItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键 重置.");
+			abilityItemMeta.setLore(abilityItemLore);
+		}
 		abilityItem.setItemMeta(abilityItemMeta);
 		put(abilityItem, "ability");
 
@@ -84,16 +84,18 @@ public class AbilityEdition extends EditionInventory {
 
 			ItemStack castModeItem = new ItemStack(Material.ARMOR_STAND);
 			ItemMeta castModeItemMeta = castModeItem.getItemMeta();
-			castModeItemMeta.setDisplayName(ChatColor.GREEN + "触发器");
-			List<String> castModeItemLore = new ArrayList<>();
-			castModeItemLore.add(ChatColor.GRAY + "选择玩家施展能力的方式");
-			castModeItemLore.add("");
-			castModeItemLore.add(ChatColor.GRAY + "当前值: "
-					+ (castMode == null ? ChatColor.RED + "未选择触发器." : ChatColor.GOLD + castMode.getName()));
-			castModeItemLore.add("");
-			castModeItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 左键 选择.");
-			castModeItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键 重置.");
-			castModeItemMeta.setLore(castModeItemLore);
+			if (castModeItemMeta != null) {
+				castModeItemMeta.setDisplayName(ChatColor.GREEN + "触发器");
+				List<String> castModeItemLore = new ArrayList<>();
+				castModeItemLore.add(ChatColor.GRAY + "选择玩家施展能力的方式");
+				castModeItemLore.add("");
+				castModeItemLore.add(ChatColor.GRAY + "当前值: "
+						+ (castMode == null ? ChatColor.RED + "未选择触发器." : ChatColor.GOLD + castMode.getName()));
+				castModeItemLore.add("");
+				castModeItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 左键 选择.");
+				castModeItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键 重置.");
+				castModeItemMeta.setLore(castModeItemLore);
+			}
 			castModeItem.setItemMeta(castModeItemMeta);
 			put(castModeItem, "trigger");
 
@@ -102,29 +104,32 @@ public class AbilityEdition extends EditionInventory {
 
 		if (ability != null) {
 			ConfigurationSection section = getEditedSection().getConfigurationSection("ability." + configKey);
-			for (String modifier : ability.getHandler().getModifiers()) {
+			if (section != null) for (String modifier : ability.getHandler().getParameters()) {
 				final ItemStack modifierItem = new ItemStack(Material.GRAY_DYE);
 				ItemMeta modifierItemMeta = modifierItem.getItemMeta();
-				modifierItemMeta.setDisplayName(ChatColor.GREEN + UtilityMethods.caseOnWords(modifier.toLowerCase().replace("-", " ")));
-				List<String> modifierItemLore = new ArrayList<>();
-				modifierItemLore.add("" + ChatColor.GRAY + ChatColor.ITALIC + "这是一个能力修改器. 更改这个数值");
-				modifierItemLore.add("" + ChatColor.GRAY + ChatColor.ITALIC + "可以轻微地自定义能力.");
-				modifierItemLore.add("");
+				if (modifierItemMeta != null) {
+					modifierItemMeta.setDisplayName(ChatColor.GREEN + UtilityMethods.caseOnWords(modifier.toLowerCase().replace("-", " ")));
+					List<String> modifierItemLore = new ArrayList<>();
+					modifierItemLore.add("" + ChatColor.GRAY + ChatColor.ITALIC + "这是一个能力修改器. 更改这个数值");
+					modifierItemLore.add("" + ChatColor.GRAY + ChatColor.ITALIC + "可以轻微地自定义能力.");
+					modifierItemLore.add("");
 
-				try {
-					modifierItemLore.add(ChatColor.GRAY + "当前值: " + ChatColor.GOLD
-							+ (section.contains(modifier) ? new NumericStatFormula(section.get(modifier)).toString()
-									: MODIFIER_FORMAT.format(ability.getDefaultModifier(modifier))));
-				} catch (IllegalArgumentException exception) {
-					modifierItemLore.add(ChatColor.GRAY + "无法读取数值，使用默认值");
+					try {
+						Object formula = section.get(modifier);
+						modifierItemLore.add(ChatColor.GRAY + "当前值: " + ChatColor.GOLD
+								+ (formula != null ? new NumericStatFormula(formula).toString()
+								: MODIFIER_FORMAT.format(ability.getDefaultModifier(modifier))));
+					} catch (IllegalArgumentException exception) {
+						modifierItemLore.add(ChatColor.GRAY + "无法读取数值，使用默认值");
+					}
+
+					modifierItemLore.add(ChatColor.GRAY + "默认值: " + ChatColor.GOLD + MODIFIER_FORMAT.format(ability.getDefaultModifier(modifier)));
+					modifierItemLore.add("");
+					modifierItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 左键 修改数值.");
+					modifierItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键 重置.");
+					modifierItemMeta.setLore(modifierItemLore);
+					modifierItemMeta.getPersistentDataContainer().set(ABILITY_MOD_KEY, PersistentDataType.STRING, modifier);
 				}
-
-				modifierItemLore.add(ChatColor.GRAY + "默认值: " + ChatColor.GOLD + MODIFIER_FORMAT.format(ability.getDefaultModifier(modifier)));
-				modifierItemLore.add("");
-				modifierItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 左键 修改数值.");
-				modifierItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键 重置.");
-				modifierItemMeta.setLore(modifierItemLore);
-				modifierItemMeta.getPersistentDataContainer().set(ABILITY_MOD_KEY, PersistentDataType.STRING, modifier);
 				modifierItem.setItemMeta(modifierItemMeta);
 
 				inventory.setItem(slots[n++], modifierItem);
@@ -133,7 +138,7 @@ public class AbilityEdition extends EditionInventory {
 
 		ItemStack glass = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
 		ItemMeta glassMeta = glass.getItemMeta();
-		glassMeta.setDisplayName(ChatColor.RED + "- 无修改器 -");
+		if (glassMeta != null) glassMeta.setDisplayName(ChatColor.RED + "- 无修改器 -");
 		glass.setItemMeta(glassMeta);
 
 		while (n < slots.length)
@@ -165,8 +170,10 @@ public class AbilityEdition extends EditionInventory {
 				if (getEditedSection().contains("ability." + configKey + ".type")) {
 					getEditedSection().set("ability." + configKey, null);
 
-					if (getEditedSection().contains("ability") && getEditedSection().getConfigurationSection("ability").getKeys(false).size() == 0)
+					ConfigurationSection sectionAbility = getEditedSection().getConfigurationSection("ability");
+					if (sectionAbility != null && sectionAbility.getKeys(false).isEmpty()) {
 						getEditedSection().set("ability", null);
+					}
 
 					registerTemplateEdition();
 					player.sendMessage(MMOItems.plugin.getPrefix() + "成功重置能力.");
@@ -193,8 +200,9 @@ public class AbilityEdition extends EditionInventory {
 			return;
 		}
 
-		final String tag = item.getItemMeta().getPersistentDataContainer().get(ABILITY_MOD_KEY, PersistentDataType.STRING);
-		if (tag == null || tag.equals("")) return;
+		ItemMeta meta = item.getItemMeta();
+		final String tag = meta == null ? null : meta.getPersistentDataContainer().get(ABILITY_MOD_KEY, PersistentDataType.STRING);
+		if (tag == null || tag.isEmpty()) return;
 
 		if (event.getAction() == InventoryAction.PICKUP_ALL)
 			new StatEdition(this, ItemStats.ABILITIES, configKey, tag).enable("请在聊天栏输入数值.");

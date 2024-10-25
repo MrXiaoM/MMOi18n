@@ -16,9 +16,9 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import top.mrxiaom.mmoi18n.Translation;
 import top.mrxiaom.mmoi18n.gui.ItemTag;
 import top.mrxiaom.mmoi18n.placeholder.TranslatedStat;
-import top.mrxiaom.mmoi18n.Translation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,39 +56,41 @@ public class ItemEdition extends EditionInventory {
             TranslatedStat translated = Translation.getStat(stat);
             ItemStack item = new ItemStack(stat.getDisplayMaterial());
             ItemMeta meta = item.getItemMeta();
-            meta.addItemFlags(ItemFlag.values());
-            VersionUtils.addEmptyAttributeModifier(meta);
-            meta.setDisplayName(ChatColor.GREEN + translated.name());
-            List<String> lore = MythicLib.plugin.parseColors(translated.lore().stream().map(s -> ChatColor.GRAY + s).toList());
-            lore.add("");
-            if (stat.getCategory() != null) {
-                lore.add(0, "");
-                lore.add(0, ChatColor.BLUE + translated.getLoreTag(stat));
+            if (meta != null) {
+                meta.addItemFlags(ItemFlag.values());
+                VersionUtils.addEmptyAttributeModifier(meta);
+                meta.setDisplayName(ChatColor.GREEN + translated.name());
+                List<String> lore = MythicLib.plugin.parseColors(translated.lore().stream().map(s -> ChatColor.GRAY + s).toList());
+                lore.add("");
+                if (stat.getCategory() != null) {
+                    lore.add(0, "");
+                    lore.add(0, ChatColor.BLUE + translated.getLoreTag(stat));
+                }
+
+                translated.whenDisplayed(stat, lore, getEventualStatData(stat));
+
+                meta.getPersistentDataContainer().set(STAT_ID_KEY, PersistentDataType.STRING, stat.getId());
+                meta.setLore(lore);
             }
-
-            translated.whenDisplayed(stat, lore, getEventualStatData(stat));
-
-            meta.getPersistentDataContainer().set(STAT_ID_KEY, PersistentDataType.STRING, stat.getId());
-            meta.setLore(lore);
             item.setItemMeta(meta);
             inventory.setItem(slots[n++], item);
         }
 
         ItemStack glass = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
         ItemMeta glassMeta = glass.getItemMeta();
-        glassMeta.setDisplayName(ChatColor.RED + "- 没有物品状态 -");
+        if (glassMeta != null) glassMeta.setDisplayName(ChatColor.RED + "- 没有物品状态 -");
         glass.setItemMeta(glassMeta);
         ItemTag.put(glass, "no_item_state");
 
         ItemStack next = new ItemStack(Material.ARROW);
         ItemMeta nextMeta = next.getItemMeta();
-        nextMeta.setDisplayName(ChatColor.GREEN + "下一页");
+        if (nextMeta != null) nextMeta.setDisplayName(ChatColor.GREEN + "下一页");
         next.setItemMeta(nextMeta);
         ItemTag.put(next, "next_page");
 
         ItemStack previous = new ItemStack(Material.ARROW);
         ItemMeta previousMeta = previous.getItemMeta();
-        previousMeta.setDisplayName(ChatColor.GREEN + "上一页");
+        if (previousMeta != null) previousMeta.setDisplayName(ChatColor.GREEN + "上一页");
         previous.setItemMeta(previousMeta);
         ItemTag.put(previous, "prev_page");
 
@@ -99,6 +101,7 @@ public class ItemEdition extends EditionInventory {
     }
 
     @Override
+    @SuppressWarnings({"rawtypes"})
     public void whenClicked(InventoryClickEvent event) {
         event.setCancelled(true);
         if (event.getInventory() != event.getClickedInventory())
@@ -118,11 +121,13 @@ public class ItemEdition extends EditionInventory {
             refreshInventory();
         }
 
-        final String tag = item.getItemMeta().getPersistentDataContainer().get(STAT_ID_KEY, PersistentDataType.STRING);
+        ItemMeta meta = item.getItemMeta();
+        final String tag = meta == null ? null : meta.getPersistentDataContainer().get(STAT_ID_KEY, PersistentDataType.STRING);
         if (tag == null || tag.isEmpty()) return;
 
         // Check for OP stats
         final ItemStat edited = MMOItems.plugin.getStats().get(tag);
+        if (edited == null) return;
         if (MMOItems.plugin.hasPermissions() && MMOItems.plugin.getLanguage().opStatsEnabled
                 && MMOItems.plugin.getLanguage().opStats.contains(edited.getId())
                 && !MMOItems.plugin.getVault().getPermissions().has((Player) event.getWhoClicked(), "mmoitems.edit.op")) {

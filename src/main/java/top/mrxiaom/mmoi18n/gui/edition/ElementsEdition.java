@@ -5,7 +5,6 @@ import io.lumine.mythic.lib.api.util.AltChar;
 import io.lumine.mythic.lib.element.Element;
 import net.Indyuce.mmoitems.ItemStats;
 import net.Indyuce.mmoitems.MMOItems;
-import top.mrxiaom.mmoi18n.edition.StatEdition;
 import net.Indyuce.mmoitems.api.item.template.MMOItemTemplate;
 import net.Indyuce.mmoitems.stat.data.random.RandomElementListData;
 import net.Indyuce.mmoitems.util.ElementStatType;
@@ -13,11 +12,13 @@ import net.Indyuce.mmoitems.util.MMOUtils;
 import net.Indyuce.mmoitems.util.Pair;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import top.mrxiaom.mmoi18n.edition.StatEdition;
 import top.mrxiaom.mmoi18n.gui.ItemTag;
 
 import java.util.*;
@@ -45,19 +46,20 @@ public class ElementsEdition extends EditionInventory {
     }
 
     @Override
+    @SuppressWarnings({"unchecked"})
     public void arrangeInventory() {
         final Optional<RandomElementListData> statData = getEventualStatData(ItemStats.ELEMENTS);
 
         ItemStack prevPage = new ItemStack(Material.ARROW);
         ItemMeta prevPageMeta = prevPage.getItemMeta();
-        prevPageMeta.setDisplayName(ChatColor.GREEN + "上一页");
+        if (prevPageMeta != null) prevPageMeta.setDisplayName(ChatColor.GREEN + "上一页");
         prevPage.setItemMeta(prevPageMeta);
         ItemTag.put(prevPage, "prev_page");
         inventory.setItem(25, prevPage);
 
         ItemStack nextPage = new ItemStack(Material.ARROW);
         ItemMeta nextPageMeta = nextPage.getItemMeta();
-        nextPageMeta.setDisplayName(ChatColor.GREEN + "下一页");
+        if (nextPageMeta != null) nextPageMeta.setDisplayName(ChatColor.GREEN + "下一页");
         nextPage.setItemMeta(nextPageMeta);
         ItemTag.put(nextPage, "next_page");
         inventory.setItem(43, nextPage);
@@ -75,16 +77,18 @@ public class ElementsEdition extends EditionInventory {
             for (ElementStatType statType : ElementStatType.values()) {
                 ItemStack statItem = new ItemStack(element.getIcon());
                 ItemMeta statMeta = statItem.getItemMeta();
-                statMeta.setDisplayName(ChatColor.GREEN + element.getName() + " " + statType.getName());
-                List<String> statLore = new ArrayList<>();
-                statLore.add(ChatColor.GRAY + "Current Value: " + ChatColor.GREEN +
-                        (statData.isPresent() && statData.get().hasStat(element, statType)
-                                ? statData.get().getStat(element, statType)
-                                : "---"));
-                statLore.add("");
-                statLore.add(ChatColor.YELLOW + AltChar.listDash + " Click to change this value.");
-                statLore.add(ChatColor.YELLOW + AltChar.listDash + " Right click to remove this value.");
-                statMeta.setLore(statLore);
+                if (statMeta != null) {
+                    statMeta.setDisplayName(ChatColor.GREEN + element.getName() + " " + statType.getName());
+                    List<String> statLore = new ArrayList<>();
+                    statLore.add(ChatColor.GRAY + "Current Value: " + ChatColor.GREEN +
+                            (statData.isPresent() && statData.get().hasStat(element, statType)
+                                    ? statData.get().getStat(element, statType)
+                                    : "---"));
+                    statLore.add("");
+                    statLore.add(ChatColor.YELLOW + AltChar.listDash + " Click to change this value.");
+                    statLore.add(ChatColor.YELLOW + AltChar.listDash + " Right click to remove this value.");
+                    statMeta.setLore(statLore);
+                }
                 statItem.setItemMeta(statMeta);
 
                 final int slot = INIT_SLOTS[i] + k;
@@ -129,10 +133,12 @@ public class ElementsEdition extends EditionInventory {
 
             // Clear element config section
             String elementName = edited.getKey().getId();
-            if (getEditedSection().contains("element." + elementName)
-                    && getEditedSection().getConfigurationSection("element." + elementName).getKeys(false).isEmpty()) {
+            ConfigurationSection section = getEditedSection().getConfigurationSection("element." + elementName);
+            if (section != null && section.getKeys(false).isEmpty()) {
                 getEditedSection().set("element." + elementName, null);
-                if (getEditedSection().getConfigurationSection("element").getKeys(false).isEmpty())
+
+                ConfigurationSection section1 = getEditedSection().getConfigurationSection("element");
+                if (section1 != null && section1.getKeys(false).isEmpty())
                     getEditedSection().set("element", null);
             }
 

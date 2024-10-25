@@ -4,7 +4,6 @@ import io.lumine.mythic.lib.UtilityMethods;
 import io.lumine.mythic.lib.api.util.AltChar;
 import net.Indyuce.mmoitems.ItemStats;
 import net.Indyuce.mmoitems.MMOItems;
-import top.mrxiaom.mmoi18n.edition.StatEdition;
 import net.Indyuce.mmoitems.api.item.template.MMOItemTemplate;
 import net.Indyuce.mmoitems.util.MMOUtils;
 import net.Indyuce.mmoitems.util.Pair;
@@ -17,6 +16,7 @@ import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import top.mrxiaom.mmoi18n.edition.StatEdition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,48 +43,54 @@ public class ArrowParticlesEdition extends EditionInventory {
 
 		ItemStack particleItem = new ItemStack(Material.BLAZE_POWDER);
 		ItemMeta particleItemMeta = particleItem.getItemMeta();
-		particleItemMeta.setDisplayName(ChatColor.GREEN + "粒子类型");
-		List<String> particleItemLore = new ArrayList<>();
-		particleItemLore.add(ChatColor.GRAY + "" + ChatColor.ITALIC + "The particle which is displayed around the");
-		particleItemLore.add(ChatColor.GRAY + "" + ChatColor.ITALIC + "arrow. Fades away when the arrow lands.");
-		particleItemLore.add("");
-		particleItemLore.add(ChatColor.GRAY + "当前值: " + (particle == null ? ChatColor.RED + "未选择粒子."
-				: ChatColor.GOLD + UtilityMethods.caseOnWords(particle.name().toLowerCase().replace("_", " "))));
-		particleItemLore.add("");
-		particleItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 左键 更改数值.");
-		particleItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键 重置.");
-		particleItemMeta.setLore(particleItemLore);
+		if (particleItemMeta != null) {
+			particleItemMeta.setDisplayName(ChatColor.GREEN + "粒子类型");
+			List<String> particleItemLore = new ArrayList<>();
+			particleItemLore.add(ChatColor.GRAY + "" + ChatColor.ITALIC + "The particle which is displayed around the");
+			particleItemLore.add(ChatColor.GRAY + "" + ChatColor.ITALIC + "arrow. Fades away when the arrow lands.");
+			particleItemLore.add("");
+			particleItemLore.add(ChatColor.GRAY + "当前值: " + (particle == null ? ChatColor.RED + "未选择粒子."
+					: ChatColor.GOLD + UtilityMethods.caseOnWords(particle.name().toLowerCase().replace("_", " "))));
+			particleItemLore.add("");
+			particleItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 左键 更改数值.");
+			particleItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键 重置.");
+			particleItemMeta.setLore(particleItemLore);
+		}
 		particleItem.setItemMeta(particleItemMeta);
 		put(particleItem, "particle");
 
 		ItemStack amount = new ItemStack(Material.GRAY_DYE);
 		ItemMeta amountMeta = amount.getItemMeta();
-		amountMeta.setDisplayName(ChatColor.GREEN + "数量");
-		List<String> amountLore = new ArrayList<>();
-		amountLore.add("");
-		amountLore.add(ChatColor.GRAY + "当前值: " + ChatColor.GOLD + getEditedSection().getInt("arrow-particles.amount"));
-		amountLore.add("");
-		amountLore.add(ChatColor.YELLOW + AltChar.listDash + " 左键 更改数值.");
-		amountLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键 重置.");
-		amountMeta.setLore(amountLore);
+		if (amountMeta != null) {
+			amountMeta.setDisplayName(ChatColor.GREEN + "数量");
+			List<String> amountLore = new ArrayList<>();
+			amountLore.add("");
+			amountLore.add(ChatColor.GRAY + "当前值: " + ChatColor.GOLD + getEditedSection().getInt("arrow-particles.amount"));
+			amountLore.add("");
+			amountLore.add(ChatColor.YELLOW + AltChar.listDash + " 左键 更改数值.");
+			amountLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键 重置.");
+			amountMeta.setLore(amountLore);
+		}
 		amount.setItemMeta(amountMeta);
 		put(amount, "amount");
 
 		ItemStack offset = new ItemStack(Material.GRAY_DYE);
 		ItemMeta offsetMeta = offset.getItemMeta();
-		offsetMeta.setDisplayName(ChatColor.GREEN + "偏移值");
-		List<String> offsetLore = new ArrayList<>();
-		offsetLore.add("");
-		offsetLore.add(ChatColor.GRAY + "当前值: " + ChatColor.GOLD + getEditedSection().getDouble("arrow-particles.offset"));
-		offsetLore.add("");
-		offsetLore.add(ChatColor.YELLOW + AltChar.listDash + " 左键 更改数值.");
-		offsetLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键 重置.");
-		offsetMeta.setLore(offsetLore);
+		if (offsetMeta != null) {
+			offsetMeta.setDisplayName(ChatColor.GREEN + "偏移值");
+			List<String> offsetLore = new ArrayList<>();
+			offsetLore.add("");
+			offsetLore.add(ChatColor.GRAY + "当前值: " + ChatColor.GOLD + getEditedSection().getDouble("arrow-particles.offset"));
+			offsetLore.add("");
+			offsetLore.add(ChatColor.YELLOW + AltChar.listDash + " 左键 更改数值.");
+			offsetLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键 重置.");
+			offsetMeta.setLore(offsetLore);
+		}
 		offset.setItemMeta(offsetMeta);
 		put(offset, "offset");
 
-		if (particle != null) {
-			ConfigurationSection section = getEditedSection().getConfigurationSection("arrow-particles");
+		ConfigurationSection section = getEditedSection().getConfigurationSection("arrow-particles");
+		if (particle != null && section != null) {
 			if (MMOUtils.isColorable(particle)) {
 				int red = section.getInt("color.red");
 				int green = section.getInt("color.green");
@@ -92,16 +98,18 @@ public class ArrowParticlesEdition extends EditionInventory {
 
 				ItemStack colorItem = new ItemStack(Material.GRAY_DYE);
 				ItemMeta colorMeta = colorItem.getItemMeta();
-				colorMeta.setDisplayName(ChatColor.GREEN + "粒子颜色");
-				List<String> colorLore = new ArrayList<>();
-				colorLore.add("");
-				colorLore.add(ChatColor.GRAY + "当前值 (R-G-B):");
-				colorLore.add("" + ChatColor.RED + ChatColor.BOLD + red + ChatColor.GRAY + " - " + ChatColor.GREEN + ChatColor.BOLD + green
-						+ ChatColor.GRAY + " - " + ChatColor.BLUE + ChatColor.BOLD + blue);
-				colorLore.add("");
-				colorLore.add(ChatColor.YELLOW + AltChar.listDash + " 左键 更改数值.");
-				colorLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键 重置.");
-				colorMeta.setLore(colorLore);
+				if (colorMeta != null) {
+					colorMeta.setDisplayName(ChatColor.GREEN + "粒子颜色");
+					List<String> colorLore = new ArrayList<>();
+					colorLore.add("");
+					colorLore.add(ChatColor.GRAY + "当前值 (R-G-B):");
+					colorLore.add("" + ChatColor.RED + ChatColor.BOLD + red + ChatColor.GRAY + " - " + ChatColor.GREEN + ChatColor.BOLD + green
+							+ ChatColor.GRAY + " - " + ChatColor.BLUE + ChatColor.BOLD + blue);
+					colorLore.add("");
+					colorLore.add(ChatColor.YELLOW + AltChar.listDash + " 左键 更改数值.");
+					colorLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键 重置.");
+					colorMeta.setLore(colorLore);
+				}
 				colorItem.setItemMeta(colorMeta);
 				put(colorItem, "particle_color");
 
@@ -109,16 +117,18 @@ public class ArrowParticlesEdition extends EditionInventory {
 			} else {
 				ItemStack speedItem = new ItemStack(Material.GRAY_DYE);
 				ItemMeta speedItemMeta = speedItem.getItemMeta();
-				speedItemMeta.setDisplayName(ChatColor.GREEN + "速度");
-				List<String> speedItemLore = new ArrayList<>();
-				speedItemLore.add(ChatColor.GRAY + "" + ChatColor.ITALIC + "The speed at which your particle");
-				speedItemLore.add(ChatColor.GRAY + "" + ChatColor.ITALIC + "flies off in random directions.");
-				speedItemLore.add("");
-				speedItemLore.add(ChatColor.GRAY + "当前值: " + ChatColor.GOLD + section.getDouble("speed"));
-				speedItemLore.add("");
-				speedItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 左键 更改数值.");
-				speedItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键 重置.");
-				speedItemMeta.setLore(speedItemLore);
+				if (speedItemMeta != null) {
+					speedItemMeta.setDisplayName(ChatColor.GREEN + "速度");
+					List<String> speedItemLore = new ArrayList<>();
+					speedItemLore.add(ChatColor.GRAY + "" + ChatColor.ITALIC + "The speed at which your particle");
+					speedItemLore.add(ChatColor.GRAY + "" + ChatColor.ITALIC + "flies off in random directions.");
+					speedItemLore.add("");
+					speedItemLore.add(ChatColor.GRAY + "当前值: " + ChatColor.GOLD + section.getDouble("speed"));
+					speedItemLore.add("");
+					speedItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 左键 更改数值.");
+					speedItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键 重置.");
+					speedItemMeta.setLore(speedItemLore);
+				}
 				speedItem.setItemMeta(speedItemMeta);
 				put(speedItem, "speed");
 
@@ -132,6 +142,7 @@ public class ArrowParticlesEdition extends EditionInventory {
 	}
 
 	@Override
+	@SuppressWarnings({"rawtypes"})
 	public void whenClicked(InventoryClickEvent event) {
 		ItemStack item = event.getCurrentItem();
 

@@ -20,6 +20,8 @@ import top.mrxiaom.mmoi18n.gui.ItemTag;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static top.mrxiaom.mmoi18n.Translation.translateBoolean;
+
 /**
  * Inventory displayed when enabling the item updater.
  * @see RevisionID
@@ -45,38 +47,37 @@ public class RevisionInventory extends EditionInventory {
         // If null
         if (revisionID == null) {
 
-            name = ItemFactory.of(Material.NAME_TAG).name("§3Name").lore(SilentNumbers.chop(
-                    "The display name of the old item will be transferred to the new one"
+            name = ItemFactory.of(Material.NAME_TAG).name("§3物品名").lore(SilentNumbers.chop(
+                    "旧物品的物品名保留到新物品"
                     , 40, "§7")).build();
 
-            lore = ItemFactory.of(Material.WRITABLE_BOOK).name("§dLore").lore(SilentNumbers.chop(
-                    "Specifically keeps lore lines that begin with the color code §n&7"
+            lore = ItemFactory.of(Material.WRITABLE_BOOK).name("§d物品Lore").lore(SilentNumbers.chop(
+                    "特别保留以这个颜色代码开头的行: §n&7"
                     , 40, "§7")).build();
 
-            enchantments = ItemFactory.of(Material.EXPERIENCE_BOTTLE).name("§bEnchantments").lore(SilentNumbers.chop(
-                    "This keeps specifically enchantments that are not accounted for in upgrades nor gem stones (presumably added by the player)."
+            enchantments = ItemFactory.of(Material.EXPERIENCE_BOTTLE).name("§b附魔").lore(SilentNumbers.chop(
+                    "保留未被升级或宝石认定的特定附魔 (推测由玩家添加的附魔)."
                     , 40, "§7")).build();
 
-            upgrades = ItemFactory.of(Material.NETHER_STAR).name("§aUpgrades").lore(SilentNumbers.chop(
-                    "Will this item retain the upgrade level after updating? Only the Upgrade Level is kept (as long as it does not exceed the new max)."
+            upgrades = ItemFactory.of(Material.NETHER_STAR).name("§a升级").lore(SilentNumbers.chop(
+                    "物品是否会在更新后保留升级等级? 仅会保留等级 (只要不超过新的最大值)."
                     , 40, "§7")).build();
 
-            gemstones = ItemFactory.of(Material.EMERALD).name("§eGem Stones").lore(SilentNumbers.chop(
-                    "Will the item retain its gem stones when updating? (Note that this allows gemstone overflow - will keep ALL old gemstones even if you reduced the gem sockets)"
+            gemstones = ItemFactory.of(Material.EMERALD).name("§e宝石").lore(SilentNumbers.chop(
+                    "物品是否会在更新时保留宝石? (注意，这个选项会允许宝石数量溢出 - 即使你减少了可用宝石槽位，依然会保留物品上的所有旧宝石)"
                     , 40, "§7")).build();
 
-            soulbind = ItemFactory.of(Material.ENDER_EYE).name("§cSoulbind").lore(SilentNumbers.chop(
-                    "If the old item is soulbound, updating will transfer the soulbind to the new item."
+            soulbind = ItemFactory.of(Material.ENDER_EYE).name("§c灵魂绑定").lore(SilentNumbers.chop(
+                    "如果旧物品有灵魂绑定, 更新将会把灵魂绑定转移到新物品."
                     , 40, "§7")).build();
 
-            external = ItemFactory.of(Material.SPRUCE_SIGN).name("§9External SH").lore(SilentNumbers.chop(
-                    "Data registered onto the item's StatHistory by external plugins (like GemStones but not removable)"
+            external = ItemFactory.of(Material.SPRUCE_SIGN).name("§9额外状态历史").lore(SilentNumbers.chop(
+                    "保留由第三方插件注册到物品的额外状态历史数据 (比如像 GemStones 之类的插件添加的)"
                     , 40, "§7")).build();
-
 
             // Fill stack
-            revisionID = ItemFactory.of(Material.ITEM_FRAME).name("§6Revision ID").lore(SilentNumbers.chop(
-                    "The updater is always active, increasing this number will update all instances of this MMOItem without further action."
+            revisionID = ItemFactory.of(Material.ITEM_FRAME).name("§6修订版本号").lore(SilentNumbers.chop(
+                    "物品更新器始终活跃, 增加这个数字将会被动更新所有 MMOItem 物品实例，无需进一步操作."
                     , 40, "§7")).build();
             ItemTag.put(revisionID, "revision_button");
         }
@@ -91,9 +92,8 @@ public class RevisionInventory extends EditionInventory {
     public void arrangeInventory() {
         // Place corresponding item stacks in there
         for (int i = 0; i < inventory.getSize(); i++) {
-
             // What item to even put here
-            ItemStack which = null;
+            ItemStack which;
             Boolean enable = null;
             Integer id = null;
             switch (i) {
@@ -130,31 +130,17 @@ public class RevisionInventory extends EditionInventory {
                     which = revisionID.clone();
                     break;
                 default:
-                    break;
+                    continue;
             }
-
             // If an item corresponds to this slot
-            if (which != null) {
-
-                // If it is defined to be enabled
-                if (enable != null) {
-
-                    // Add mentioning if enabled
-                    inventory.setItem(i, addLore(which, "", "§8Enabled (in config)? §6" + enable.toString()));
-
-                // If ID is enabled
-                } else if (id != null) {
-
-                    // Add mentioning if enabled
-                    inventory.setItem(i, addLore(which, "", "§8Current Value: §6" + id));
-
-                // Neither enable nor ID are defined
-                } else {
-
-                    // Add
-                    inventory.setItem(i, which);
-                }
+            // If it is defined to be enabled
+            if (enable != null) {
+                // Add mentioning if enabled
+                inventory.setItem(i, addLore(which, "", "§8是否启用 (在配置文件)? §6" + translateBoolean(enable)));
+                continue;
             }
+            // If ID is enabled, add mentioning if enabled
+            inventory.setItem(i, addLore(which, "", "§8当前值: §6" + id));
         }
     }
 
@@ -163,55 +149,44 @@ public class RevisionInventory extends EditionInventory {
         // Get the clicked item
         ItemStack item = event.getCurrentItem();
         event.setCancelled(true);
-
         // If the click did not happen in the correct inventory, or the item is not clickable
         if (event.getInventory() != event.getClickedInventory() || !MMOUtils.isMetaItem(item, false)) { return; }
-
         // Is the player clicking the revision ID thing?
         if (ItemTag.has(item, "revision_button")) {
-
             // Get the current ID
             int id = getEditedSection().getInt(ItemStats.REVISION_ID.getPath(), 1);
-
             // If right click
             if (event.getAction() == InventoryAction.PICKUP_HALF) {
-
                 // Decrease by 1, but never before 1
                 id = Math.max(id - 1, 1);
-
             // Any other click
             } else {
-
                 // Increase by 1 until the ultimate maximum
                 id = Math.min(id + 1, Integer.MAX_VALUE);
-
             }
-
             // Register edition
             getEditedSection().set(ItemStats.REVISION_ID.getPath(), id);
             registerTemplateEdition();
-
             // Update ig
-            event.setCurrentItem(addLore(revisionID.clone(), "", "§8Current Value: §6" + id));
+            event.setCurrentItem(addLore(revisionID.clone(), "", "§8当前值: §6" + id));
         }
     }
 
     @NotNull ItemStack addLore(@NotNull ItemStack iSource, String... extraLines){
-
         // Get its lore
-        ArrayList<String> iLore = new ArrayList<>();
+        ArrayList<String> iLore;
         ItemMeta iMeta = iSource.getItemMeta();
-        if (iMeta != null && iMeta.getLore() != null) {iLore = new ArrayList<>(iMeta.getLore()); }
-
-        // Add lines
-        iLore.addAll(Arrays.asList(extraLines));
-
-        // Put lore
-        iMeta.setLore(iLore);
-
+        if (iMeta != null) {
+            iLore = iMeta.getLore() == null
+                    ? new ArrayList<>()
+                    : new ArrayList<>(iMeta.getLore());
+            // Add lines
+            iLore.addAll(Arrays.asList(extraLines));
+            // Put lore
+            iMeta.setLore(iLore);
+        }
         // Yes
         iSource.setItemMeta(iMeta);
-
         // Yes
         return iSource;
     }

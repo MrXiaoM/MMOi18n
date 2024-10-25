@@ -12,8 +12,8 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import top.mrxiaom.mmoi18n.placeholder.TranslatedStat;
 import top.mrxiaom.mmoi18n.placeholder.IProvider;
+import top.mrxiaom.mmoi18n.placeholder.TranslatedStat;
 
 import java.util.*;
 

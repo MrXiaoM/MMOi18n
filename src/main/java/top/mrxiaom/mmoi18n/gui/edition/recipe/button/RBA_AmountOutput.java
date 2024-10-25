@@ -6,7 +6,6 @@ import io.lumine.mythic.lib.api.util.ItemFactory;
 import io.lumine.mythic.lib.api.util.ui.FriendlyFeedbackProvider;
 import io.lumine.mythic.lib.api.util.ui.SilentNumbers;
 import net.Indyuce.mmoitems.ItemStats;
-import top.mrxiaom.mmoi18n.edition.StatEdition;
 import net.Indyuce.mmoitems.api.util.message.FFPMMOItems;
 import net.Indyuce.mmoitems.stat.HidePotionEffects;
 import org.bukkit.ChatColor;
@@ -16,6 +15,7 @@ import org.bukkit.inventory.meta.BannerMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.jetbrains.annotations.NotNull;
+import top.mrxiaom.mmoi18n.edition.StatEdition;
 import top.mrxiaom.mmoi18n.gui.edition.recipe.gui.RecipeEditorGUI;
 
 import java.util.Objects;
