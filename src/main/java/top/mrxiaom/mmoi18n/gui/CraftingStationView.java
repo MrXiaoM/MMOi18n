@@ -9,6 +9,7 @@ import net.Indyuce.mmoitems.api.crafting.CraftingStation;
 import net.Indyuce.mmoitems.api.crafting.CraftingStatus.CraftingQueue;
 import net.Indyuce.mmoitems.api.crafting.CraftingStatus.CraftingQueue.QueueItem;
 import net.Indyuce.mmoitems.api.crafting.Layout;
+import net.Indyuce.mmoitems.api.crafting.ingredient.CheckedIngredient;
 import net.Indyuce.mmoitems.api.crafting.ingredient.Ingredient;
 import net.Indyuce.mmoitems.api.crafting.ingredient.inventory.IngredientInventory;
 import net.Indyuce.mmoitems.api.crafting.recipe.CheckedRecipe;
@@ -18,7 +19,6 @@ import net.Indyuce.mmoitems.api.event.PlayerUseCraftingStationEvent;
 import net.Indyuce.mmoitems.api.item.util.ConfigItems;
 import net.Indyuce.mmoitems.api.util.message.Message;
 import net.Indyuce.mmoitems.comp.eco.MoneyCondition;
-import net.Indyuce.mmoitems.gui.PluginInventory;
 import net.Indyuce.mmoitems.listener.CustomSoundListener;
 import net.Indyuce.mmoitems.util.MMOUtils;
 import org.bukkit.Bukkit;
@@ -36,7 +36,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class CraftingStationView extends PluginInventory implements InjectedInventory {
+public class CraftingStationView extends net.Indyuce.mmoitems.gui.CraftingStationView implements InjectedInventory {
     private final CraftingStation station;
     private final Layout layout;
 
@@ -46,7 +46,7 @@ public class CraftingStationView extends PluginInventory implements InjectedInve
     private int queueOffset;
 
     public CraftingStationView(Player player, CraftingStation station, int page) {
-        super(player);
+        super(player, station, page);
 
         this.station = station;
         this.layout = station.getLayout();
@@ -65,8 +65,10 @@ public class CraftingStationView extends PluginInventory implements InjectedInve
     }
 
     @Override
-    public Inventory getInventory() {
-        final String title = MythicLib.plugin.parseColors(MythicLib.plugin.getPlaceholderParser().parse(getPlayer(), station.getName().replace("#page#", "" + page).replace("#max#", "" + station.getMaxPage())));
+    @SuppressWarnings({"deprecation"})
+    public @NotNull Inventory getInventory() {
+        String replace = station.getName().replace("#page#", "" + page).replace("#max#", "" + station.getMaxPage());
+        final String title = MythicLib.plugin.parseColors(MythicLib.plugin.getPlaceholderParser().parse(getPlayer(), replace));
         Inventory inv = Bukkit.createInventory(this, layout.getSize(), title);
         int min = (page - 1) * layout.getRecipeSlots().size(), max = page * layout.getRecipeSlots().size();
         for (int j = min; j < max; j++) {
@@ -124,14 +126,18 @@ public class CraftingStationView extends PluginInventory implements InjectedInve
         }.runTaskTimer(MMOItems.plugin, 0, 20);
 
         if (station.getItemOptions().hasFill())
-            for (int j = 0; j < layout.getSize(); j++)
-                if (inv.getItem(j) == null || inv.getItem(j).getType() == Material.AIR)
+            for (int j = 0; j < layout.getSize(); j++) {
+                ItemStack item = inv.getItem(j);
+                if (item == null || item.getType() == Material.AIR) {
                     inv.setItem(j, station.getItemOptions().getFill());
+                }
+            }
 
         return inv;
     }
 
     @Override
+    @SuppressWarnings({"rawtypes"})
     public void whenClicked(InventoryClickEvent event) {
         if (!playerData.isOnline())
             return;
@@ -175,7 +181,7 @@ public class CraftingStationView extends PluginInventory implements InjectedInve
 
             final CheckedRecipe recipe = getRecipe(tag);
             if (event.isRightClick()) new CraftingStationPreview(this, recipe).open();
-            else {
+            else if (recipe != null) {
                 processRecipe(recipe);
                 open();
             }
@@ -183,6 +189,7 @@ public class CraftingStationView extends PluginInventory implements InjectedInve
 
         else if (!(tag = item.getString("queueId")).isEmpty()) {
             QueueItem recipeInfo = playerData.getCrafting().getQueue(station).getCraft(UUID.fromString(tag));
+            if (recipeInfo == null) return;
             CraftingRecipe recipe = recipeInfo.getRecipe();
 
             /*
@@ -263,7 +270,7 @@ public class CraftingStationView extends PluginInventory implements InjectedInve
         }
 
         if (recipe.getRecipe().whenUsed(playerData, ingredients, recipe, station)) {
-            recipe.getIngredients().forEach(ingredient -> ingredient.takeAway());
+            recipe.getIngredients().forEach(CheckedIngredient::takeAway);
             recipe.getConditions().forEach(condition -> condition.getCondition().whenCrafting(playerData));
             recipe.getRecipe().whenUsed().forEach(trigger -> trigger.whenCrafting(playerData));
 
