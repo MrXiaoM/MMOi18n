@@ -51,16 +51,16 @@ public class ItemBrowser extends net.Indyuce.mmoitems.gui.ItemBrowser implements
 
     public ItemBrowser(Player player, Type type) {
         super(player);
-
         this.type = type;
-
-        this.itemTypes = MMOItems.plugin.getTypes().getAll().stream().filter(Type::isDisplayed).collect(Collectors.toList());
+        this.itemTypes = MMOItems.plugin.getTypes()
+                .getAll().stream()
+                .filter(Type::isDisplayed)
+                .collect(Collectors.toList());
     }
 
     @NotNull
     @Override
     public Inventory getInventory() {
-
         /*
          * ------------------------------
          *          TYPE BROWSER
@@ -69,41 +69,36 @@ public class ItemBrowser extends net.Indyuce.mmoitems.gui.ItemBrowser implements
          * ------------------------------
          */
         if (type == null) {
-
             int[] usedSlots = slots;
             int min = (page - 1) * usedSlots.length;
             int max = page * usedSlots.length;
             int n = 0;
-
             // Create inventory
             Inventory inv = Bukkit.createInventory(this, 54, "物品浏览器");
-
             // Fetch the list of types
             for (int j = min; j < Math.min(max, itemTypes.size()); j++) {
-
                 // Current type to display into the GUI
                 Type currentType = itemTypes.get(j);
-
                 // Get number of items
                 int items = MMOItems.plugin.getTemplates().getTemplates(currentType).size();
-
                 // Display how many items are in the type
                 final ItemStack item = currentType.getItem();
                 item.setAmount(Math.max(1, Math.min(64, items)));
                 ItemMeta meta = item.getItemMeta();
-                if (MythicLib.plugin.getVersion().isAbove(1, 20, 5)) VersionUtils.addEmptyAttributeModifier(meta);
-                String translated = translateType(currentType);
-                AdventureUtils.setDisplayName(meta, String.format("&a%s&8 (点击打开浏览)", translated == null ? currentType.getName() : translated));
-                meta.addItemFlags(ItemFlag.values());
-                List<String> lore = new ArrayList<>();
-                if (translated == null) {
-                    lore.add("&8[ missing translation: " + currentType.getId() + " ]");
+                if (meta != null) {
+                    if (MythicLib.plugin.getVersion().isAbove(1, 20, 5)) VersionUtils.addEmptyAttributeModifier(meta);
+                    String translated = translateType(currentType);
+                    AdventureUtils.setDisplayName(meta, String.format("&a%s&8 (点击打开浏览)", translated == null ? currentType.getName() : translated));
+                    meta.addItemFlags(ItemFlag.values());
+                    List<String> lore = new ArrayList<>();
+                    if (translated == null) {
+                        lore.add("&8[ missing translation: " + currentType.getId() + " ]");
+                    }
+                    lore.add(items < 1 ? "&7&o该类型&c&o没有&7&o物品" : String.format("&7&o该类型有 %d 个物品.", items));
+                    AdventureUtils.setLore(meta, lore);
+                    meta.getPersistentDataContainer().set(TYPE_ID_KEY, PersistentDataType.STRING, currentType.getId());
                 }
-                lore.add(items < 1 ? "&7&o该类型&c&o没有&7&o物品" : String.format("&7&o该类型有 %d 个物品.", items));
-                AdventureUtils.setLore(meta, lore);
-                meta.getPersistentDataContainer().set(TYPE_ID_KEY, PersistentDataType.STRING, currentType.getId());
                 item.setItemMeta(meta);
-
                 // Set item
                 inv.setItem(slots[n++], item);
             }
@@ -111,21 +106,21 @@ public class ItemBrowser extends net.Indyuce.mmoitems.gui.ItemBrowser implements
             // Fill remainder slots with 'No Type' notice
             ItemStack glass = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
             ItemMeta glassMeta = glass.getItemMeta();
-            glassMeta.setDisplayName(ChatColor.RED + "- 无类型 -");
+            if (glassMeta != null) glassMeta.setDisplayName(ChatColor.RED + "- 无类型 -");
             glass.setItemMeta(glassMeta);
             put(glass, "browser_no_type");
 
             // Next Page
             ItemStack next = new ItemStack(Material.ARROW);
             ItemMeta nextMeta = next.getItemMeta();
-            nextMeta.setDisplayName(ChatColor.GREEN + "下一页");
+            if (nextMeta != null) nextMeta.setDisplayName(ChatColor.GREEN + "下一页");
             next.setItemMeta(nextMeta);
             put(next, "next_page");
 
             // Previous Page
             ItemStack previous = new ItemStack(Material.ARROW);
             ItemMeta previousMeta = previous.getItemMeta();
-            previousMeta.setDisplayName(ChatColor.GREEN + "上一页");
+            if (previousMeta != null) previousMeta.setDisplayName(ChatColor.GREEN + "上一页");
             previous.setItemMeta(previousMeta);
             put(previous, "prev_page");
 
@@ -139,7 +134,6 @@ public class ItemBrowser extends net.Indyuce.mmoitems.gui.ItemBrowser implements
             // Done
             return inv;
         }
-
         /*
          * ------------------------------
          *          ITEM BROWSER
@@ -148,69 +142,70 @@ public class ItemBrowser extends net.Indyuce.mmoitems.gui.ItemBrowser implements
          *  ------------------------------
          */
         Inventory inv = Bukkit.createInventory(this, 54, (deleteMode ? "删除模式: " : "物品浏览器: ") + MythicLib.plugin.getAdventureParser().stripColors(type.getName()));
-
         /*
          * Build cool Item Stacks for buttons and sh
          */
         ItemStack error = new ItemStack(Material.RED_STAINED_GLASS_PANE);
         ItemMeta errorMeta = error.getItemMeta();
-        errorMeta.setDisplayName(ChatColor.RED + "- 错误 -");
-        List<String> errorLore = new ArrayList<>();
-        errorLore.add("§§o尝试生成物品时");
-        errorLore.add("§§o出现了一个错误.");
-        errorMeta.setLore(errorLore);
+        if (errorMeta != null) {
+            errorMeta.setDisplayName(ChatColor.RED + "- 错误 -");
+            List<String> errorLore = new ArrayList<>();
+            errorLore.add("§§o尝试生成物品时");
+            errorLore.add("§§o出现了一个错误.");
+            errorMeta.setLore(errorLore);
+        }
         error.setItemMeta(errorMeta);
 
         ItemStack noItem = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
         ItemMeta noItemMeta = noItem.getItemMeta();
-        noItemMeta.setDisplayName(ChatColor.RED + "- 没有物品 -");
+        if (noItemMeta != null) noItemMeta.setDisplayName(ChatColor.RED + "- 没有物品 -");
         noItem.setItemMeta(noItemMeta);
+
+        ItemStack previous = new ItemStack(Material.ARROW);
+        ItemMeta previousMeta = previous.getItemMeta();
+        if (previousMeta != null) previousMeta.setDisplayName(ChatColor.GREEN + "上一页");
+        previous.setItemMeta(previousMeta);
+        put(previous, "prev_page");
 
         ItemStack next = new ItemStack(Material.ARROW);
         ItemMeta nextMeta = next.getItemMeta();
-        nextMeta.setDisplayName(ChatColor.GREEN + "下一页");
+        if (nextMeta != null) nextMeta.setDisplayName(ChatColor.GREEN + "下一页");
         next.setItemMeta(nextMeta);
         put(next, "next_page");
 
         ItemStack back = new ItemStack(Material.ARROW);
         ItemMeta backMeta = back.getItemMeta();
-        backMeta.setDisplayName(ChatColor.GREEN + AltChar.rightArrow + " 返回");
+        if (backMeta != null) backMeta.setDisplayName(ChatColor.GREEN + AltChar.rightArrow + " 返回");
         back.setItemMeta(backMeta);
         put(back, "back");
 
         ItemStack create = new ItemStack(new ItemStack(Material.WRITABLE_BOOK));
         ItemMeta createMeta = create.getItemMeta();
-        createMeta.setDisplayName(ChatColor.GREEN + "创建物品");
+        if (createMeta != null) createMeta.setDisplayName(ChatColor.GREEN + "创建物品");
         create.setItemMeta(createMeta);
         put(create, "create_new");
 
         ItemStack delete = new ItemStack(new ItemStack(Material.CAULDRON));
         ItemMeta deleteMeta = delete.getItemMeta();
-        deleteMeta.setDisplayName(ChatColor.RED + (deleteMode ? "退出删除模式" : "删除物品"));
+        if (deleteMeta != null) deleteMeta.setDisplayName(ChatColor.RED + (deleteMode ? "退出删除模式" : "删除物品"));
         delete.setItemMeta(deleteMeta);
         put(delete, deleteMode ? "cancel_deletion" : "delete_item");
-
-        ItemStack previous = new ItemStack(Material.ARROW);
-        ItemMeta previousMeta = previous.getItemMeta();
-        previousMeta.setDisplayName(ChatColor.GREEN + "上一页");
-        previous.setItemMeta(previousMeta);
-        put(previous, "prev_page");
 
         if (type == Type.BLOCK) {
             ItemStack downloadPack = new ItemStack(Material.HOPPER);
             ItemMeta downloadMeta = downloadPack.getItemMeta();
-            downloadMeta.setDisplayName(ChatColor.GREEN + "下载默认材质包");
-            downloadMeta.setLore(Arrays.asList(ChatColor.LIGHT_PURPLE + "只看到了石头方块?", "",
-                    ChatColor.RED + "下载默认材质包让你可以", ChatColor.RED + "按你所想编辑方块.",
-                    ChatColor.RED + "你依然需要将其添加到你的服务器!"));
+            if (downloadMeta != null) {
+                downloadMeta.setDisplayName(ChatColor.GREEN + "下载默认材质包");
+                downloadMeta.setLore(Arrays.asList(ChatColor.LIGHT_PURPLE + "只看到了石头方块?", "",
+                        ChatColor.RED + "下载默认材质包让你可以", ChatColor.RED + "按你所想编辑方块.",
+                        ChatColor.RED + "你依然需要将其添加到你的服务器!"));
+            }
             downloadPack.setItemMeta(downloadMeta);
             put(downloadPack, "download_default_resourcepack");
             inv.setItem(45, downloadPack);
         }
-
         // Get templates of this type
         HashMap<Double, ArrayList<MMOItemTemplate>> templates = BrowserDisplayIDX.select(MMOItems.plugin.getTemplates().getTemplates(type));
-
         /*
          *  -----------
          *    CALCULATE GUI BOUNDS AND PAGE SIZES
@@ -225,12 +220,9 @@ public class ItemBrowser extends net.Indyuce.mmoitems.gui.ItemBrowser implements
         int min = (page - 1) * usedSlots.length;
         int max = page * usedSlots.length;
         int n = 0;
-
         int sc = type.isFourGUIMode() ? 4 : 3;
         int totalSpaceCount = 0;
-
         for (Map.Entry<Double, ArrayList<MMOItemTemplate>> indexTemplates : templates.entrySet()) {
-
             // Claim columns
             int totalSpaceAdd = indexTemplates.getValue().size();
             while (totalSpaceAdd > 0) {
@@ -238,19 +230,15 @@ public class ItemBrowser extends net.Indyuce.mmoitems.gui.ItemBrowser implements
                 totalSpaceAdd -= sc;
             }
         }
-
         /*
          * Over the page-range currently in use...
          */
         for (int j = min; j < Math.min(max, totalSpaceCount); j++) {
             MMOItemTemplate template = BrowserDisplayIDX.getAt(j, templates);
-
             // No template here?
             if (template == null) {
-
                 // Set Item
                 inv.setItem(usedSlots[n], noItem);
-
                 /*
                  *      Calculate next n from the slots.
                  *
@@ -266,15 +254,12 @@ public class ItemBrowser extends net.Indyuce.mmoitems.gui.ItemBrowser implements
                 }
                 continue;
             }
-
             // Build item -> any errors?
             final ItemStack item = template.newBuilder(playerData.getRPG(), true).build().newBuilder().build();
             if (item == null || item.getType().isAir() || !item.getType().isItem() || item.getItemMeta() == null) {
-
                 // Set Item
                 cached.put(template.getId(), error);
                 inv.setItem(usedSlots[n], error);
-
                 /*
                  *      Calculate next n from the slots.
                  *
@@ -290,28 +275,23 @@ public class ItemBrowser extends net.Indyuce.mmoitems.gui.ItemBrowser implements
                 }
                 continue;
             }
-
             ItemMeta meta = item.getItemMeta();
             List<String> lore = meta.getLore();
             if (lore == null) {
                 lore = new ArrayList<>();
             }
             lore.add("");
-
             // Deleting lore?
             if (deleteMode) {
                 lore.add(ChatColor.RED + AltChar.cross + " 点击删除 " + AltChar.cross);
                 meta.setDisplayName(ChatColor.RED + "删除: " + (meta.hasDisplayName() ? meta.getDisplayName() : MMOUtils.getDisplayName(item)));
-
                 // Editing lore?
             } else {
                 lore.add(ChatColor.YELLOW + AltChar.smallListDash + " 左键 获取物品.");
                 lore.add(ChatColor.YELLOW + AltChar.smallListDash + " 右键 编辑物品.");
             }
-
             meta.setLore(lore);
             item.setItemMeta(meta);
-
             // Set item
             cached.put(template.getId(), item);
             inv.setItem(usedSlots[n], cached.get(template.getId()));
@@ -330,7 +310,6 @@ public class ItemBrowser extends net.Indyuce.mmoitems.gui.ItemBrowser implements
                 n++;
             }
         }
-
         // Put the buttons
         if (!deleteMode) {
             inv.setItem(51, create);
@@ -365,16 +344,14 @@ public class ItemBrowser extends net.Indyuce.mmoitems.gui.ItemBrowser implements
             } else if (has(item, "prev_page")) {
                 page--;
                 open();
-            } else if (has(item, "back"))
+            } else if (has(item, "back")) {
                 new ItemBrowser(getPlayer()).open();
-
-            else if (has(item, "cancel_deletion")) {
+            } else if (has(item, "cancel_deletion")) {
                 deleteMode = false;
                 open();
-            } else if (has(item, "create_new"))
+            } else if (has(item, "create_new")) {
                 new NewItemEdition(this).enable();
-
-            else if (type != null && has(item, "delete_item")) {
+            } else if (type != null && has(item, "delete_item")) {
                 deleteMode = true;
                 open();
             } else if (has(item, "download_default_resourcepack")) {
@@ -382,28 +359,27 @@ public class ItemBrowser extends net.Indyuce.mmoitems.gui.ItemBrowser implements
                         "[{\"text\":\"点击这里下载默认材质包!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"" + CUSTOM_RP_DOWNLOAD_LINK + "\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":[\"\",{\"text\":\"点击通过 Dropbox 下载\",\"italic\":true,\"color\":\"white\"}]}}]");
                 getPlayer().closeInventory();
             } else if (type == null && !has(item, "browser_no_type")) {
-                final String typeId = item.getItemMeta().getPersistentDataContainer().get(TYPE_ID_KEY, PersistentDataType.STRING);
+                ItemMeta meta = item.getItemMeta();
+                final String typeId = meta == null ? null : meta.getPersistentDataContainer().get(TYPE_ID_KEY, PersistentDataType.STRING);
                 new ItemBrowser(getPlayer(), MMOItems.plugin.getTypes().get(typeId)).open();
             }
         }
 
         String id = NBTItem.get(item).getString("MMOITEMS_ITEM_ID");
-        if (id.isEmpty())
-            return;
+        if (type == null || id.isEmpty()) return;
 
         if (deleteMode) {
             MMOItems.plugin.getTemplates().deleteTemplate(type, id);
             deleteMode = false;
             open();
-
         } else {
             if (event.getAction() == InventoryAction.PICKUP_ALL) {
                 getPlayer().getInventory().addItem(MMOItems.plugin.getItem(type, id, playerData));
                 getPlayer().playSound(getPlayer().getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 2);
             }
-
-            if (event.getAction() == InventoryAction.PICKUP_HALF)
+            if (event.getAction() == InventoryAction.PICKUP_HALF) {
                 new ItemEdition(getPlayer(), MMOItems.plugin.getTemplates().getTemplate(type, id)).open();
+            }
         }
     }
 }
