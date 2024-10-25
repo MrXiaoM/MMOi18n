@@ -21,7 +21,6 @@ public class StatEdition implements Edition {
     private final Object[] info;
 
     public StatEdition(EditionInventory inv, ItemStat stat, Object... info) {
-        stat.whenClicked();
         this.inv = inv;
         this.stat = stat;
         this.info = info;

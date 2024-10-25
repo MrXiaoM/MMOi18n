@@ -5,7 +5,7 @@ import io.lumine.mythic.lib.api.util.ui.FriendlyFeedbackProvider;
 import io.lumine.mythic.lib.api.util.ui.QuickNumberRange;
 import io.lumine.mythic.lib.api.util.ui.SilentNumbers;
 import net.Indyuce.mmoitems.ItemStats;
-import net.Indyuce.mmoitems.api.edition.StatEdition;
+import top.mrxiaom.mmoi18n.edition.StatEdition;
 import net.Indyuce.mmoitems.api.util.message.FFPMMOItems;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;

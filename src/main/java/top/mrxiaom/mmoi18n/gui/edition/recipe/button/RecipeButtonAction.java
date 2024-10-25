@@ -1,6 +1,6 @@
 package top.mrxiaom.mmoi18n.gui.edition.recipe.button;
 
-import net.Indyuce.mmoitems.api.edition.StatEdition;
+import top.mrxiaom.mmoi18n.edition.StatEdition;
 import net.Indyuce.mmoitems.stat.type.ItemStat;
 import org.bukkit.Sound;
 import org.bukkit.inventory.ItemStack;
