@@ -20,6 +20,7 @@ public class PluginMain extends JavaPlugin {
     private ItemUpdater itemUpdater;
 
     public void onLoad() {
+        MinecraftVersion.replaceLogger(getLogger());
         MinecraftVersion.disableUpdateCheck();
         MinecraftVersion.disableBStats();
         MinecraftVersion.getVersion();
