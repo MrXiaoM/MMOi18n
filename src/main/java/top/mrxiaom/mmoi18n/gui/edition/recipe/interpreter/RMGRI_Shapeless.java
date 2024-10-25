@@ -14,7 +14,7 @@ import java.util.List;
  * as well as editing it in a YML configuration and such. <br> <br>
  *
  * YML Save Format: <br> <code>
- *
+ * <p>
  *    - A <br>
  *    - B <br>
  *    - C <br>
@@ -64,12 +64,12 @@ public class RMGRI_Shapeless implements RMG_RecipeInterpreter {
     }
     /**
      * Turns something like <br> <code>
-     *
+     * <p>
      *     [ A, B, C, D, E, F, G, H, I ]  <br>
      *
      * </code> <br>
      * into <br> <code>
-     *
+     * <p>
      *    - A <br>
      *    - B <br>
      *    - C <br>
@@ -99,13 +99,13 @@ public class RMGRI_Shapeless implements RMG_RecipeInterpreter {
             ret.add(poof.toString());
         }
 
-        // Thats it
+        // That's it
         return ret;
     }
 
     @NotNull final ProvidedUIFilter[] inputRecipe;
     /**
-     * Sets the ingredient in the rows matrix.
+     * Sets the ingredient in the rows' matrix.
      *
      * @param slot The slot, which must be between 0 and 8  (or this method will do nothing)
      * @param poof Ingredient to register
@@ -122,7 +122,7 @@ public class RMGRI_Shapeless implements RMG_RecipeInterpreter {
 
     @NotNull final ProvidedUIFilter[] outputRecipe;
     /**
-     * Sets the ingredient in the rows matrix.
+     * Sets the ingredient in the rows' matrix.
      *
      * @param slot The slot, which must be between 0 and 8  (or this method will do nothing)
      * @param poof Ingredient to register

@@ -43,6 +43,7 @@ public class RMGRR_Shapeless implements RecipeRegistry {
 
     @NotNull
     @Override
+    @SuppressWarnings({"rawtypes"})
     public MythicRecipeBlueprint sendToMythicLib(@NotNull MMOItemTemplate template, @NotNull ConfigurationSection recipeTypeSection, @NotNull String recipeName, @NotNull Ref<NamespacedKey> namespace, @NotNull FriendlyFeedbackProvider ffp) throws IllegalArgumentException {
 
         // Prior Preparations (update old formats)

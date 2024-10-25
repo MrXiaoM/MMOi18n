@@ -24,9 +24,9 @@ public class RBA_SmithingUpgrades extends RBA_ChooseableButton {
      */
     public RBA_SmithingUpgrades(@NotNull RecipeEditorGUI inv) { super(inv); }
 
-    @NotNull final ItemStack chooseableButton = ItemFactory.of(Material.ANVIL).name("\u00a7aUpgrades Transfer").lore(SilentNumbers.chop(
+    @NotNull final ItemStack chooseableButton = ItemFactory.of(Material.ANVIL).name("§aUpgrades Transfer").lore(SilentNumbers.chop(
             "What will happen to the upgrades of the ingredients? Will upgraded ingredients produce an upgraded output item?"
-            , 65, "\u00a77")).build();
+            , 65, "§7")).build();
 
     @NotNull @Override public ItemStack getChooseableButton() { return chooseableButton; }
 
@@ -34,24 +34,19 @@ public class RBA_SmithingUpgrades extends RBA_ChooseableButton {
     @NotNull @Override public String getChooseableConfigPath() { return SMITH_UPGRADES; }
     @NotNull @Override public ArrayList<String> getChooseableList() { return getSmithingList(); }
     @NotNull @Override public String getDefaultValue() { return SmithingCombinationType.MAXIMUM.toString(); }
+    @SuppressWarnings("UnnecessaryDefault")
     @NotNull @Override public String getChooseableDefinition(@NotNull String ofChooseable) {
         SmithingCombinationType sct = SmithingCombinationType.MAXIMUM;
         try { sct = SmithingCombinationType.valueOf(getCurrentChooseableValue()); } catch (IllegalArgumentException ignored) {}
 
-        switch (sct) {
-            case EVEN:
-                return "Will take the average of the upgrade levels of the combined items.";
-            case NONE:
-                return "Will ignore the upgrade levels of any ingredients.";
-            case MAXIMUM:
-                return "Output will have the upgrade level of the most upgraded ingredient.";
-            case MINIMUM:
-                return "Output will have the upgrade level of the least-upgraded upgradeable ingredient.";
-            case ADDITIVE:
-                return "The upgrade levels of the ingredients will be added, and the result will be the crafted item's level.";
-
-            default: return "Unknown behaviour. Add description in net.Indyuce.mmoitems.gui.edition.recipe.rba.RBA_SmithingUpgrades";
-        }
+        return switch (sct) {
+            case EVEN -> "Will take the average of the upgrade levels of the combined items.";
+            case NONE -> "Will ignore the upgrade levels of any ingredients.";
+            case MAXIMUM -> "Output will have the upgrade level of the most upgraded ingredient.";
+            case MINIMUM -> "Output will have the upgrade level of the least-upgraded upgradeable ingredient.";
+            case ADDITIVE -> "The upgrade levels of the ingredients will be added, and the result will be the crafted item's level.";
+            default -> "Unknown behaviour. Add description in net.Indyuce.mmoitems.gui.edition.recipe.rba.RBA_SmithingUpgrades";
+        };
     }
 
     static ArrayList<String> smithingList;

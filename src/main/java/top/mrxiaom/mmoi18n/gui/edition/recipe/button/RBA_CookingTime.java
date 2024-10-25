@@ -29,8 +29,8 @@ public class RBA_CookingTime extends RBA_DoubleButton {
     public static final double DEFAULT = 200;
     @Override public double getDefaultValue() { return DEFAULT; }
 
-    @NotNull final ItemStack doubleButton = ItemFactory.of(Material.CLOCK).name("\u00a7cDuration").lore(SilentNumbers.chop(
+    @NotNull final ItemStack doubleButton = ItemFactory.of(Material.CLOCK).name("§cDuration").lore(SilentNumbers.chop(
             "How long it takes this recipe to finish cooking"
-            , 65, "\u00a77")).build();
+            , 65, "§7")).build();
     @NotNull @Override public ItemStack getDoubleButton() { return doubleButton; }
 }

@@ -15,7 +15,7 @@ import java.util.List;
  * as well as editing it in a YML configuration and such. <br> <br>
  *
  * YML Save Format: <br> <code>
- *
+ * <p>
  *    - A|B|C <br>
  *    - D|E|F <br>
  *    - G|H|I
@@ -42,11 +42,11 @@ public class RMGRI_Shaped implements RMG_RecipeInterpreter {
 
             // Get current row
             String row = config.size() > r ? config.get(r) : null;
-            //READ//MMOItems.log("\u00a7b*\u00a77 Reading\u00a7b " + row);
+            //READ//MMOItems.log("§b*§7 Reading§b " + row);
 
             // Update it ig
             String s = updateRow(row);
-            //READ//MMOItems.log("\u00a7b*\u00a77 Updated to\u00a7b " + row);
+            //READ//MMOItems.log("§b*§7 Updated to§b " + row);
 
             // Split
             String[] poofs = s.split("\\|");
@@ -55,7 +55,7 @@ public class RMGRI_Shaped implements RMG_RecipeInterpreter {
             for (int p = 0; p < 3; p++) {
 
                 String poof = poofs.length > p ? poofs[p] : null;
-                //READ//MMOItems.log("\u00a7b*\u00a77 Coord\u00a7b " + r + " " + p + "\u00a77 as\u00a73 " + poof);
+                //READ//MMOItems.log("§b*§7 Coord§b " + r + " " + p + "§7 as§3 " + poof);
 
                 // Parse
                 ProvidedUIFilter parsed = ProvidedUIFilter.getFromString(poof, null);
@@ -69,14 +69,14 @@ public class RMGRI_Shaped implements RMG_RecipeInterpreter {
     }
     /**
      * Turns something like <br> <code>
-     *
+     * <p>
      *     [ A, B, C ], <br>
      *     [ D, E, F ], <br>
      *     [ G, H, I ]  <br>
      *
      * </code> <br>
      * into <br> <code>
-     *
+     * <p>
      *    - A|B|C <br>
      *    - D|E|F <br>
      *    - G|H|I
@@ -105,7 +105,7 @@ public class RMGRI_Shaped implements RMG_RecipeInterpreter {
                 if (providedUIFilter == null) { providedUIFilter = RecipeEditorGUI.AIR.clone(); }
 
                 // Add bar
-                if (sb.length() != 0) { sb.append("|"); }
+                if (!sb.isEmpty()) { sb.append("|"); }
 
                 // Add poof
                 sb.append(providedUIFilter);
@@ -119,7 +119,7 @@ public class RMGRI_Shaped implements RMG_RecipeInterpreter {
 
     @NotNull final ProvidedUIFilter[][] inputRecipe;
     /**
-     * Sets the ingredient in the rows matrix.
+     * Sets the ingredient in the rows' matrix.
      *
      * @param slot The slot, which must be between 0 and 8  (or this method will do nothing)
      * @param poof Ingredient to register
@@ -136,7 +136,7 @@ public class RMGRI_Shaped implements RMG_RecipeInterpreter {
 
     @NotNull final ProvidedUIFilter[][] outputRecipe;
     /**
-     * Sets the ingredient in the rows matrix.
+     * Sets the ingredient in the rows' matrix.
      *
      * @param slot The slot, which must be between 0 and 8  (or this method will do nothing)
      * @param poof Ingredient to register
@@ -238,7 +238,7 @@ public class RMGRI_Shaped implements RMG_RecipeInterpreter {
                     // Append a bar after the first
                     if (r != 0) { ret.append("|"); }
 
-                    // Array has it?
+                    // Array, has it?
                     if (r < curSplit.length) { ret.append(RecipeEditorGUI.poofFromLegacy(curSplit[r])); } else { ret.append("v AIR 0"); }
                 }
 
@@ -259,7 +259,7 @@ public class RMGRI_Shaped implements RMG_RecipeInterpreter {
                 // Append a bar after the first
                 if (r != 0) { ret.append("|"); }
 
-                // Array has it?
+                // Array, has it?
                 if (r < curSplit.length) { ret.append(RecipeEditorGUI.poofFromLegacy(curSplit[r])); } else { ret.append("v AIR 0"); }
             }
 
@@ -269,7 +269,7 @@ public class RMGRI_Shaped implements RMG_RecipeInterpreter {
         // No spaces nor bars, this will just be the first ingredient of the row I guess
         } else {
 
-            // Just that i guess
+            // Just that I guess
             return RecipeEditorGUI.poofFromLegacy(curr) + "|v AIR 0|v AIR 0";
         }
     }

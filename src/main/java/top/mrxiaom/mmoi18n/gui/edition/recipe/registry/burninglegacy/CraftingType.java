@@ -24,11 +24,11 @@ public enum CraftingType {
     private final int[] mustBeHigher;
     private final RecipeManager.BurningRecipeType burning;
 
-    private CraftingType(int slot, String lore, VMaterial material, @Nullable RecipeManager.BurningRecipeType burn, int... mustBeHigher) {
+    CraftingType(int slot, String lore, VMaterial material, @Nullable RecipeManager.BurningRecipeType burn, int... mustBeHigher) {
         this(slot, lore, material.get(), burn, mustBeHigher);
     }
 
-    private CraftingType(int slot, String lore, Material material, @Nullable RecipeManager.BurningRecipeType burn, int... mustBeHigher) {
+    CraftingType(int slot, String lore, Material material, @Nullable RecipeManager.BurningRecipeType burn, int... mustBeHigher) {
         this.slot = slot;
         this.lore = lore;
         this.material = material;

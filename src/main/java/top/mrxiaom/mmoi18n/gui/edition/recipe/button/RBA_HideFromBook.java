@@ -59,21 +59,21 @@ public class RBA_HideFromBook extends RBA_BooleanButton {
         // Done
         return true; }
 
-    @NotNull final ItemStack booleanButton = ItemFactory.of(Material.KNOWLEDGE_BOOK).name("\u00a7cHide from Crafting Book").lore(SilentNumbers.chop(
+    @NotNull final ItemStack booleanButton = ItemFactory.of(Material.KNOWLEDGE_BOOK).name("§cHide from Crafting Book").lore(SilentNumbers.chop(
             "Even if the crafting book is enabled, this recipe wont be automatically unlocked by players."
-            , 65, "\u00a77")).build();
+            , 65, "§7")).build();
 
     @NotNull @Override public ItemStack getBooleanButton() { return booleanButton; }
 
     @NotNull @Override public ItemStack getButton() {
 
         // Dictate the correct one
-        String input = isEnabled() ? "\u00a7cNO\u00a78, it's hidden." : "\u00a7aYES\u00a78, it's shown.";
+        String input = isEnabled() ? "§cNO§8, it's hidden." : "§aYES§8, it's shown.";
 
         // Copy and send
         return RecipeEditorGUI.addLore(getBooleanButton().clone(),
                 SilentNumbers.toArrayList(
-                "", "\u00a77Currently in Book? " + input, "",
+                "", "§7Currently in Book? " + input, "",
                         ChatColor.YELLOW + AltChar.listDash + " Right click to generate recipe unlock book.",
                         ChatColor.YELLOW + AltChar.listDash + " Left click to toggle this option." ));
     }

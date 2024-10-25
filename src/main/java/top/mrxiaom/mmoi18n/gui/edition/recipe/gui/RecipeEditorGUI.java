@@ -93,17 +93,17 @@ public abstract class RecipeEditorGUI extends EditionInventory {
 
     // Button Bar Buttons
     @NotNull
-    final ItemStack nextButtonPage = ItemFactory.of(Material.SPECTRAL_ARROW).name("\u00a7eMore Options \u00a7c»").build();
+    final ItemStack nextButtonPage = ItemFactory.of(Material.SPECTRAL_ARROW).name("§eMore Options §c»").build();
     @NotNull
-    final ItemStack prevButtonPage = ItemFactory.of(Material.SPECTRAL_ARROW).name("\u00a7c« \u00a7eMore Options").build();
+    final ItemStack prevButtonPage = ItemFactory.of(Material.SPECTRAL_ARROW).name("§c« §eMore Options").build();
     @NotNull
-    public final ItemStack noButton = ItemFactory.of(Material.IRON_BARS).name("\u00a78---").build();
+    public final ItemStack noButton = ItemFactory.of(Material.IRON_BARS).name("§8---").build();
 
     // Ingredient-Related Buttons
     @NotNull
-    public final ItemStack emptySlot = ItemFactory.of(Material.BARRIER).name("\u00a77No Item").build();
+    public final ItemStack emptySlot = ItemFactory.of(Material.BARRIER).name("§7No Item").build();
     @NotNull
-    public final ItemStack airSlot = ItemFactory.of(Material.STRUCTURE_VOID).name("\u00a77No Item").build();
+    public final ItemStack airSlot = ItemFactory.of(Material.STRUCTURE_VOID).name("§7No Item").build();
 
     /**
      * [ID].base.crafting
@@ -393,7 +393,7 @@ public abstract class RecipeEditorGUI extends EditionInventory {
             FriendlyFeedbackProvider.quickForPlayer(FFPMMOItems.get(), "Vanilla: $e[MATERIAL] [AMOUNT] $bex $eDIAMOND 2.."),
             FriendlyFeedbackProvider.quickForPlayer(FFPMMOItems.get(), "MMOItem: $e[TYPE].[ID] [AMOUNT] $bex $eSWORD.CUTLASS 1.."),
             FriendlyFeedbackProvider.quickForPlayer(FFPMMOItems.get(), "Other: $e[KEY] [ARG] [DAT] [AMOUNT]$b (check wiki)"),
-            FriendlyFeedbackProvider.quickForPlayer(FFPMMOItems.get(), "\u00a78Amount is in the range format, $e[min]..[max]\u00a78, assumed to be $r1..\u00a78 if unspecified.")};
+            FriendlyFeedbackProvider.quickForPlayer(FFPMMOItems.get(), "§8Amount is in the range format, $e[min]..[max]§8, assumed to be $r1..§8 if unspecified.")};
 
     /**
      * @return The protocols to edit the ConfigurationSection based on the user input.
@@ -646,33 +646,33 @@ public abstract class RecipeEditorGUI extends EditionInventory {
      */
     public static void tripleDebug(@NotNull ConfigurationSection section) {
 
-        MMOItems.print(null, "\u00a7d-\u00a77 Section \u00a75" + section.getCurrentPath(), null);
+        MMOItems.print(null, "§d-§7 Section §5" + section.getCurrentPath(), null);
         for (String key : section.getKeys(false)) {
-            MMOItems.print(null, "\u00a7d +\u00a77 " + key, null);
+            MMOItems.print(null, "§d +§7 " + key, null);
 
-            MMOItems.print(null, "\u00a7d-\u00a7e-\u00a77 As List \u00a75" + section.getCurrentPath() + "." + key + "\u00a77 {\u00a7d" + section.getStringList(key).size() + "\u00a77}", null);
+            MMOItems.print(null, "§d-§e-§7 As List §5" + section.getCurrentPath() + "." + key + "§7 {§d" + section.getStringList(key).size() + "§7}", null);
             for (String listKey : section.getStringList(key)) {
-                MMOItems.print(null, "\u00a7d +\u00a7e-\u00a77" + listKey, null);
+                MMOItems.print(null, "§d +§e-§7" + listKey, null);
             }
 
             ConfigurationSection asSection = getSection(section, key);
-            MMOItems.print(null, "\u00a78--\u00a7d-\u00a77 Section \u00a75" + asSection.getCurrentPath(), null);
+            MMOItems.print(null, "§8--§d-§7 Section §5" + asSection.getCurrentPath(), null);
             for (String asKey : asSection.getKeys(false)) {
-                MMOItems.print(null, "\u00a78--\u00a7d +\u00a77 " + asKey, null);
+                MMOItems.print(null, "§8--§d +§7 " + asKey, null);
 
-                MMOItems.print(null, "\u00a78--\u00a7d-\u00a7e-\u00a77 As List \u00a75" + asSection.getCurrentPath() + "." + asKey + "\u00a77 {\u00a7d" + asSection.getStringList(asKey).size() + "\u00a77}", null);
+                MMOItems.print(null, "§8--§d-§e-§7 As List §5" + asSection.getCurrentPath() + "." + asKey + "§7 {§d" + asSection.getStringList(asKey).size() + "§7}", null);
                 for (String listKey : asSection.getStringList(asKey)) {
-                    MMOItems.print(null, "\u00a78--\u00a7d +\u00a7e-\u00a77" + listKey, null);
+                    MMOItems.print(null, "§8--§d +§e-§7" + listKey, null);
                 }
 
                 ConfigurationSection asESection = getSection(asSection, asKey);
-                MMOItems.print(null, "\u00a70--\u00a78--\u00a7d-\u00a77 Section \u00a75" + asESection.getCurrentPath(), null);
+                MMOItems.print(null, "§0--§8--§d-§7 Section §5" + asESection.getCurrentPath(), null);
                 for (String asEKey : asESection.getKeys(false)) {
-                    MMOItems.print(null, "\u00a70--\u00a78--\u00a7d +\u00a77 " + asEKey, null);
+                    MMOItems.print(null, "§0--§8--§d +§7 " + asEKey, null);
 
-                    MMOItems.print(null, "\u00a70--\u00a78--\u00a7d-\u00a7e-\u00a77 As List \u00a75" + asESection.getCurrentPath() + "." + asEKey + "\u00a77 {\u00a7d" + asESection.getStringList(asEKey).size() + "\u00a77}", null);
+                    MMOItems.print(null, "§0--§8--§d-§e-§7 As List §5" + asESection.getCurrentPath() + "." + asEKey + "§7 {§d" + asESection.getStringList(asEKey).size() + "§7}", null);
                     for (String listKey : asESection.getStringList(asEKey)) {
-                        MMOItems.print(null, "\u00a70--\u00a78--\u00a7d +\u00a7e-\u00a77" + listKey, null);
+                        MMOItems.print(null, "§0--§8--§d +§e-§7" + listKey, null);
                     }
                 }
             }
@@ -698,19 +698,19 @@ public abstract class RecipeEditorGUI extends EditionInventory {
          */
 
         if (recipeSection.isConfigurationSection(nameOfRecipe)) {
-            //UPT//MMOItems.log("\u00a7a*\u00a77 Was config section");
+            //UPT//MMOItems.log("§a*§7 Was config section");
 
             // Get as config section
             name = getSection(recipeSection, nameOfRecipe);
 
-            // Both must exist for smithing conversion
+            // Both must exist for smith conversion
             String item_yml = name.getString("input1");
             String ingot_yml = name.getString("input2");
-            //UPT//MMOItems.log("\u00a7a*\u00a77 I1:\u00a76 " + item_yml + "\u00a77, I2:\u00a73 " + ingot_yml);
+            //UPT//MMOItems.log("§a*§7 I1:§6 " + item_yml + "§7, I2:§3 " + ingot_yml);
 
-            // Is it smithing?
+            // Is it smith?
             if (item_yml != null && ingot_yml != null) {
-                //UPT//MMOItems.log("\u00a7a*\u00a77 Identified as \u00a7aSmithing");
+                //UPT//MMOItems.log("§a*§7 Identified as §aSmith");
 
                 // Build correctly
                 name.set("input1", null);
@@ -720,13 +720,13 @@ public abstract class RecipeEditorGUI extends EditionInventory {
             }
 
         } else {
-            //UPT//MMOItems.log("\u00a7a*\u00a77 No config section");
+            //UPT//MMOItems.log("§a*§7 No config section");
 
             // Get as String List
             List<String> sc = recipeSection.getStringList(nameOfRecipe);
 
-            //UPT//MMOItems.log("\u00a78--\u00a7e-\u00a7d+\u00a77 Ingredients: \u00a75" + nameOfRecipe);
-            //UPT//for (String key : sc) { MMOItems.log("\u00a78--\u00a7e-\u00a7d +\u00a77" + key); }
+            //UPT//MMOItems.log("§8--§e-§d+§7 Ingredients: §5" + nameOfRecipe);
+            //UPT//for (String key : sc) { MMOItems.log("§8--§e-§d +§7" + key); }
 
             // Clear
             recipeSection.set(nameOfRecipe, null);
@@ -749,13 +749,13 @@ public abstract class RecipeEditorGUI extends EditionInventory {
     @NotNull
     public static String poofFromLegacy(@Nullable String legacy) {
         if (legacy == null || "[]".equals(legacy)) {
-            //UPT//MMOItems.log("\u00a7b+\u00a77 Null, \u00a7b" + "v AIR - 1..");
+            //UPT//MMOItems.log("§b+§7 Null, §b" + "v AIR - 1..");
             return "v AIR - 1..";
         }
 
         // Spaces are assumed to be updated
         if (legacy.contains(" ")) {
-            //UPT//MMOItems.log("\u00a7b+\u00a77 Mirror, \u00a7b" + legacy);
+            //UPT//MMOItems.log("§b+§7 Mirror, §b" + legacy);
             return legacy;
         }
 
@@ -777,13 +777,13 @@ public abstract class RecipeEditorGUI extends EditionInventory {
 
             // Must be MMOItem
             String[] mmo = legacy.split("\\.");
-            //UPT//MMOItems.log("\u00a7b+\u00a77 MMOItem, \u00a7bm " + mmo[0] + " " + mmo[1] + " " + amount);
+            //UPT//MMOItems.log("§b+§7 MMOItem, §bm " + mmo[0] + " " + mmo[1] + " " + amount);
 
             // Build
             return "m " + mmo[0] + " " + mmo[1] + " " + amount;
 
         } else {
-            //UPT//MMOItems.log("\u00a7b+\u00a77 Vanilla, \u00a7bv " + legacy + " - " + amount);
+            //UPT//MMOItems.log("§b+§7 Vanilla, §bv " + legacy + " - " + amount);
 
             // That's it
             return "v " + legacy + " - " + amount;

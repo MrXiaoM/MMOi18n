@@ -28,7 +28,7 @@ import top.mrxiaom.mmoi18n.gui.edition.recipe.registry.burninglegacy.CraftingTyp
  * Recipes for furnaces. Ive never worked with these,
  * and I don't claim to support them. They are just kinda
  * compatible with the new crafting GUI and THAT'S IT.
- *
+ * <p>
  * Still using Aria's code.
  *
  * @author Gunging
@@ -36,7 +36,6 @@ import top.mrxiaom.mmoi18n.gui.edition.recipe.registry.burninglegacy.CraftingTyp
 @Deprecated
 public class RMGRR_LegacyBurning implements RecipeRegistry {
     private final CraftingType craftingType;
-    @SuppressWarnings("NotNullFieldNotInitialized")
     @NotNull
     private final ItemStack displayListItem;
 

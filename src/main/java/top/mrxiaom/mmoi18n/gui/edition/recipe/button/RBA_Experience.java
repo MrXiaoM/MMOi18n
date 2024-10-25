@@ -34,8 +34,8 @@ public class RBA_Experience extends RBA_DoubleButton {
     public static final double DEFAULT = 0.35;
     @Override public double getDefaultValue() { return DEFAULT; }
 
-    @NotNull final ItemStack doubleButton = ItemFactory.of(Material.EXPERIENCE_BOTTLE).name("\u00a7aExperience").lore(SilentNumbers.chop(
+    @NotNull final ItemStack doubleButton = ItemFactory.of(Material.EXPERIENCE_BOTTLE).name("§aExperience").lore(SilentNumbers.chop(
             "This recipe gives experience when crafted, how much?"
-            , 65, "\u00a77")).build();
+            , 65, "§7")).build();
     @NotNull @Override public ItemStack getDoubleButton() { return doubleButton; }
 }

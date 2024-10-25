@@ -40,7 +40,7 @@ public class RBA_AmountOutput extends RecipeButtonAction {
         // Get item
         button = RecipeEditorGUI.rename(ItemFactory.of(resultItem.getType()).lore(SilentNumbers.chop(
                 "The amount of items produced every time the player crafts."
-                , 65, "\u00a77")).build(), "\u00a7cChoose Output Amount");
+                , 65, "§7")).build(), "§cChoose Output Amount");
 
 
         // Update CMD ~ The stupid warning for 'ItemMEta might be false' is so annoying bruh

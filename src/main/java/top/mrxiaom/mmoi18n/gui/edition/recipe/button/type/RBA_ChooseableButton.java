@@ -91,8 +91,8 @@ public abstract class RBA_ChooseableButton extends RecipeButtonAction {
 
         // Build lore to add: Current value and definition
         ArrayList<String> addedDefinitions = new ArrayList<>();
-        addedDefinitions.add("\u00a77Current Value:\u00a73 " + current);
-        addedDefinitions.addAll(SilentNumbers.chop(getChooseableDefinition(current), 50, "  \u00a7b\u00a7o"));
+        addedDefinitions.add("§7Current Value:§3 " + current);
+        addedDefinitions.addAll(SilentNumbers.chop(getChooseableDefinition(current), 50, "  §b§o"));
         addedDefinitions.add("");
         addedDefinitions.add(ChatColor.YELLOW + AltChar.listDash + " Right click to return to default value.");
         addedDefinitions.add(ChatColor.YELLOW + AltChar.listDash + " Left click to cycle through the options:");
@@ -102,7 +102,7 @@ public abstract class RBA_ChooseableButton extends RecipeButtonAction {
             String pick = ChatColor.GOLD.toString();
             if (str.equals(current)) { pick = ChatColor.RED.toString() + ChatColor.BOLD;}
 
-            addedDefinitions.add(pick + "  " + AltChar.smallListDash + " \u00a77" + str); }
+            addedDefinitions.add(pick + "  " + AltChar.smallListDash + " §7" + str); }
 
         // Clone button and add the lore
         return RecipeEditorGUI.addLore(getChooseableButton().clone(), addedDefinitions);

@@ -1,11 +1,8 @@
 package top.mrxiaom.mmoi18n.gui.edition.recipe.button;
 
-import net.Indyuce.mmoitems.stat.type.ItemStat;
 import org.bukkit.Sound;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import top.mrxiaom.mmoi18n.edition.StatEdition;
-import top.mrxiaom.mmoi18n.gui.edition.EditionInventory;
 import top.mrxiaom.mmoi18n.gui.edition.recipe.gui.RecipeEditorGUI;
 
 /**
@@ -36,7 +33,7 @@ public abstract class RecipeButtonAction {
 
     /**
      * Called when the player left-clicks a slot. <br>
-     * <b>Important: When initializing a {@link StatEdition#StatEdition(EditionInventory, ItemStat, Object...)} you
+     * <b>Important: When initializing a {@link top.mrxiaom.mmoi18n.edition.StatEdition} you
      * must pass {@link RecipeEditorGUI#PRIMARY} as the first <i>info</i> object!</b> Also, make sure to pass {@code this}
      * as the second argument for {@link #primaryProcessInput(String, Object...)} to be called.
      *
@@ -47,9 +44,9 @@ public abstract class RecipeButtonAction {
     public abstract boolean runPrimary();
     /**
      * Run the function performed by this button, based on the user's input.
-     *
-     * This will be called when {@link #runPrimary()} (int, EditionInventory)} succeeds and calls
-     * {@link StatEdition#StatEdition(EditionInventory, ItemStat, Object...)}
+     * <p>
+     * This will be called when {@link #runPrimary()} (int, EditionInventory) succeeds and calls
+     * {@link top.mrxiaom.mmoi18n.edition.StatEdition}
      * to query the user for input.
      *
      * @param message Input from the user
@@ -61,7 +58,7 @@ public abstract class RecipeButtonAction {
 
     /**
      * Called when the player right-clicks a slot. <br>
-     * <b>Important: When initializing a {@link StatEdition#StatEdition(EditionInventory, ItemStat, Object...)} you
+     * <b>Important: When initializing a {@link top.mrxiaom.mmoi18n.edition.StatEdition} you
      * must pass {@link RecipeEditorGUI#SECONDARY} as the first <i>info</i> object!</b> Also, make sure to pass {@code this}
      * as the second argument for {@link #secondaryProcessInput(String, Object...)} to be called.
      *
@@ -72,9 +69,9 @@ public abstract class RecipeButtonAction {
     public abstract boolean runSecondary();
     /**
      * Run the function performed by this button, based on the user's input.
-     *
+     * <p>
      * This will be called when {@link #runSecondary()} succeeds and calls
-     * {@link StatEdition#StatEdition(EditionInventory, ItemStat, Object...)}
+     * {@link top.mrxiaom.mmoi18n.edition.StatEdition}
      * to query the user for input.
      *
      * @param message Input from the user

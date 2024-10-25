@@ -59,7 +59,7 @@ public interface RecipeRegistry {
      * This is the part that sends the recipe to mythiclib and what not.
      *
      * @param recipeTypeSection The configuration section [ID].base.crafting.[TYPE]
-     *
+     * <p>
      *                          You kind of have access to all other loaded recipes of this type,
      *                          not only the one being loaded, but please just load the one passed
      *                          as 'recipeName' parameter.
@@ -67,7 +67,7 @@ public interface RecipeRegistry {
      * @param recipeName Name of <u>the</u> recipe that is being loaded.
      *
      * @param namespace Namespace under which you should save this recipe.
-     *
+     * <p>
      *                  It will initially have the Namespaced Key you should use, but
      *                  when you pass it to MythicLib, MythicLib will make it null if
      *                  the recipe fails to register onto the crafting book, which is

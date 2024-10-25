@@ -7,11 +7,11 @@ import org.jetbrains.annotations.Nullable;
 import top.mrxiaom.mmoi18n.gui.edition.recipe.gui.RecipeEditorGUI;
 
 /**
- * This class is in charge of converting Smithing Recipes to and fro YML format,
+ * This class is in charge of converting Smith Recipes to and fro YML format,
  * as well as editing it in a YML configuration and such. <br> <br>
  *
  * YML Save Format: <br> <code>
- *
+ * <p>
  *    - A|B <br>
  * </code>
  *
@@ -22,10 +22,10 @@ public class RMGRI_Smithing implements RMG_RecipeInterpreter {
     /**
      * Turns something like <br> <code>
      *  [ A, B ]
-     *
+     * <p>
      * </code> <br> <br>
      * into <br> <code>
-     *
+     * <p>
      *    - A|B
      * </code>
      *
@@ -187,7 +187,7 @@ public class RMGRI_Smithing implements RMG_RecipeInterpreter {
                     // Append a bar after the first
                     if (r != 0) { ret.append("|"); }
 
-                    // Array has it?
+                    // Array, has it?
                     if (r < curSplit.length) { ret.append(RecipeEditorGUI.poofFromLegacy(curSplit[r])); } else { ret.append("v AIR -"); }
                 }
 
@@ -208,7 +208,7 @@ public class RMGRI_Smithing implements RMG_RecipeInterpreter {
                 // Append a bar after the first
                 if (r != 0) { ret.append("|"); }
 
-                // Array has it?
+                // Array, has it?
                 if (r < curSplit.length) { ret.append(RecipeEditorGUI.poofFromLegacy(curSplit[r])); } else { ret.append("v AIR -"); }
             }
 
@@ -218,7 +218,7 @@ public class RMGRI_Smithing implements RMG_RecipeInterpreter {
         // No spaces nor bars, this will just be the first ingredient of the row I guess
         } else {
 
-            // Just that i guess
+            // Just that I guess
             return RecipeEditorGUI.poofFromLegacy(curr) + "|v AIR 0";
         }
     }

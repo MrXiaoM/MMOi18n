@@ -31,16 +31,14 @@ import java.util.Set;
  * @author Gunging
  */
 public class RecipeTypeListGUI extends EditionInventory {
-
     // Item Stacks used in this inventory
-    @NotNull private static final ItemStack NEXT_PAGE = ItemFactory.of(Material.ARROW).name(FFPMMOItems.get().getExampleFormat() + "Next Page").build();
-    @NotNull private static final ItemStack PREVIOUS_PAGE = ItemFactory.of(Material.ARROW).name(FFPMMOItems.get().getExampleFormat() + "Previous Page").build();
+    @NotNull private static final ItemStack NEXT_PAGE = ItemFactory.of(Material.ARROW).name(FFPMMOItems.get().getExampleFormat() + "下一页").build();
+    @NotNull private static final ItemStack PREVIOUS_PAGE = ItemFactory.of(Material.ARROW).name(FFPMMOItems.get().getExampleFormat() + "上一页").build();
     @NotNull private static final ItemStack NO_RECIPE = ItemFactory.of(Material.LIGHT_GRAY_STAINED_GLASS_PANE).name("").build();
-
     /**
-     * Not gonna lie, I think this class doesnt support concurrent edition of
-     * the same template. Lets just hope no two users decide to do crafting
-     * stuff for the same item at the same time. Its untested.
+     * Not going to lie, I think this class doesn't support concurrent edition of
+     * the same template. Let's just hope no two users decide to do crafting
+     * stuff for the same item at the same time. It's untested.
      *
      * @param player Player that is editing recipes
      * @param template Template being edited
@@ -84,7 +82,7 @@ public class RecipeTypeListGUI extends EditionInventory {
         // Fill the space I guess
         for (int p = 21 * page; p < (21 * (page + 1)); p++) {
 
-            //CNT//MMOItems.log("\u00a77Running \u00a73" + p);
+            //CNT//MMOItems.log("§7Running §3" + p);
 
             /*
              * The job of this is to identify which slots of this
@@ -132,7 +130,7 @@ public class RecipeTypeListGUI extends EditionInventory {
         int red = SilentNumbers.floor(p / 21.00D);
         p -= red * 21;
 
-        //CNT//MMOItems.log("\u00a73+\u00a77 Reduced to \u00a79" + p);
+        //CNT//MMOItems.log("§3+§7 Reduced to §9" + p);
 
         /*
          * A page is the third, fourth, and fifth rows, excluding the first and last column.
@@ -144,7 +142,7 @@ public class RecipeTypeListGUI extends EditionInventory {
         int relRow = SilentNumbers.floor(p / 7.00D);
         int relCol = p - (7 * relRow);
 
-        //CNT//MMOItems.log("\u00a73+\u00a77 Row \u00a79" + relRow + "\u00a77, Col\u00a79 " + relCol);
+        //CNT//MMOItems.log("§3+§7 Row §9" + relRow + "§7, Col§9 " + relCol);
 
         // Starting at the third row, each row adds 9 slots.
         int rowAdditive = 18 + (relRow * 9);
@@ -152,7 +150,7 @@ public class RecipeTypeListGUI extends EditionInventory {
 
         // Sum to obtain final
 
-        //CNT//MMOItems.log("\u00a7a+\u00a77 Out \u00a7b" + (rowAdditive + columnAdditive));
+        //CNT//MMOItems.log("§a+§7 Out §b" + (rowAdditive + columnAdditive));
         return rowAdditive + columnAdditive;
     }
 
@@ -202,8 +200,8 @@ public class RecipeTypeListGUI extends EditionInventory {
     /**
      * This is called when MMOItems loads and registers the recipes that
      * come with the plugin.
-     *
-     * There is no reason to call it again thereafter so I wont even attempt
+     * <p>
+     * There is no reason to call it again thereafter, so I won't even attempt
      * to prevent duplicate registrations of these.
      */
     public static void registerNativeRecipes() {

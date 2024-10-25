@@ -44,6 +44,7 @@ public class RMGRR_Shaped implements RecipeRegistry {
 
     @NotNull
     @Override
+    @SuppressWarnings({"rawtypes"})
     public MythicRecipeBlueprint sendToMythicLib(@NotNull MMOItemTemplate template, @NotNull ConfigurationSection recipeTypeSection, @NotNull String recipeName, @NotNull Ref<NamespacedKey> namespace, @NotNull FriendlyFeedbackProvider ffp) throws IllegalArgumentException {
 
         // Read some values
@@ -104,7 +105,7 @@ public class RMGRR_Shaped implements RecipeRegistry {
      *
      * @return The most optimized version of this recipe, ready to be put into a Blueprint.
      *         <br> <br>
-     *         Will be <code>null</code> if it would have been only AIR.
+     *         Will be <code>null</code> if it had been only AIR.
      *
      * @throws IllegalArgumentException If any ingredient is illegal (wrong syntax or something).
      */
@@ -114,15 +115,15 @@ public class RMGRR_Shaped implements RecipeRegistry {
         ArrayList<ShapedIngredient> poofs = new ArrayList<>();
         boolean nonAirFound = false;
         int rowNumber = 0;
-        //UPT//MMOItems.log("\u00a7e" + namespace + "\u00a77 loading:");
+        //UPT//MMOItems.log("§e" + namespace + "§7 loading:");
 
         // Read through the recipe
         for (String row : recipe) {
-            //UPT//MMOItems.log("\u00a7e-\u00a77 " + row);
+            //UPT//MMOItems.log("§e-§7 " + row);
 
             // Update
             String updatedRow = RMGRI_Shaped.updateRow(row);
-            //UPT//MMOItems.log("\u00a7eU-\u00a77 " + updatedRow);
+            //UPT//MMOItems.log("§eU-§7 " + updatedRow);
 
             /*
              * This row could be in either legacy or new format, and we will assume no combination of them.

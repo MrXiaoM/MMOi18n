@@ -64,19 +64,19 @@ public class RBA_InputOutput extends RecipeButtonAction {
      */
     @Override public void secondaryProcessInput(@NotNull String message, Object... info) throws IllegalArgumentException { }
 
-    @NotNull final ItemStack button = ItemFactory.of(Material.CRAFTING_TABLE).name("\u00a7cSwitch to Output Mode").lore(SilentNumbers.chop(
+    @NotNull final ItemStack button = ItemFactory.of(Material.CRAFTING_TABLE).name("§cSwitch to Output Mode").lore(SilentNumbers.chop(
             "INPUT is the ingredients of the recipe, but (like milk buckets when crafting a cake) these ingredients may not be entirely consumed. In such cases, use the OUTPUT mode to specify what the ingredients will turn into."
-            , 63, "\u00a77")).build();
+            , 63, "§7")).build();
 
     @NotNull
     @Override
     public ItemStack getButton() {
 
         // Dictate the correct one
-        String input = getInv().isShowingInput() ? "\u00a76INPUT" : "\u00a73OUTPUT";
+        String input = getInv().isShowingInput() ? "§6INPUT" : "§3OUTPUT";
 
         // Copy and send
-        return RecipeEditorGUI.addLore(button.clone(), SilentNumbers.toArrayList("\u00a77Currently Showing: " + input, "",
+        return RecipeEditorGUI.addLore(button.clone(), SilentNumbers.toArrayList("§7Currently Showing: " + input, "",
                 ChatColor.YELLOW + AltChar.listDash + " Left click to switch mode." ));
     }
 }

@@ -94,13 +94,13 @@ public abstract class RBA_BooleanButton extends RecipeButtonAction {
      */
     @NotNull @Override public ItemStack getButton() {
         // Dictate the correct one
-        String input = isEnabled() ? "\u00a7aTRUE" : "\u00a7cFALSE";
+        String input = isEnabled() ? "§aTRUE" : "§cFALSE";
 
         // Copy and send
         return RecipeEditorGUI.addLore(getBooleanButton().clone(),
                 SilentNumbers.toArrayList(
-                        "", "\u00a77Current Value: " + input, "",
-                        ChatColor.YELLOW + AltChar.listDash + " Right click to reset \u00a78(to\u00a74 FALSE\u00a78)\u00a7e.",
+                        "", "§7Current Value: " + input, "",
+                        ChatColor.YELLOW + AltChar.listDash + " Right click to reset §8(to§4 FALSE§8)§e.",
                         ChatColor.YELLOW + AltChar.listDash + " Left click to toggle this option." ));
     }
 }

@@ -138,8 +138,8 @@ public abstract class RBA_DoubleButton  extends RecipeButtonAction {
         // Copy and send
         return RecipeEditorGUI.addLore(getDoubleButton().clone(),
                 SilentNumbers.toArrayList(
-                        "", "\u00a77Current Value: " + getValue(), "",
-                        ChatColor.YELLOW + AltChar.listDash + " Right click to reset \u00a78(to\u00a74 " + getDefaultValue() + "\u00a78)\u00a7e.",
+                        "", "§7Current Value: " + getValue(), "",
+                        ChatColor.YELLOW + AltChar.listDash + " Right click to reset §8(to§4 " + getDefaultValue() + "§8)§e.",
                         ChatColor.YELLOW + AltChar.listDash + " Left click to toggle this option." ));
     }
 }
