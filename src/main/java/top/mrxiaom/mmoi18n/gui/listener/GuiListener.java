@@ -1,7 +1,6 @@
 package top.mrxiaom.mmoi18n.gui.listener;
 
 import io.lumine.mythic.lib.api.item.NBTItem;
-import net.Indyuce.mmoitems.api.crafting.recipe.CheckedRecipe;
 import net.Indyuce.mmoitems.api.item.template.MMOItemTemplate;
 import net.Indyuce.mmoitems.util.MMOUtils;
 import org.bukkit.ChatColor;
@@ -51,25 +50,6 @@ public class GuiListener implements Listener {
 		if (holder instanceof net.Indyuce.mmoitems.gui.ItemBrowser old) {
 			event.setCancelled(true);
 			new ItemBrowser(old.getPlayer(), old.getType()).open();
-			return;
-		}
-		if (holder instanceof net.Indyuce.mmoitems.gui.CraftingStationView old) {
-			event.setCancelled(true);
-			new CraftingStationView(old.getPlayer(), old.getStation(), old.getPage()).open();
-			return;
-		}
-		if (holder instanceof net.Indyuce.mmoitems.gui.CraftingStationPreview old) try {
-			event.setCancelled(true);
-			Field field1 = old.getClass().getDeclaredField("previous");
-			Field field2 = old.getClass().getDeclaredField("recipe");
-			field1.setAccessible(true);
-			field2.setAccessible(true);
-			net.Indyuce.mmoitems.gui.CraftingStationView previous = (net.Indyuce.mmoitems.gui.CraftingStationView) field1.get(old);
-			CheckedRecipe recipe = (CheckedRecipe) field2.get(old);
-			new CraftingStationPreview(previous, recipe).open();
-			return;
-		} catch (ReflectiveOperationException e) {
-			handleError(player, e);
 			return;
 		}
 		if (holder instanceof net.Indyuce.mmoitems.gui.edition.EditionInventory) {
