@@ -1801,326 +1801,207 @@ stats:
       from-common: DOUBLE_STAT
 
   COOLDOWN_REFERENCE:
-    name: Cooldown Reference
+    name: '冷却参考'
     lore:
-      - '§8[ missing translation: COOLDOWN_REFERENCE ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.StringStat'
-      - ''
-      - Two items with the same cooldown reference
-      - will share their cooldowns. This is useful
-      - for health or mana pots for example.
+      - '有相同冷却参考的两个物品'
+      - '分享同一个冷却时间.'
+      - '这对于比如回红药剂、回蓝药剂'
+      - '之类的很有用.'
     options:
       from-common: STRING_STAT
+
   DISABLE_RIGHT_CLICK_CONSUME:
-    name: Infinite Consume
+    name: '无限使用'
     lore:
-      - '§8[ missing translation: DISABLE_RIGHT_CLICK_CONSUME ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DisableStat'
-      - ''
-      - Players will be able to right-click this consumable
-      - and benefit from its effects, but it won't be consumed.
+      - '玩家可以右键这个消耗品执行它的效果，'
+      - '但这个物品不会被消耗'
     options:
       from-common: BOOLEAN_STAT
-  CUSTOM_MYLUCK:
-    name: MyLuck
-    lore:
-      - '§8[ missing translation: CUSTOM_MYLUCK ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DoubleStat'
-      - ''
-      - 'This is a test line #1'
-      - 'This is a test line #2'
-    options:
-      from-common: DOUBLE_STAT
+
   HEALTH_REGENERATION:
-    name: Health Regeneration
+    name: '生命回复'
     lore:
-      - '§8[ missing translation: HEALTH_REGENERATION ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DoubleStat'
-      - ''
-      - Amount of health pts regenerated every second.
+      - '每秒回复生命值'
     options:
       from-common: DOUBLE_STAT
+
   MAX_HEALTH_REGENERATION:
-    name: Max Health Regeneration
+    name: '最大生命回复'
     lore:
-      - '§8[ missing translation: MAX_HEALTH_REGENERATION ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DoubleStat'
-      - ''
-      - Percentage of max health regenerated every second.
+      - '每秒回复生命值最多占最大生命值的百分比.'
     options:
       from-common: DOUBLE_STAT
+
   MANA_REGENERATION:
-    name: Mana Regeneration
+    name: '魔力值回复'
     lore:
-      - '§8[ missing translation: MANA_REGENERATION ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DoubleStat'
-      - ''
-      - Amount of mana pts regenerated every second.
+      - '每秒回复魔力值 (Mana)'
     options:
       from-common: DOUBLE_STAT
+
   MAX_MANA_REGENERATION:
-    name: Max Mana Regeneration
+    name: '最大魔力值回复'
     lore:
-      - '§8[ missing translation: MAX_MANA_REGENERATION ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DoubleStat'
-      - ''
-      - Percentage of max mana regenerated every second.
+      - '每秒回复魔力值最多占最大魔力值的百分比.'
     options:
       from-common: DOUBLE_STAT
+
   STAMINA_REGENERATION:
-    name: Stamina Regeneration
+    name: '耐力回复'
     lore:
-      - '§8[ missing translation: STAMINA_REGENERATION ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DoubleStat'
-      - ''
-      - Amount of stamina pts regenerated every second.
+      - '每秒回复耐力值'
     options:
       from-common: DOUBLE_STAT
+
   MAX_STAMINA_REGENERATION:
-    name: Max Stamina Regeneration
+    name: '最大耐力值回复'
     lore:
-      - '§8[ missing translation: MAX_STAMINA_REGENERATION ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DoubleStat'
-      - ''
-      - Percentage of max stamina regenerated every second.
+      - '每秒回复耐力值最多占最大耐力值的百分比.'
     options:
       from-common: DOUBLE_STAT
+
   MAX_STAMINA:
-    name: Max Stamina
+    name: '最大耐力'
     lore:
-      - '§8[ missing translation: MAX_STAMINA ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DoubleStat'
-      - ''
-      - Adds stamina to your max stamina bar.
+      - '为持有者增加最大耐力值'
     options:
       from-common: DOUBLE_STAT
-  MAX_STELLIUM:
-    name: Max Stellium
-    lore:
-      - '§8[ missing translation: MAX_STELLIUM ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DoubleStat'
-      - ''
-      - Additional maximum stellium.
-    options:
-      from-common: DOUBLE_STAT
+
   ADDITIONAL_EXPERIENCE:
-    name: Additional Experience
+    name: '额外经验值'
     lore:
-      - '§8[ missing translation: ADDITIONAL_EXPERIENCE ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DoubleStat'
-      - ''
-      - Additional MMOCore main class experience in %.
+      - '额外的 MMOCore 主类经验，单位为百分比.'
     options:
       from-common: DOUBLE_STAT
   REQUIRED_DEXTERITY:
-    name: Required Dexterity (MMOCore)
+    name: '需要敏捷度 (MMOCore)'
     lore:
-      - '§8[ missing translation: REQUIRED_DEXTERITY ]'
-      - '§8  stat: net.Indyuce.mmoitems.comp.mmocore.stat.RequiredAttribute'
-      - ''
-      - Amount of Dexterity points the
-      - player needs to use the item.
+      - '玩家使用该物品需要的敏捷度 (Dexterity).'
     options:
       from-common: DOUBLE_STAT
   ADDITIONAL_DEXTERITY:
-    name: Additional Dexterity (MMOCore)
+    name: '额外敏捷度 (MMOCore)'
     lore:
-      - '§8[ missing translation: ADDITIONAL_DEXTERITY ]'
-      - '§8  stat: net.Indyuce.mmoitems.comp.mmocore.stat.ExtraAttribute'
-      - ''
-      - Amount of Dexterity points the player
-      - gets when holding/wearing this item.
+      - '玩家持有/穿戴该物品时获得的敏捷度值 (Dexterity).'
     options:
       from-common: DOUBLE_STAT
   REQUIRED_STRENGTH:
-    name: Required Strength (MMOCore)
+    name: '需要力量 (MMOCore)'
     lore:
-      - '§8[ missing translation: REQUIRED_STRENGTH ]'
-      - '§8  stat: net.Indyuce.mmoitems.comp.mmocore.stat.RequiredAttribute'
-      - ''
-      - Amount of Strength points the
-      - player needs to use the item.
+      - '玩家使用该物品需要的力量 (Strength).'
     options:
       from-common: DOUBLE_STAT
   ADDITIONAL_STRENGTH:
-    name: Additional Strength (MMOCore)
+    name: '额外力量 (MMOCore)'
     lore:
-      - '§8[ missing translation: ADDITIONAL_STRENGTH ]'
-      - '§8  stat: net.Indyuce.mmoitems.comp.mmocore.stat.ExtraAttribute'
-      - ''
-      - Amount of Strength points the player
-      - gets when holding/wearing this item.
+      - '玩家持有/穿戴该物品时获得的力量值 (Strength).'
     options:
       from-common: DOUBLE_STAT
   REQUIRED_INTELLIGENCE:
-    name: Required Intelligence (MMOCore)
+    name: '需要智力 (MMOCore)'
     lore:
-      - '§8[ missing translation: REQUIRED_INTELLIGENCE ]'
-      - '§8  stat: net.Indyuce.mmoitems.comp.mmocore.stat.RequiredAttribute'
-      - ''
-      - Amount of Intelligence points the
-      - player needs to use the item.
+      - '玩家使用该物品需要的智力 (Intelligence).'
     options:
       from-common: DOUBLE_STAT
   ADDITIONAL_INTELLIGENCE:
-    name: Additional Intelligence (MMOCore)
+    name: '额外智力 (MMOCore)'
     lore:
-      - '§8[ missing translation: ADDITIONAL_INTELLIGENCE ]'
-      - '§8  stat: net.Indyuce.mmoitems.comp.mmocore.stat.ExtraAttribute'
-      - ''
-      - Amount of Intelligence points the player
-      - gets when holding/wearing this item.
+      - '玩家持有/穿戴该物品时获得的智力值 (Intelligence).'
     options:
       from-common: DOUBLE_STAT
   ADDITIONAL_EXPERIENCE_ENCHANTING:
-    name: Enchanting Additional Experience (MMOCore)
+    name: '附魔额外经验 (MMOCore)'
     lore:
-      - '§8[ missing translation: ADDITIONAL_EXPERIENCE_ENCHANTING ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DoubleStat'
-      - ''
-      - Additional MMOCore profession Enchanting experience in %.
+      - '额外的 MMOCore profession 附魔经验，单位为百分比.'
     options:
       from-common: DOUBLE_STAT
   PROFESSION_ENCHANTING:
-    name: Required Enchanting Level (MMOCore)
+    name: '需要附魔等级 (MMOCore)'
     lore:
-      - '§8[ missing translation: PROFESSION_ENCHANTING ]'
-      - '§8  stat: net.Indyuce.mmoitems.comp.mmocore.stat.RequiredProfession'
-      - ''
-      - Amount of Enchanting levels the
-      - player needs to use the item.
+      - '玩家使用该物品需要的附魔等级.'
     options:
       from-common: DOUBLE_STAT
   ADDITIONAL_EXPERIENCE_SMITHING:
-    name: Smithing Additional Experience (MMOCore)
+    name: '冶炼锻造经验 (MMOCore)'
     lore:
-      - '§8[ missing translation: ADDITIONAL_EXPERIENCE_SMITHING ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DoubleStat'
-      - ''
-      - Additional MMOCore profession Smithing experience in %.
+      - '额外的 MMOCore profession 锻造经验，单位为百分比.'
     options:
       from-common: DOUBLE_STAT
   PROFESSION_SMITHING:
-    name: Required Smithing Level (MMOCore)
+    name: '需要锻造等级 (MMOCore)'
     lore:
-      - '§8[ missing translation: PROFESSION_SMITHING ]'
-      - '§8  stat: net.Indyuce.mmoitems.comp.mmocore.stat.RequiredProfession'
-      - ''
-      - Amount of Smithing levels the
-      - player needs to use the item.
+      - '玩家使用该物品需要的锻造等级.'
     options:
       from-common: DOUBLE_STAT
   ADDITIONAL_EXPERIENCE_WOODCUTTING:
-    name: Woodcutting Additional Experience (MMOCore)
+    name: '伐木额外经验 (MMOCore)'
     lore:
-      - '§8[ missing translation: ADDITIONAL_EXPERIENCE_WOODCUTTING ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DoubleStat'
-      - ''
-      - Additional MMOCore profession Woodcutting experience in %.
+      - '额外的 MMOCore profession 伐木经验，单位为百分比.'
     options:
       from-common: DOUBLE_STAT
   PROFESSION_WOODCUTTING:
-    name: Required Woodcutting Level (MMOCore)
+    name: '需要伐木等级 (MMOCore)'
     lore:
-      - '§8[ missing translation: PROFESSION_WOODCUTTING ]'
-      - '§8  stat: net.Indyuce.mmoitems.comp.mmocore.stat.RequiredProfession'
-      - ''
-      - Amount of Woodcutting levels the
-      - player needs to use the item.
+      - '玩家使用该物品需要的伐木等级'
     options:
       from-common: DOUBLE_STAT
   ADDITIONAL_EXPERIENCE_FARMING:
-    name: Farming Additional Experience (MMOCore)
+    name: '农业额外经验 (MMOCore)'
     lore:
-      - '§8[ missing translation: ADDITIONAL_EXPERIENCE_FARMING ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DoubleStat'
-      - ''
-      - Additional MMOCore profession Farming experience in %.
+      - '额外的 MMOCore profession 农业经验，单位为百分比.'
     options:
       from-common: DOUBLE_STAT
   PROFESSION_FARMING:
-    name: Required Farming Level (MMOCore)
+    name: 需要农业等级 (MMOCore)
     lore:
-      - '§8[ missing translation: PROFESSION_FARMING ]'
-      - '§8  stat: net.Indyuce.mmoitems.comp.mmocore.stat.RequiredProfession'
-      - ''
-      - Amount of Farming levels the
-      - player needs to use the item.
+      - '玩家使用该物品需要的农业等级.'
     options:
       from-common: DOUBLE_STAT
   ADDITIONAL_EXPERIENCE_FISHING:
-    name: Fishing Additional Experience (MMOCore)
+    name: '钓鱼额外经验 (MMOCore)'
     lore:
-      - '§8[ missing translation: ADDITIONAL_EXPERIENCE_FISHING ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DoubleStat'
-      - ''
-      - Additional MMOCore profession Fishing experience in %.
+      - '额外的 MMOCore profession 钓鱼经验，单位为百分比.'
     options:
       from-common: DOUBLE_STAT
   PROFESSION_FISHING:
-    name: Required Fishing Level (MMOCore)
+    name: '需要钓鱼等级 (MMOCore)'
     lore:
-      - '§8[ missing translation: PROFESSION_FISHING ]'
-      - '§8  stat: net.Indyuce.mmoitems.comp.mmocore.stat.RequiredProfession'
-      - ''
-      - Amount of Fishing levels the
-      - player needs to use the item.
+      - '玩家使用该物品需要的钓鱼等级.'
     options:
       from-common: DOUBLE_STAT
   ADDITIONAL_EXPERIENCE_ALCHEMY:
-    name: Alchemy Additional Experience (MMOCore)
+    name: '炼金术额外经验 (MMOCore)'
     lore:
-      - '§8[ missing translation: ADDITIONAL_EXPERIENCE_ALCHEMY ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DoubleStat'
-      - ''
-      - Additional MMOCore profession Alchemy experience in %.
+      - '额外的 MMOCore profession 炼金术经验，单位为百分比.'
     options:
       from-common: DOUBLE_STAT
   PROFESSION_ALCHEMY:
-    name: Required Alchemy Level (MMOCore)
+    name: '需要炼金术等级 (MMOCore)'
     lore:
-      - '§8[ missing translation: PROFESSION_ALCHEMY ]'
-      - '§8  stat: net.Indyuce.mmoitems.comp.mmocore.stat.RequiredProfession'
-      - ''
-      - Amount of Alchemy levels the
-      - player needs to use the item.
+      - '玩家使用该物品需要的炼金术等级.'
     options:
       from-common: DOUBLE_STAT
   ADDITIONAL_EXPERIENCE_MINING:
-    name: Mining Additional Experience (MMOCore)
+    name: '挖矿额外经验 (MMOCore)'
     lore:
-      - '§8[ missing translation: ADDITIONAL_EXPERIENCE_MINING ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DoubleStat'
-      - ''
-      - Additional MMOCore profession Mining experience in %.
+      - '额外的 MMOCore profession 挖矿经验，单位为百分比.'
     options:
       from-common: DOUBLE_STAT
   PROFESSION_MINING:
-    name: Required Mining Level (MMOCore)
+    name: '需要挖矿等级 (MMOCore)'
     lore:
-      - '§8[ missing translation: PROFESSION_MINING ]'
-      - '§8  stat: net.Indyuce.mmoitems.comp.mmocore.stat.RequiredProfession'
-      - ''
-      - Amount of Mining levels the
-      - player needs to use the item.
+      - '玩家使用该物品需要的挖矿等级.'
     options:
       from-common: DOUBLE_STAT
   ADDITIONAL_EXPERIENCE_SMELTING:
-    name: Smelting Additional Experience (MMOCore)
+    name: '冶炼额外经验 (MMOCore)'
     lore:
-      - '§8[ missing translation: ADDITIONAL_EXPERIENCE_SMELTING ]'
-      - '§8  stat: net.Indyuce.mmoitems.stat.type.DoubleStat'
-      - ''
-      - Additional MMOCore profession Smelting experience in %.
+      - '额外的 MMOCore profession 冶炼经验，单位为百分比.'
     options:
       from-common: DOUBLE_STAT
   PROFESSION_SMELTING:
-    name: Required Smelting Level (MMOCore)
+    name: '需要冶炼经验 (MMOCore)'
     lore:
-      - '§8[ missing translation: PROFESSION_SMELTING ]'
-      - '§8  stat: net.Indyuce.mmoitems.comp.mmocore.stat.RequiredProfession'
-      - ''
-      - Amount of Smelting levels the
-      - player needs to use the item.
+      - '玩家使用该物品需要的冶炼等级.'
     options:
       from-common: DOUBLE_STAT
