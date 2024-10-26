@@ -36,6 +36,7 @@ types:
   BLOCK: 方块
   GREATSWORD: 大剑
   LONG_SWORD: 长剑
+  KATANA: 太刀
   THRUSTING_SWORD: 刺剑
   AXE: 斧头
   GREATAXE: 巨斧
