@@ -16,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import top.mrxiaom.mmoi18n.edition.StatEdition;
-import top.mrxiaom.mmoi18n.gui.ItemTag;
 
 import java.util.ArrayList;
 import java.util.List;

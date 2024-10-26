@@ -1,6 +1,5 @@
 package top.mrxiaom.mmoi18n;
 
-import io.lumine.mythic.lib.MythicLib;
 import io.lumine.mythic.lib.UtilityMethods;
 import net.Indyuce.mmoitems.api.Type;
 import net.Indyuce.mmoitems.stat.type.ItemStat;

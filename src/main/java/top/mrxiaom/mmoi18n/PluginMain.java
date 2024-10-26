@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import de.tr7zw.changeme.nbtapi.utils.MinecraftVersion;
 import io.lumine.mythic.lib.UtilityMethods;
 import net.Indyuce.mmoitems.MMOItems;
-import net.Indyuce.mmoitems.stat.type.DoubleStat;
 import net.Indyuce.mmoitems.stat.type.InternalStat;
 import net.Indyuce.mmoitems.stat.type.ItemStat;
 import org.bukkit.Bukkit;
@@ -123,7 +122,7 @@ public class PluginMain extends JavaPlugin {
                 if (unused.isEmpty()) {
                     sender.sendMessage(ChatColor.GRAY + "未找到未使用的翻译配置");
                 } else {
-                    sender.sendMessage(ChatColor.YELLOW + "未使用的翻译配置如下: " + ChatColor.AQUA + String.join(ChatColor.WHITE + ", " + ChatColor.AQUA, unused));
+                    sender.sendMessage(ChatColor.YELLOW + "未使用的翻译配置如下 (" + unused.size() + "): " + ChatColor.AQUA + String.join(ChatColor.WHITE + ", " + ChatColor.AQUA, unused));
                 }
                 return true;
             }
