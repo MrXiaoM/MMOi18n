@@ -11,42 +11,42 @@ common:
   none: '§c无'
 
 types:
-  SWORD: Sword
-  DAGGER: Dagger
-  SPEAR: Spear
-  HAMMER: Hammer
-  GAUNTLET: Gauntlet
-  WHIP: Whip
-  STAFF: Staff
-  BOW: Bow
-  CROSSBOW: Crossbow
-  MUSKET: Musket
-  LUTE: Lute
-  TOOL: Tool
-  CATALYST: Catalyst
-  OFF_CATALYST: Catalyst (Off hand)
-  MAIN_CATALYST: Catalyst (Main hand)
-  ORNAMENT: Ornament
-  ARMOR: Armor
-  CONSUMABLE: Consumable
-  MISCELLANEOUS: Miscellaneous
-  GEM_STONE: Gem Stone
-  SKIN: Skin
-  ACCESSORY: Accessory
-  BLOCK: Block
-  GREATSWORD: Greatsword
-  LONG_SWORD: Long Sword
-  THRUSTING_SWORD: Thrusting Sword
-  AXE: Axe
-  GREATAXE: Greataxe
-  HALBERD: Halberd
-  LANCER: Lancer
-  GREATHAMMER: Greathammer
-  GREATSTAFF: Greatstaff
-  STAVE: Stave
-  TOME: Tome
-  TALISMAN: Talisman
-  WAND: Wand
-  GREATBOW: Greatbow
-  SHIELD: Shield
-  MATERIAL: Material
+  SWORD: 剑
+  DAGGER: 匕首
+  SPEAR: 长矛
+  HAMMER: 锤子
+  GAUNTLET: 拳套
+  WHIP: 鞭子
+  STAFF: 权杖
+  BOW: 弓
+  CROSSBOW: 弩
+  MUSKET: 火枪
+  LUTE: 鲁特琴 (笛子)
+  TOOL: 工具
+  CATALYST: 伪物
+  OFF_CATALYST: 伪物 (副手)
+  MAIN_CATALYST: 伪物 (主手)
+  ORNAMENT: 饰品
+  ARMOR: 盔甲
+  CONSUMABLE: 消耗品
+  MISCELLANEOUS: 杂项
+  GEM_STONE: 宝石
+  SKIN: 皮肤
+  ACCESSORY: 配件
+  BLOCK: 方块
+  GREATSWORD: 大剑
+  LONG_SWORD: 长剑
+  THRUSTING_SWORD: 刺剑
+  AXE: 斧头
+  GREATAXE: 巨斧
+  HALBERD: 长戟
+  LANCER: 轻骑兵长矛
+  GREATHAMMER: 大锤
+  GREATSTAFF: 大权杖
+  STAVE: 法杖
+  TOME: 法术书
+  TALISMAN: 护身符
+  WAND: 魔杖
+  GREATBOW: 巨弓
+  SHIELD: 盾牌
+  MATERIAL: 材料
