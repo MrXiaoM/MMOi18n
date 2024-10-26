@@ -68,59 +68,56 @@ common-stats:
       - '§e► 右键 移除最后一个权限.'
 stats:
   BLOCK_ID:
-    name: 'Block ID'
+    name: '方块 ID'
     lore:
-      - 'This value determines which'
-      - 'custom block will get placed.'
+      - '这个数值决定放置何种自定义方块.'
     options:
       from-common: DOUBLE_STAT
 
   GEN_TEMPLATE:
-    name: 'Gen Template'
+    name: '生成模板'
     lore:
-      - 'Can be set to any template'
-      - 'from gen-templates.yml.'
+      - '可设为 gen-templates.yml'
+      - '配置文件内的任何模板.'
     options:
       from-common: STRING_STAT
 
   MAX_HP:
-    name: 'Maximum XP'
+    name: '最大经验'
     lore:
-      - 'The maximum xp you will receive'
-      - 'for breaking this custom block.'
+      - '破坏自定义方块时，你会获得'
+      - '的最大经验值.'
     options:
       from-common: DOUBLE_STAT
 
   MIN_HP:
-    name: 'Minimum XP'
+    name: '最小经验'
     lore:
-      - 'The minimum xp you will receive'
-      - 'for breaking this custom block.'
+      - '破坏自定义方块时，你会获得'
+      - '的最小经验值.'
     options:
       from-common: DOUBLE_STAT
 
   REQUIRED_POWER:
-    name: 'Required Pickaxe Power'
+    name: '要求采集能量'
     lore:
-      - 'The required pickaxe power'
-      - 'needed to break this custom block.'
+      - '破坏自定义方块所需要的采集能量.'
     options:
       from-common: DOUBLE_STAT
 
   REQUIRE_POWER_TO_BREAK:
-    name: 'Require Power to Break'
+    name: '需要能量来破坏方块'
     lore:
-      - 'When enabled, the block will NOT break'
-      - 'if the player doesn''t have enough pickaxe'
-      - 'power, unlike vanilla block behaviour.'
+      - '若启用，如果玩家的采集能量不足，'
+      - '将不会破坏方块，与原版方块行为不同.'
     options:
       from-common: BOOLEAN_STAT
 
   ABILITY:
-    name: 'Item Abilities'
+    name: '物品能力'
     lore:
-      - 'Make your item cast amazing abilities'
-      - 'to kill monsters or buff yourself.'
+      - '让你的物品可以释放惊奇的能力，'
+      - '用于击杀怪物或增益自身.'
     options:
       lore-stat:
         - '§7当前能力数量: §6$abilities_size'
@@ -132,52 +129,50 @@ stats:
         - '§e► 左键 编辑物品能力.'
 
   ON_LEFT_CLICK:
-    name: 'Left Click Action'
+    name: '左键动作'
     lore:
-      - 'ID of skill ran when left clicking. When used,'
-      - 'The item will naturally apply item costs like'
-      - 'mana, stamina, cooldown. This option overrides the'
-      - 'script provided by the item type.'
+      - '左键点击时运行的技能的ID. 使用时，'
+      - '物品会自然地消耗像是 mana, stamina,'
+      - '冷却时间等数值. 这个选项由物品类型'
+      - '提供的脚本进行重载.'
     options:
       from-common: STRING_STAT
 
   ON_RIGHT_CLICK:
-    name: 'Right Click Action'
+    name: '右键动作'
     lore:
-      - 'ID of skill ran when right clicking. When used,'
-      - 'The item will naturally apply item costs like'
-      - 'mana, stamina, cooldown. This option overrides the'
-      - 'script provided by the item type.'
+      - '右键点击时运行的技能的ID. 使用时，'
+      - '物品会自然地消耗像是 mana, stamina,'
+      - '冷却时间等数值. 这个选项由物品类型'
+      - '提供的脚本进行重载.'
     options:
       from-common: STRING_STAT
 
   AMPHIBIAN:
-    name: 'Amphibian'
+    name: '两栖性'
     lore:
-      - 'May this item only be used in specific'
-      - 'environments regarding liquids?'
+      - '该物品是否只能用在特定的, 与液体有关的环境?'
     options:
       from-common: CHOOSE_STAT
 
   ARMOR:
-    name: 'Armor'
+    name: '护甲'
     lore:
-      - 'The armor given to the holder.'
+      - '对装备者的护甲.'
     options:
       from-common: DOUBLE_STAT
 
   ARMOR_TOUGHNESS:
-    name: 'Armor Toughness'
+    name: '盔甲韧性'
     lore:
-      - 'Armor toughness reduces damage taken.'
+      - '用于减少收到的伤害.'
     options:
       from-common: DOUBLE_STAT
 
   ARROW_PARTICLES:
-    name: 'Arrow Particles'
+    name: '箭矢粒子'
     lore:
-      - 'Particles that display around'
-      - 'the arrows your bow fires.'
+      - '显示在弓射出的箭矢周围的粒子效果.'
     options:
       lore-stat:
         - '§7当前值:'
@@ -195,10 +190,10 @@ stats:
         - '§e► 左键 编辑.'
 
   ARROW_POTION_EFFECTS:
-    name: 'Arrow Potion Effects'
+    name: '箭矢药水效果'
     lore:
-      - 'The effects to be applied when'
-      - 'entities are shot by this bow.'
+      - '弓射出的箭命中实体后，对其施加'
+      - '的药水效果.'
     options:
       lore-stat:
         - '§7当前值:'
@@ -213,64 +208,62 @@ stats:
         - '§e► 右键 移除最后一个药水效果.'
 
   ATTACK_DAMAGE:
-    name: 'Attack Damage'
+    name: '攻击伤害'
     lore:
-      - 'The amount of damage your weapon deals.'
+      - '你的武器会造成多少伤害.'
     options:
       from-common: DOUBLE_STAT
 
   ATTACK_SPEED:
-    name: 'Attack Speed'
+    name: '攻击速度'
     lore:
-      - 'The speed at which your weapon strikes.'
-      - 'In attacks/sec.'
+      - '你的武器挥动的速度.'
+      - '单位为 次数/秒.'
     options:
       from-common: DOUBLE_STAT
 
   BLOCK_BREAK_SPEED:
-    name: 'Mining Speed'
+    name: '挖掘速度'
     lore:
-      - 'Additional block breaking speed. Bare hands'
-      - 'have a mining speed of 1'
+      - '额外的方块挖掘速度. 空手的挖掘速度为1.'
     options:
       from-common: DOUBLE_STAT
 
   BLOCK_INTERACTION_RANGE:
-    name: 'Block Interaction Range'
+    name: '方块交互距离'
     lore:
-      - 'Determines the maximum range the player can'
-      - 'interact with blocks. Ranges between 0 and 64,'
-      - 'with the default value being 4.5 in survival mode.'
+      - '决定玩家可以与方块交互的最大距离.'
+      - '距离在 0 到 64 之间，生存模式玩家'
+      - '的默认距离为 4.5 格.'
     options:
       from-common: DOUBLE_STAT
 
   BROWSER_IDX:
-    name: 'Browser Index'
+    name: '浏览器索引'
     lore:
-      - 'Used to display similar items together,'
-      - 'neatly in the GUI \u00a7a/mmoitems browse'
+      - '用于在 §a/mmoitems browse §7的界面'
+      - '与相似物品一起整齐地显示.'
       - ''
-      - 'Items with the same index are grouped.'
+      - '相同索引的物品将被分为同一组.'
     options:
       from-common: DOUBLE_STAT
 
   BURNING_TIME:
-    name: 'Burning Time'
+    name: '燃烧时间'
     lore:
-      - 'A factor to how long the player remains on fire'
-      - 'after being ignited. A factor of 0 removes'
-      - 'the entire burn time, a factor of 1 lets the Entity'
-      - 'burn the default fire time - larger values increase'
-      - 'the amount of time the entity remains on fire.'
-      - 'Default is 1, minimum is 0, maximum is 1024.'
+      - '该数值决定玩家被点燃后的燃烧时间有多长.'
+      - '设为 0 移除燃烧时间,'
+      - '设为 1 让实体以默认时间燃烧 - 增加到更大的值,'
+      - '实体将以更长的时间燃烧.'
+      - '默认值为 1, 最小值为 0, 最大值为 1024.'
     options:
       from-common: DOUBLE_STAT
 
   CAN_BREAK:
-    name: 'Can Break?'
+    name: '可破坏方块?'
     lore:
-      - 'The list of materials that this item can break.'
-      - 'This restriction only applies to adventure mode.'
+      - '该物品可破坏方块类型列表.'
+      - '这个限制仅在冒险模式下有效.'
     options:
       lore-stat:
         - '§7当前值:'
@@ -285,45 +278,43 @@ stats:
         - '§e► 右键 移除最后一个方块类型.'
 
   CAN_DECONSTRUCT:
-    name: 'Can Deconstruct?'
+    name: '可分解?'
     lore:
-      - 'Players can deconstruct their item'
-      - 'using this consumable, creating'
-      - 'another random item.'
+      - '玩家可使用这个消耗品来分解'
+      - '他们的物品，以获得另一个'
+      - '随机物品.'
     options:
       from-common: BOOLEAN_STAT
 
   CAN_DESKIN:
-    name: 'Can Deskin?'
+    name: '可卸下皮肤?'
     lore:
-      - 'Players can deskin their item'
-      - 'and get their skin back'
-      - 'from the item.'
+      - '玩家可以移除他们物品的皮肤'
+      - '并从物品重新拿到皮肤.'
     options:
       from-common: BOOLEAN_STAT
 
   CAN_IDENTIFY:
-    name: 'Can Identify?'
+    name: '可鉴定?'
     lore:
-      - 'Players can identify & make their'
-      - 'item usable using this consumable.'
+      - '玩家可以使用这个消耗品来鉴定'
+      - '他们的物品，并使得这个物品可使用.'
     options:
       from-common: BOOLEAN_STAT
 
   CAN_UNSOCKET:
-    name: 'Can Unsocket?'
+    name: '可拆卸?'
     lore:
-      - 'This item, when used on another item, if'
-      - 'that other item has Gem Stones'
-      - 'may be used to remove those Gems.'
+      - '向另一个物品使用该物品时，如果'
+      - '另一个物品有镶嵌宝石，可用于移除'
+      - '物品上的宝石.'
     options:
       from-common: BOOLEAN_STAT
 
   COMMANDS:
-    name: 'Commands'
+    name: '命令'
     lore:
-      - 'The commands your item'
-      - 'performs when right clicked.'
+      - '右键物品时执行的命令.'
     options:
       lore-stat:
         - '§7当前命令数量: §c$list_size'
@@ -335,10 +326,9 @@ stats:
         - '§e► 左键 编辑物品命令列表.'
 
   COMPATIBLE_IDS:
-    name: 'Compatible IDs'
+    name: '兼容的ID'
     lore:
-      - 'The item ids this skin is'
-      - 'compatible with.'
+      - '该皮肤兼容的MMO物品ID.'
     options:
       lore-stat:
         - '§7当前值:'
@@ -353,10 +343,9 @@ stats:
         - '§e► 右键 移除最后一个 id.'
 
   COMPATIBLE_MATERIALS:
-    name: 'Compatible Materials'
+    name: '兼容物品类型'
     lore:
-      - 'The item materials this skin is'
-      - 'compatible with.'
+      - '该皮肤兼容的物品类型.'
     options:
       lore-stat:
         - '§7当前值:'
@@ -371,28 +360,27 @@ stats:
         - '§e► 右键 移除最后一个物品类型.'
 
   COMPATIBLE_TYPES:
-    name: 'Compatible Types'
+    name: '兼容类别'
     lore:
-      - 'The item types this skin is'
-      - 'compatible with.'
+      - '该皮肤兼容的MMO物品类别.'
     options:
       lore-stat:
         - '§7当前值:'
         - '$list'
         - ''
-        - '§e► 左键 添加一个类型.'
-        - '§e► 右键 移除最后一个类型.'
+        - '§e► 左键 添加一个类别.'
+        - '§e► 右键 移除最后一个类别.'
       lore-empty:
         - '§7当前值: §c与任意物品兼容'
         - ''
-        - '§e► 左键 添加一个类型.'
-        - '§e► 右键 移除最后一个类型.'
+        - '§e► 左键 添加一个类别.'
+        - '§e► 右键 移除最后一个类别.'
 
   CRAFTING:
-    name: 'Crafting'
+    name: '合成选项'
     lore:
-      - 'The crafting recipes of your item.'
-      - 'Changing a recipe requires &o/mi reload recipes&7.'
+      - '该物品的合成配方.'
+      - '更改配方后需要执行 &o/mi reload recipes&7.'
     options:
       lore-stat:
         - '§e► 左键 打开合成配方编辑菜单.'
@@ -402,30 +390,30 @@ stats:
         - '§e► 右键 移除所有合成配方.'
 
   CRAFT_PERMISSION:
-    name: 'Crafting Recipe Permission'
+    name: '合成配方权限'
     lore:
-      - 'The permission needed to craft this item.'
-      - 'Changing this value requires &o/mi reload recipes&7.'
+      - '合成这个物品所需的权限.'
+      - '更改这个值后需要执行 &o/mi reload recipes&7.'
     options:
       from-common: STRING_STAT
 
   DURABILITY:
-    name: 'Custom Durability'
+    name: '自定义耐久'
     lore: []
     options:
       from-common: DOUBLE_STAT
 
   CUSTOM_MODEL_DATA:
-    name: 'Custom Model Data'
+    name: '自定义模型数据'
     lore:
-      - 'Your 1.14+ model data.'
+      - '1.14+ 支持的模型数据 (Custom Model Data).'
     options:
       from-common: DOUBLE_STAT
 
   SOUNDS:
-    name: 'Custom Sounds'
+    name: '自定义音效'
     lore:
-      - 'The custom sounds your item will use.'
+      - '物品将会使用的自定义音效.'
     options:
       lore-stat:
         - '§7当前值:'
@@ -440,34 +428,32 @@ stats:
         - '§e► 右键 移除所有音效.'
 
   DISABLE_DEATH_DROP:
-    name: 'Disable Drop On Death'
+    name: '死亡不掉落'
     lore:
-      - 'Enable this to prevent this item'
-      - 'from dropping on the wielder''s death.'
+      - '开启此选项将会避免持有者死亡时'
+      - '掉落在死亡地点.'
     options:
       from-common: BOOLEAN_STAT
 
   DISPLAYED_TYPE:
-    name: 'Displayed Type'
+    name: '显示类别'
     lore:
-      - 'This option will only affect the'
-      - 'type displayed on the item lore.'
+      - '该选项仅影响显示在 Lore 上的物品类别.'
     options:
       from-common: STRING_STAT
 
   NAME:
-    name: 'Display Name'
+    name: '物品名称'
     lore:
-      - 'The item display name.'
+      - '物品的展示名称.'
     options:
       from-common: STRING_STAT
 
   DYE_COLOR:
-    name: 'Dye Color'
+    name: '染色颜色'
     lore:
-      - 'The color of your item'
-      - '(for dyeable items).'
-      - 'In RGB.'
+      - '可染色物品的颜色.'
+      - '以 RGB 格式.'
     options:
       lore-stat:
         - '§7当前值: §a$to_string'
@@ -481,10 +467,9 @@ stats:
         - '§e► 右键 移除染色颜色.'
 
   EFFECTS:
-    name: 'Effects'
+    name: '药水效果'
     lore:
-      - 'The potion effects your'
-      - 'consumable item grants.'
+      - '可消耗物品使用后获得的药水效果.'
     options:
       lore-stat:
         - '§7当前值:'
@@ -499,9 +484,9 @@ stats:
         - '§e► 右键 移除最后一个药水效果.'
 
   ELEMENT:
-    name: 'Elements'
+    name: '元素'
     lore:
-      - 'The elements of your item.'
+      - '物品元素列表.'
     options:
       lore-stat:
         - '§7当前值:'
@@ -516,9 +501,9 @@ stats:
         - '§e► 右键 移除所有元素.'
 
   ENCHANTS:
-    name: 'Enchantments'
+    name: '附魔'
     lore:
-      - 'The item enchants.'
+      - '物品的附魔.'
     options:
       lore-stat:
         - '§7当前值:'
@@ -533,45 +518,40 @@ stats:
         - '§e► 右键 移除最后一个附魔.'
 
   ENTITY_INTERACTION_RANGE:
-    name: 'Entity Interaction Range'
+    name: '实体交互距离'
     lore:
-      - 'Determines the maximum range the player can interact'
-      - 'with entities. Ranges between 0 and 64, with the '
-      - 'default value being 3.'
+      - '决定你能与实体交互的最大距离.'
+      - '可用范围 0 到 64，默认值是 3.'
     options:
       from-common: DOUBLE_STAT
 
   EXPLOSION_KNOCKBACK_RESISTANCE:
-    name: 'Explosion Knockback Resistance'
+    name: '爆炸击退抗性'
     lore:
-      - 'A factor to how much knockback an Entity takes'
-      - 'from an Explosion. A factor of 1 removes'
-      - 'the entire knockback, a factor of 0 means'
-      - 'no knockback reduction.'
+      - '该数值决定实体会承受多少爆炸击退.'
+      - '设为 1 移除击退, 设为 0 代表不减少击退.'
     options:
       from-common: DOUBLE_STAT
 
   FALL_DAMAGE_MULTIPLIER:
-    name: 'Fall Damage Multiplier'
+    name: '摔落伤害乘数器'
     lore:
-      - 'Multiply overall fall damage amount. Default is 1,'
-      - 'and the valid range is from 0 to 100.'
+      - '对摔落伤害做乘法运算. 默认值为 1,'
+      - '可用范围 0 到 100.'
     options:
       from-common: DOUBLE_STAT
 
   GEM_COLOR:
-    name: 'Gem Color'
+    name: '宝石颜色(类别)'
     lore:
-      - 'Defines the color of the socket in'
-      - 'which the gem can be applied.'
+      - '定义可以镶嵌宝石的槽位的颜色.'
     options:
       from-common: STRING_STAT
 
   GEM_SOCKETS:
-    name: 'Gem Sockets'
+    name: '宝石槽位'
     lore:
-      - 'The amount of gem'
-      - 'sockets your weapon has.'
+      - '你的武器可以镶嵌的宝石槽位列表.'
     options:
       lore-stat:
         - '§7当前值:'
@@ -586,92 +566,89 @@ stats:
         - '§e► 右键 移除最后一个宝石槽位.'
 
   GEM_UPGRADE_SCALING:
-    name: 'Gem Upgrade Scaling'
+    name: '宝石升级程度'
     lore:
-      - 'Gem stones add their stats to items, but you may also'
-      - 'upgrade your items via crafting stations or consumables.'
+      - '宝石可以增加物品的属性，但通过工作台'
+      - '或消耗品升级你的物品也可以影响属性.'
       - ''
-      - '§6Should this gem stone stats be affected by upgrading?'
+      - '该宝石提供的属性是否会被升级影响?'
     options:
       from-common: CHOOSE_STAT
 
   GRANTED_PERMISSIONS:
-    name: 'Granted Permissions'
+    name: '授予权限'
     lore:
-      - 'A list of permissions that will,'
-      - 'be granted by the item.'
+      - '物品将授予的权限列表'
     options:
       from-common: STRING_LIST_STAT
 
   GRAVITY:
-    name: 'Gravity'
+    name: '重力'
     lore:
-      - 'Controls blocks/tick^2 acceleration downward.'
-      - 'Default is 0.08, and the valid range is from -1 to +1.'
+      - '控制 格数/tick^2 向下的加速度.'
+      - '默认值是 0.08, 可用范围 -1 到 +1.'
     options:
       from-common: DOUBLE_STAT
 
   DURABILITY_BAR:
-    name: 'Hide Durability Bar'
+    name: '隐藏耐久条'
     lore:
-      - 'Enable this to have the green bar'
-      - 'hidden when using &ncustom&7 durability.'
-      - 'Does not work when using vanilla durability.'
+      - '启用该选项，将在使用&n自定义耐久&7时'
+      - '隐藏原版的耐久条.'
+      - '在使用原版耐久功能时该选项不会有效.'
     options:
       from-common: BOOLEAN_STAT
 
   HIDE_DYE:
-    name: 'Hide Dyed'
+    name: '隐藏染色'
     lore:
-      - 'Enable to hide the ''Dyed'' tag from the item.'
+      - '启用该选项，将隐藏物品描述中的“已染色”.'
     options:
       from-common: BOOLEAN_STAT
 
   HIDE_ENCHANTS:
-    name: 'Hide Enchantments'
+    name: '隐藏附魔'
     lore:
-      - 'Enable to completely hide your item'
-      - 'enchants. You can still see the glowing effect.'
+      - '启用该选项，将在物品描述完全隐藏附魔.'
+      - '你依然可以看到物品附魔光泽.'
     options:
       from-common: BOOLEAN_STAT
 
   HIDE_POTION_EFFECTS:
-    name: 'Hide Additional Tooltips'
+    name: '隐藏额外物品描述'
     lore:
-      - 'Hides potion effects & additional'
-      - 'vanilla tooltips from the item lore.'
+      - '隐藏药水效果与额外的原版物品描述.'
     options:
       from-common: BOOLEAN_STAT
 
   HIDE_ARMOR_TRIM:
-    name: 'Hide Armor Trim'
+    name: '隐藏盔甲纹饰'
     lore:
-      - 'Hides armor trim from item lore.'
+      - '隐藏物品描述中的盔甲纹饰.'
     options:
       from-common: BOOLEAN_STAT
 
   ITEM_DAMAGE:
-    name: 'Base Item Damage'
+    name: '基础物品伤害'
     lore:
-      - 'Default item damage. This does &cNOT'
-      - 'impact the item''s max durability.'
+      - '默认物品伤害. 该选项&c不会&7影响'
+      - '物品的最大耐久.'
     options:
       from-common: DOUBLE_STAT
 
   # 内部状态
   ITEM_LEVEL:
-    name: 'Item Level'
+    name: '物品等级'
     lore:
-      - 'The item level.'
+      - '物品的等级.'
     options: {}
 
   ITEM_PARTICLES:
-    name: 'Item Particles'
+    name: '物品粒子效果'
     lore:
-      - 'The particles displayed when'
-      - 'holding/wearing your item.'
+      - '当你持有/穿戴物品时显示的粒子效果.'
       - ''
-      - '§9A tutorial is available on the wiki.'
+      - '§9教程在wiki上可用.'
     options:
       lore-stat:
         - '§e► 左键 配置物品粒子选项.'
@@ -681,29 +658,27 @@ stats:
         - '§e► 右键 清空粒子.'
 
   SET:
-    name: 'Item Set'
+    name: '物品集合'
     lore:
-      - 'Item sets can give to the player extra'
-      - 'bonuses that depend on how many items'
-      - 'from the same set your wear.'
+      - '物品集合可以基于玩家额外的增益，'
+      - '这基于你穿戴了多少来自相同物品集合的物品.'
     options:
       from-common: STRING_STAT
 
   TIER:
-    name: 'Item Tier'
+    name: '物品分级'
     lore:
-      - 'The tier defines how rare your item is'
-      - 'and what item is dropped when your'
-      - 'item is deconstructed.'
-      - '&9Tiers can be configured in the tiers.yml file'
+      - '分级决定了你的物品的稀有度，以及'
+      - '物品分解时会掉落什么物品.'
+      - '&9分级可在配置文件 tiers.yml 中配置'
     options:
       from-common: STRING_STAT
 
   ITEM_TYPE_RESTRICTION:
-    name: 'Item Type Restriction'
+    name: '物品类别限制'
     lore:
-      - 'This option defines the item types'
-      - 'on which your gem can be applied.'
+      - '该选项决定了宝石可以镶嵌到'
+      - '何种物品上.'
     options:
       lore-stat:
         - '§7当前值:'
@@ -718,27 +693,26 @@ stats:
         - '§e► 右键 移除最后一个元素.'
 
   JUMP_STRENGTH:
-    name: 'Jump Strength'
+    name: '跳跃动量'
     lore:
-      - 'This controls the base impulse from a jump'
-      - '(before jump boost or modifier on block). '
-      - 'Default is 0.42, and the valid range is from 0 to 32.'
+      - '该选项控制玩家的基础跳跃动量'
+      - '(在跳跃提升药水或方块修改器之前). '
+      - '默认值是 0.42, 可用范围 0 到 32.'
     options:
       from-common: DOUBLE_STAT
 
   KNOCKBACK_RESISTANCE:
-    name: 'Knockback Resistance'
+    name: '击退抗性'
     lore:
-      - 'The chance of your item to block the knockback'
-      - 'from explosions, creepers...'
-      - '1.0 corresponds to 100%, 0.7 to 70%...'
+      - '你的物品从爆炸、苦力怕等防住击退的概率.'
+      - '1.0 代表 100%, 0.7 代表 70%...'
     options:
       from-common: DOUBLE_STAT
 
   LORE:
-    name: 'Lore'
+    name: '物品描述(Lore)'
     lore:
-      - 'The item lore.'
+      - '物品的 Lore.'
     options:
       lore-stat:
         - '§7当前值:'
@@ -753,51 +727,49 @@ stats:
         - '§e► 右键 移除最后一行.'
 
   LORE_FORMAT:
-    name: 'Lore Format'
+    name: 'Lore 格式'
     lore:
-      - 'The lore format decides'
-      - 'where each stat goes.'
-      - '&9Formats can be configured in'
-      - '&9the lore-formats folder'
+      - 'Lore 格式决定了每个属性'
+      - '应该显示在何处.'
+      - '&9格式可在 lore-formats'
+      - '&9文件夹中进行配置'
     options:
       from-common: STRING_STAT
 
   WILL_BREAK:
-    name: 'Lost when Broken?'
+    name: '损毁时丢失?'
     lore:
-      - 'If set to true, the item will be lost'
-      - 'once it reaches 0 durability.'
+      - '如果开启，物品将会在耐久越过 0 之后消失.'
     options:
       from-common: BOOLEAN_STAT
 
   LUTE_ATTACK_EFFECT:
-    name: 'Lute Attack Effect'
+    name: 'Lute 攻击效果'
     lore:
-      - 'Changes how your lute behaves'
-      - 'when right clicked.'
-      - '§9Tip: /mi list lute'
+      - '更改右键时的 lute 行为.'
+      - '§9提示: /mi list lute'
     options:
       from-common: STRING_STAT
 
   LUTE_ATTACK_SOUND:
-    name: 'Lute Attack Sound'
+    name: 'Lute 攻击音效'
     lore:
-      - 'The sound played when'
-      - 'basic attacking with this lute.'
+      - '使用 lute 进行基础攻击时'
+      - '播放的攻击音效.'
     options:
       from-common: STRING_STAT
 
   MANA_COST:
-    name: 'Mana Cost'
+    name: '消耗魔力 (Mana)'
     lore:
-      - 'Mana spent by your weapon to be used.'
+      - '使用武器需要消耗的魔力值.'
     options:
       from-common: DOUBLE_STAT
 
   MATERIAL:
-    name: 'Material'
+    name: '物品类型'
     lore:
-      - 'Your item material.'
+      - '你的物品类型.'
     options:
       lore-stat:
         - '§7当前值: §a$material'
@@ -811,89 +783,83 @@ stats:
         - '§e► 右键 移除数值.'
 
   MAX_ABSORPTION:
-    name: 'Max Absorption'
+    name: '最大伤害吸收'
     lore:
-      - 'This does not provide permanent absorption'
-      - 'but rather increases your maximum amount'
-      - 'of absorption hearts you can have at any time.'
+      - '这个选项不提供永久的伤害吸收效果,'
+      - '但可以在任意时刻增加最大的黄心数量(伤害吸收血量).'
     options:
       from-common: DOUBLE_STAT
 
   MAX_CONSUME:
-    name: 'Max Consume'
+    name: '最大使用次数'
     lore:
-      - 'Max amount of usage before'
-      - 'item disappears.'
+      - '物品消失之前的最大使用次数.'
     options:
       from-common: DOUBLE_STAT
 
   MAX_HEALTH:
-    name: 'Max Health'
+    name: '最大生命值'
     lore:
-      - 'The amount of health your item gives to the holder.'
+      - '为持有者增加最大生命值.'
     options:
       from-common: DOUBLE_STAT
 
   MAX_DURABILITY:
-    name: 'Maximum Custom Durability'
+    name: '最大自定义耐久'
     lore:
-      - 'The amount of uses before your'
-      - 'item becomes unusable/breaks.'
+      - '在你的物品变得不可使用/损坏之前'
+      - '的最大使用次数.'
     options:
       from-common: DOUBLE_STAT
 
   MAX_ITEM_DAMAGE:
-    name: 'Maximum Vanilla Durability'
+    name: '最大原版耐久'
     lore:
-      - 'Only available in 1.20.5+'
-      - 'Maximum amount of durability on your item.'
-      - 'This works using vanilla durability and is'
-      - 'much more stable than Custom Durability.'
+      - '仅在 1.20.5+ 可用'
+      - '物品的最大耐久数值. 使用原版机制,'
+      - '比最大自定义耐久选项更加稳定.'
     options:
       from-common: DOUBLE_STAT
 
   MAX_STACK_SIZE:
-    name: 'Max Stack Size'
+    name: '最大堆叠数量'
     lore:
-      - 'Maximum amount of items which'
-      - 'can be stacked together (1.20.5+).'
-      - 'Maximum value is 99.'
+      - '物品可以堆叠在一起的最大数量 (1.20.5+).'
+      - '最大值为 99.'
     options:
       from-common: DOUBLE_STAT
 
   MINING_EFFICIENCY:
-    name: 'Mining Efficiency'
+    name: '挖掘效率'
     lore:
-      - 'Mining speed factor added to the speed of'
-      - 'mining when using a tool that efficiently'
-      - 'mines a block. Default and minimum is 0,'
-      - 'maximum is 1024.'
+      - '使用一个工具挖掘时的额外挖掘速度.'
+      - '默认值与最小值是 0，最大值为 1024.'
     options:
       from-common: DOUBLE_STAT
 
   MOVEMENT_EFFICIENCY:
-    name: 'Movement Efficiency'
+    name: '移动效率'
     lore:
-      - 'How efficiently the entity can move through'
-      - 'impeding terrain that slows down movement.'
-      - 'A factor of 1 removes all movement penalty,'
-      - 'a factor of 0 applies full movement penalty.'
-      - 'Default and minimum is 0, maximum is 1.'
+      - '决定实体在难以移动的地形中,'
+      - '移动效率如何. 如灵魂沙上行走等等.'
+      - '设为 1 移除所有移动惩罚.'
+      - '设为 0 保留所有移动惩罚.'
+      - '默认值为 0，最大值为 1.'
     options:
       from-common: DOUBLE_STAT
 
   MOVEMENT_SPEED:
-    name: 'Movement Speed'
+    name: '移动速度'
     lore:
-      - 'Increases the player''s walking speed.'
-      - 'Default MC walk speed is 0.1'
+      - '增加玩家的移动速度.'
+      - 'MC 的默认移动速度为 0.1'
     options:
       from-common: DOUBLE_STAT
 
   CUSTOM_NBT:
-    name: 'NBT Tags'
+    name: 'NBT标签'
     lore:
-      - 'Custom NBT Tags.'
+      - '自定义的NBT标签.'
     options:
       lore-stat:
         - '§7当前值:'
@@ -908,21 +874,20 @@ stats:
         - '§e► 右键 移除最后一个标签.'
 
   OXYGEN_BONUS:
-    name: 'Bonus Oxygen'
+    name: '氧气提升'
     lore:
-      - 'Factor to the chance an Entity has to not use up air'
-      - 'when underwater. 0 has no effect, values over 0 are used'
-      - 'in the following formula to determine the chance of'
-      - 'using up air: 1 / ( bonus_oxygen + 1 ).'
-      - 'Maximum is 1024.'
+      - '该数值提供一个实体在水下不消耗氧气的概率.'
+      - '设为 0 没有任何效果, 设为大于 0 的数值'
+      - '会使用在以下公式中计算概率:'
+      - '1 / ( 数值 + 1 ).'
+      - '最大值为 1024.'
     options:
       from-common: DOUBLE_STAT
 
   PERM_EFFECTS:
-    name: 'Permanent Effects'
+    name: '永久药水效果'
     lore:
-      - 'The potion effects your'
-      - 'item grants to the holder.'
+      - '持有者将获得的药水效果.'
     options:
       lore-stat:
         - '§7当前值:'
@@ -937,9 +902,9 @@ stats:
         - '§e► 右键 移除最后一个药水效果.'
 
   PERMISSION:
-    name: 'Permission'
+    name: '权限'
     lore:
-      - 'The permission needed to use this item.'
+      - '使用该物品所需的权限.'
     options:
       lore-stat:
         - '§7当前值:'
@@ -956,16 +921,15 @@ stats:
   PICKAXE_POWER:
     name: 'Pickaxe Power'
     lore:
-      - 'The breaking strength of the'
-      - 'item when mining custom blocks.'
+      - '挖掘自定义方块时的物品破坏强度.'
     options:
       from-common: DOUBLE_STAT
 
   POTION_COLOR:
-    name: 'Potion Color'
+    name: '药水颜色'
     lore:
-      - 'The color of your potion.'
-      - '(Doesn''t impact the effects).'
+      - '药水物品的颜色.'
+      - '(不会影响药水效果).'
     options:
       lore-stat:
         - '§a$to_string'
@@ -979,11 +943,11 @@ stats:
         - '§e► 右键 移除药水颜色.'
 
   POTION_EFFECT:
-    name: 'Potion Effects'
+    name: '药水物品效果'
     lore:
-      - 'The effects of your potion.'
-      - '(May have an impact on color).'
-      - 'Does NOT support tipped arrows.'
+      - '药水物品的药水效果.'
+      - '(会影响药水颜色).'
+      - '不支持药水箭.'
     options:
       lore-stat:
         - '§7当前值:'
@@ -998,9 +962,9 @@ stats:
         - '§e► 右键 移除最后一个药水效果.'
 
   PROJECTILE_PARTICLES:
-    name: 'Projectile Particles'
+    name: '弹射物粒子效果'
     lore:
-      - 'The projectile particle that your weapon shoots'
+      - '使用你的武器射击时，弹射物的粒子效果'
     options:
       lore-stat:
         - '§7当前值: §a$particle'
@@ -1015,43 +979,40 @@ stats:
         - '§e► 右键 移除数值.'
 
   RANDOM_UNSOCKET:
-    name: 'Random Unsocket'
+    name: '随机拆卸'
     lore:
-      - 'Number of gems (rounded down)'
-      - 'that will pop out of an item when'
-      - 'this is applied.'
+      - '对其它物品使用时，物品中的'
+      - '几个宝石(四舍五入)会从物品中拆卸.'
     options:
       from-common: DOUBLE_STAT
 
   REPAIR:
-    name: 'Repair Power'
+    name: '修理能力'
     lore:
-      - 'The flat amount of durability your item'
-      - 'can repair when set an item.'
+      - '拖拽到别的物品上，恢复物品的耐久数值.'
     options:
       from-common: DOUBLE_STAT
 
   REPAIR_PERCENT:
-    name: 'Repair Percentage'
+    name: '修理百分比'
     lore:
-      - 'The percentage of total durability getting'
-      - 'repaired when dragged onto another item.'
+      - '拖拽到别的物品上，按百分比恢复物品耐久.'
     options:
       from-common: DOUBLE_STAT
 
   REPAIR_TYPE:
-    name: 'Repair Reference'
+    name: '修理参考'
     lore:
-      - 'A repair consumable may only be used onto'
-      - 'an item with the same repair reference.'
+      - '这个用于修理的消耗品只能用在'
+      - '有相同修理参考的物品上.'
     options:
       from-common: STRING_STAT
 
   REQUIRED_BIOMES:
-    name: 'Required Biomes'
+    name: '生物群系需求'
     lore:
-      - 'The biome the player must be within'
-      - 'for this item to activate.'
+      - '玩家必须在特定生物群系中'
+      - '才能激活该物品.'
     options:
       lore-stat:
         - '§7当前值:'
@@ -1066,7 +1027,7 @@ stats:
         - '§e► 右键 移除最后一个生物群系.'
 
   REQUIRED_CLASS:
-    name: 'Required Class'
+    name: 'Class 需求'
     lore:
       - 'The class you need to'
       - 'profess to use your item.'
@@ -1084,61 +1045,56 @@ stats:
         - '§e► 右键 移除最后一个 class.'
 
   LEVEL:
-    name: 'Level'
+    name: '等级'
     lore:
-      - 'The level your item needs'
-      - 'in order to be used.'
+      - '使用该物品所需要的等级.'
+      - '等级通常由 RPG 插件提供，如 MMOCore.'
     options:
       from-common: DOUBLE_STAT
 
   RESTORE_FOOD:
-    name: 'Food Restoration'
+    name: '饱食度回复'
     lore:
-      - 'Food units given when consumed.'
+      - '使用后回复的饱食度单位.'
     options:
       from-common: DOUBLE_STAT
 
   RESTORE_HEALTH:
-    name: 'Health Restoration'
+    name: '生命回复'
     lore:
-      - 'Health given when consumed.'
+      - '使用后回复的生命值.'
     options:
       from-common: DOUBLE_STAT
 
   RESTORE_MANA:
-    name: 'Restore Mana'
+    name: '魔力回复'
     lore:
-      - 'The amount of mana'
-      - 'your consumable restores.'
+      - '使用后回复的魔力值 (Mana).'
     options:
       from-common: DOUBLE_STAT
 
   RESTORE_SATURATION:
-    name: 'Saturation Restoration'
+    name: '饱和度回复'
     lore:
-      - 'Saturation given when consumed.'
+      - '使用后回复的饱和度.'
     options:
       from-common: DOUBLE_STAT
 
   RESTORE_STAMINA:
-    name: 'Restore Stamina'
+    name: '耐力回复'
     lore:
-      - 'The amount of stamina/power'
-      - 'your consumable restores.'
+      - '使用后回复的耐力/能力.'
     options:
       from-common: DOUBLE_STAT
 
   REVISION_ID:
-    name: 'Revision ID'
+    name: '修订版本 ID'
     lore:
-      - 'The Revision ID is used to determine'
-      - 'if an item is outdated or not. You'
-      - 'should increase this whenever'
-      - 'you make changes to your item!'
+      - '修订版本ID用于决定一个物品是否已过期.'
+      - '在你修改完物品后，应当增加版本号数值!'
       - ''
-      - '§6The updater is smart and will apply'
-      - '§6changes to the base stats of the item,'
-      - '§6keeping gemstones intact (for example).'
+      - '§6更新器是智能的，它会更新物品的基础数值，'
+      - '§6而保留宝石等等.'
     options:
       lore-stat:
         - '§7当前修订版本 ID: §a$base_int'
@@ -1152,27 +1108,24 @@ stats:
         - '§e► 右键 降低修订版本.'
 
   SAFE_FALL_DISTANCE:
-    name: 'Safe Fall Distance'
+    name: '安全摔落距离'
     lore:
-      - 'Controls the fall distance after which'
-      - 'the player takes fall damage. Default is 3,'
-      - 'and the valid range is from -1024 to +1024.'
+      - '控制从多高的地方摔落，玩家才会收到摔落伤害.'
+      - '默认值为 3，可用范围 -1024 到 +1024.'
     options:
       from-common: DOUBLE_STAT
 
   SCALE:
-    name: 'Scale'
+    name: '缩放'
     lore:
-      - 'Allows changing the size of the player to '
-      - 'anywhere between 0.0625 and 16 times their default size.'
+      - '允许更改玩家大小，于 0.0625 到 16 倍他们的默认大小.'
     options:
       from-common: DOUBLE_STAT
 
   SHIELD_PATTERN:
-    name: 'Shield Pattern'
+    name: '盾牌图案'
     lore:
-      - 'The color & patterns'
-      - 'of your shield.'
+      - '你的盾牌的颜色和图案.'
     options:
       lore-stat:
         - '§7当前值:'
@@ -1192,11 +1145,11 @@ stats:
         - '§e► Q键丢弃 移除最后一个图案.'
 
   SKULL_TEXTURE:
-    name: 'Skull Texture'
+    name: '头颅材质'
     lore:
-      - 'The skull texture §nvalue§7 which can be found on'
-      - 'head databases. 1.20+ users can also provide the'
-      - 'texture URL directly (starting with https://...).'
+      - '头颅数据库中可找到的头颅的材质§n值§7.'
+      - '1.20+ 用户也可以提供材质直链'
+      - '(以 https:// 开头).'
     options:
       lore-stat:
         - '§7当前值: §a已提供材质'
@@ -1210,42 +1163,40 @@ stats:
         - '§e► 右键 移除数值.'
 
   SNEAKING_SPEED:
-    name: 'Sneaking Speed'
+    name: '潜行速度'
     lore:
-      - 'The movement speed factor when sneaking.'
-      - 'A factor of 1 means sneaking is as fast as walking,'
-      - 'a factor of 0 means unable to move while sneaking.'
-      - 'Default is 0.3, minimum is 0 and maximum is 1.'
+      - '玩家潜行时的移动速度.'
+      - '设为 1 代表潜行与正常行走一样快.'
+      - '设为 0 代表潜行时禁止移动.'
+      - '默认值是 0.3，最小值为 0，最大值为 1.'
     options:
       from-common: DOUBLE_STAT
 
   SOULBOUND_BREAK_CHANCE:
-    name: 'Soulbound Break Chance'
+    name: '灵魂绑定损坏几率'
     lore:
-      - 'The chance of breaking an item''s'
-      - 'soulbound when drag & drop''d on it.'
-      - 'This chance is lowered depending'
-      - 'on the soulbound''s level.'
+      - '拖拽到某物品上时，使得物品的灵魂绑定'
+      - '损坏的几率.'
+      - '这个几率会按灵魂绑定等级降低.'
     options:
       from-common: DOUBLE_STAT
 
   SOULBINDING_CHANCE:
-    name: 'Soulbinding Chance'
+    name: '灵魂绑定几率'
     lore:
-      - 'Defines the chance your item has to'
-      - 'link another item to your soul,'
-      - 'preventing other players from using it.'
+      - '你的物品会链接另一个物品进行灵魂绑定'
+      - '的几率，防止其它玩家使用它.'
     options:
       from-common: DOUBLE_STAT
 
   # 内部状态
   SOULBOUND:
-    name: 'Soulbound'
+    name: '灵魂绑定'
     lore: []
     options: {}
 
   SOULBOUND_LEVEL:
-    name: 'Soulbinding Level'
+    name: '灵魂绑定等级'
     lore:
       - 'The soulbound level defines how much'
       - 'damage players will take when trying'
@@ -1255,11 +1206,10 @@ stats:
       from-common: DOUBLE_STAT
 
   STEP_HEIGHT:
-    name: 'Step Height'
+    name: '步高'
     lore:
-      - 'Determines the max height in blocks where'
-      - 'a mob can walk above without jumping.'
-      - 'Default is 0.6, and the valid range is from 0 to 10.'
+      - '决定生物不用跳跃就能走上去的最大高度.'
+      - '默认值是 0.6，有效范围 0 到 10.'
     options:
       from-common: DOUBLE_STAT
 
