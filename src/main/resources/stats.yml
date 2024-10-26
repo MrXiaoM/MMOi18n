@@ -82,7 +82,7 @@ stats:
     options:
       from-common: STRING_STAT
 
-  MAX_HP:
+  MAX_XP:
     name: '最大经验'
     lore:
       - '破坏自定义方块时，你会获得'
@@ -90,7 +90,7 @@ stats:
     options:
       from-common: DOUBLE_STAT
 
-  MIN_HP:
+  MIN_XP:
     name: '最小经验'
     lore:
       - '破坏自定义方块时，你会获得'
@@ -1044,7 +1044,7 @@ stats:
         - '§e► 左键 添加一个 class.'
         - '§e► 右键 移除最后一个 class.'
 
-  LEVEL:
+  REQUIRED_LEVEL:
     name: '等级'
     lore:
       - '使用该物品所需要的等级.'
@@ -1383,7 +1383,7 @@ stats:
     options:
       from-common: BOOLEAN_STAT
 
-  DISABLE_DROP:
+  DISABLE_DROPING:
     name: 'Disable Item Dropping'
     lore:
       - 'Disables the dropping of this item!'
