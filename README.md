@@ -16,5 +16,6 @@
 主命令为 `/mmoi18n`，别名 `/mii`。
 
 ```
-/mii reload -- 重载配置文件
+/mii translate --将未翻译的属性保存到 stats.untranslated.yml 文件
+/mii reload --重载配置文件
 ```

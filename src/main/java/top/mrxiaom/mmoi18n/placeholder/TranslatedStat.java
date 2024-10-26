@@ -18,7 +18,7 @@ public class TranslatedStat {
     private final List<String> extraLore;
     private final List<String> extraLoreEmpty;
 
-    private static String getCommonKeyByStat(ItemStat stat) {
+    public static String getCommonKeyByStat(ItemStat stat) {
         if (stat instanceof DoubleStat) {
             return "DOUBLE_STAT";
         } else if (stat instanceof ChooseStat) {
@@ -65,6 +65,10 @@ public class TranslatedStat {
         return lore;
     }
 
+    public boolean translated() {
+        return extraLore != null;
+    }
+
     public String getLoreTag(ItemStat stat) {
         StatCategory category = stat.getCategory();
         // TODO: Lore Tag 的翻译
@@ -73,7 +77,7 @@ public class TranslatedStat {
 
     public void whenDisplayed(ItemStat itemStat, List<String> lore, Optional<RandomStatData> data) {
         boolean empty = data.isEmpty();
-        if (extraLore == null) {
+        if (!translated()) {
             String type = getCommonKeyByStat(itemStat);
             if (type != null) {
                 List<String> list = Translation.getCommonExtraLore(type, empty);
