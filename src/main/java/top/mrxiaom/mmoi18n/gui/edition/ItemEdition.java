@@ -1,6 +1,7 @@
 package top.mrxiaom.mmoi18n.gui.edition;
 
 import io.lumine.mythic.lib.MythicLib;
+import io.lumine.mythic.lib.util.AdventureUtils;
 import io.lumine.mythic.lib.version.VersionUtils;
 import net.Indyuce.mmoitems.MMOItems;
 import net.Indyuce.mmoitems.api.item.template.MMOItemTemplate;
@@ -59,18 +60,18 @@ public class ItemEdition extends EditionInventory {
             if (meta != null) {
                 meta.addItemFlags(ItemFlag.values());
                 VersionUtils.addEmptyAttributeModifier(meta);
-                meta.setDisplayName(ChatColor.GREEN + translated.name());
+                AdventureUtils.setDisplayName(meta, ChatColor.GREEN + translated.name());
+
                 List<String> lore = MythicLib.plugin.parseColors(translated.lore().stream().map(s -> ChatColor.GRAY + s).toList());
                 lore.add("");
                 if (stat.getCategory() != null) {
                     lore.add(0, "");
                     lore.add(0, ChatColor.BLUE + translated.getLoreTag(stat));
                 }
-
                 translated.whenDisplayed(stat, lore, getEventualStatData(stat));
 
                 meta.getPersistentDataContainer().set(STAT_ID_KEY, PersistentDataType.STRING, stat.getId());
-                meta.setLore(lore);
+                AdventureUtils.setLore(meta, lore);
             }
             item.setItemMeta(meta);
             inventory.setItem(slots[n++], item);
