@@ -8,14 +8,21 @@ import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.block.banner.PatternType;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import top.mrxiaom.mmoi18n.language.AbstractLanguageHolder;
+import top.mrxiaom.mmoi18n.language.LanguageEnumAutoHolder;
 import top.mrxiaom.mmoi18n.placeholder.IProvider;
 import top.mrxiaom.mmoi18n.placeholder.TranslatedStat;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
+import java.util.function.Function;
+import java.util.logging.Level;
 
 public class Translation {
     protected static final List<IProvider> placeholderProviders = new ArrayList<>();
@@ -23,6 +30,70 @@ public class Translation {
     protected static final Map<String, String> typeTranslation = new HashMap<>();
     protected static final Map<String, List<String>> commonExtraLoreStat = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     protected static final Map<String, List<String>> commonExtraLoreEmpty = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+
+    private static final Map<String, Object> holderValues = new HashMap<>();
+    private static final Map<String, AbstractLanguageHolder> holders = new HashMap<>();
+    private static File file = null;
+    private static PluginMain plugin;
+    /**
+     * 注册枚举到语言管理器
+     * @param enumType 枚举类型
+     * @param getter 获取 holder 实例的 getter
+     */
+    protected static <T extends Enum<T>> void register(Class<T> enumType, Function<T, LanguageEnumAutoHolder<T>> getter) {
+        for (T value : enumType.getEnumConstants()) {
+            LanguageEnumAutoHolder<T> holder = getter.apply(value);
+            holders.put(holder.key, holder);
+        }
+    }
+
+    @Nullable
+    public static String getAsString(String key) {
+        Object obj = holderValues.get(key);
+        if (obj instanceof String) {
+            return (String) obj;
+        }
+        return null;
+    }
+
+    @Nullable
+    @SuppressWarnings({"unchecked"})
+    public static List<String> getAsList(String key) {
+        Object obj = holderValues.get(key);
+        if (obj instanceof List<?>) {
+            return (List<String>) obj;
+        }
+        return null;
+    }
+
+    private static void reloadEnum() {
+        if (file == null || holders.isEmpty()) return;
+        holderValues.clear();
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+        config.setDefaults(new YamlConfiguration());
+        for (AbstractLanguageHolder holder : holders.values()) {
+            if (!config.contains(holder.key)) {
+                config.set(holder.key, holder.defaultValue);
+                continue;
+            }
+            if (holder.isList) {
+                holderValues.put(holder.key, config.getStringList(holder.key));
+            } else {
+                holderValues.put(holder.key, config.getString(holder.key));
+            }
+        }
+        try {
+            config.save(file);
+        } catch (IOException e) {
+            plugin.getLogger().log(Level.WARNING, "更新语言文件时出现异常", e);
+        }
+    }
+
+    protected static void init(PluginMain plugin) {
+        Translation.plugin = plugin;
+        file = new File(plugin.getDataFolder(), "gui.yml");
+        IProvider.createAllProviders(placeholderProviders);
+    }
 
     protected static void reloadConfig(ConfigurationSection config) {
         Translation.commonExtraLoreStat.clear();
@@ -54,6 +125,7 @@ public class Translation {
         if (section != null) for (String key : section.getKeys(false)) {
             Translation.typeTranslation.put(key, section.getString(key));
         }
+        reloadEnum();
     }
 
     public static List<String> getCommonExtraLore(String type, boolean empty) {

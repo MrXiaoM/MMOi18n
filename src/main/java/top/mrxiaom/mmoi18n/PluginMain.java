@@ -14,7 +14,6 @@ import org.jetbrains.annotations.NotNull;
 import top.mrxiaom.mmoi18n.gui.InjectedInventory;
 import top.mrxiaom.mmoi18n.gui.listener.GuiListener;
 import top.mrxiaom.mmoi18n.listener.ItemUpdater;
-import top.mrxiaom.mmoi18n.placeholder.IProvider;
 
 public class PluginMain extends JavaPlugin {
     private ItemUpdater itemUpdater;
@@ -28,7 +27,7 @@ public class PluginMain extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        IProvider.createAllProviders(Translation.placeholderProviders);
+        Translation.init(this);
         Bukkit.getPluginManager().registerEvents(new GuiListener(this), this);
         Bukkit.getPluginManager().registerEvents(itemUpdater = new ItemUpdater(this), this);
         reloadConfig();
