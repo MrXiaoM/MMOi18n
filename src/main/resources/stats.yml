@@ -2,70 +2,70 @@
 common-stats:
   BOOLEAN_STAT:
     lore-stat:
-      - '§7Current Value: $formatted'
+      - '§7当前值: $formatted'
       - ''
-      - '§e► Left click to switch this value.'
-      - '§e► Right click to choose a probability to have this option.'
+      - '§e► 左键 切换开关.'
+      - '§e► 右键 选择该选项的数值出现概率.'
     lore-empty:
-      - '§7Current Value: §cFalse'
+      - '§7当前值: §c关'
       - ''
-      - '§e► Left click to switch this value.'
-      - '§e► Right click to choose a probability to have this option.'
+      - '§e► 左键 切换开关.'
+      - '§e► 右键 选择该选项的数值出现概率.'
 
   CHOOSE_STAT:
     lore-stat:
-      - '§7Current Value: $found'
+      - '§7当前值: $found'
       - ''
-      - '§e► Right click to return to default value.'
-      - '§e► Left click to cycle through the available options:'
+      - '§e► 右键 使用默认值.'
+      - '§e► 左键 从可用选项中循环选择:'
       - '$choices'
     lore-empty:
-      - '§7Current Value: §cNone'
+      - '§7当前值: §c无'
       - ''
-      - '§e► Right click to return to default value.'
-      - '§e► Left click to cycle through the available options:'
+      - '§e► 右键 使用默认值.'
+      - '§e► 左键 从可用选项中循环选择:'
       - '$choices'
 
   DOUBLE_STAT:
     lore-stat:
-      - '$is_uniform$ §7Uniform: §a$min§7 -> §a$max'
-      - '$!is_uniform$ §7Base Value: §a$base $scale_formatted'
-      - '$!is_uniform$ $has_spread$ §7Spread: §a$spread_percent% §7(Max:§a$spread_max_percent%§7)'
-      - '$!is_uniform$ $has_min$ §7Min: §a$min'
-      - '$!is_uniform$ $has_max$ §7Max: §a$max'
+      - '$is_uniform$ §7均匀随机: §a$min§7 -> §a$max'
+      - '$!is_uniform$ §7基本值: §a$base $scale_formatted'
+      - '$!is_uniform$ $has_spread$ §7扩散: §a$spread_percent% §7(最大:§a$spread_max_percent%§7)'
+      - '$!is_uniform$ $has_min$ §7最小值: §a$min'
+      - '$!is_uniform$ $has_max$ §7最大值: §a$max'
       - ''
-      - '§e► Left click to change this value.'
-      - '§e► Right click to remove this value.'
+      - '§e► 左键 更改数值.'
+      - '§e► 右键 移除数值.'
     lore-empty:
-      - '§7Current Value: §a---'
+      - '§7当前值: §a---'
       - ''
-      - '§e► Left click to change this value.'
-      - '§e► Right click to remove this value.'
+      - '§e► 左键 更改数值.'
+      - '§e► 右键 移除数值.'
 
   STRING_STAT:
     lore-stat:
-      - '§7Current Value: §a$string_emit'
+      - '§7当前值: §a$string_emit'
       - ''
-      - '§e► Left click to change this value.'
-      - '§e► Right click to remove this value.'
+      - '§e► 左键 更改数值.'
+      - '§e► 右键 移除数值.'
     lore-empty:
-      - '§7Current Value: §cNone'
+      - '§7当前值: §c无'
       - ''
-      - '§e► Left click to change this value.'
-      - '§e► Right click to remove this value.'
+      - '§e► 左键 更改数值.'
+      - '§e► 右键 移除数值.'
 
   STRING_LIST_STAT:
     lore-stat:
-      - '§7Current Value:'
+      - '§7当前值:'
       - '$list'
       - ''
-      - '§e► Click to add a permission.'
-      - '§e► Right click to remove the last permission.'
+      - '§e► 左键 添加一个权限.'
+      - '§e► 右键 移除最后一个权限.'
     lore-empty:
-      - '§7Current Value: §cNone'
+      - '§7当前值: §c无'
       - ''
-      - '§e► Click to add a permission.'
-      - '§e► Right click to remove the last permission.'
+      - '§e► 左键 添加一个权限.'
+      - '§e► 右键 移除最后一个权限.'
 stats:
   BLOCK_ID:
     name: 'Block ID'
@@ -123,13 +123,13 @@ stats:
       - 'to kill monsters or buff yourself.'
     options:
       lore-stat:
-        - '§7Current Abilities: §6$abilities_size'
+        - '§7当前能力数量: §6$abilities_size'
         - ''
-        - '§e► Click to edit the item abilities.'
+        - '§e► 左键 编辑物品能力.'
       lore-empty:
-        - '§7Current Abilities: §60'
+        - '§7当前能力数量: §60'
         - ''
-        - '§e► Click to edit the item abilities.'
+        - '§e► 左键 编辑物品能力.'
 
   ON_LEFT_CLICK:
     name: 'Left Click Action'
@@ -180,19 +180,19 @@ stats:
       - 'the arrows your bow fires.'
     options:
       lore-stat:
-        - '§7Current Value:'
-        - '§7* Particle: §6$particle'
-        - '§7* Amount: §f$amount'
-        - '§7* Offset: §f$offset'
+        - '§7当前值:'
+        - '§7* 粒子类型: §6$particle'
+        - '§7* 数量: §f$amount'
+        - '§7* 偏移值: §f$offset'
         - ''
-        - '$has_color$ §7* Color: §c§l$red§7 - §a§l$green§7 - §9§l$blue'
-        - '$!has_color$ §7* Speed: §f$speed'
+        - '$has_color$ §7* 颜色: §c§l$red§7 - §a§l$green§7 - §9§l$blue'
+        - '$!has_color$ §7* 速度: §f$speed'
         - ''
-        - '§e► Click to edit.'
+        - '§e► 左键 编辑.'
       lore-empty:
-        - '§7Current Value: §cNone'
+        - '§7当前值: §c无'
         - ''
-        - '§e► Click to edit.'
+        - '§e► 左键 编辑.'
 
   ARROW_POTION_EFFECTS:
     name: 'Arrow Potion Effects'
@@ -201,16 +201,16 @@ stats:
       - 'entities are shot by this bow.'
     options:
       lore-stat:
-        - '§7Current Value:'
+        - '§7当前值:'
         - '$potion_list'
         - ''
-        - '§e► Click to add an effect.'
-        - '§e► Right click to remove the last effect.'
+        - '§e► 左键 添加一个药水效果.'
+        - '§e► 右键 移除最后一个药水效果.'
       lore-empty:
-        - '§7Current Value: §cNone'
+        - '§7当前值: §c无'
         - ''
-        - '§e► Click to add an effect.'
-        - '§e► Right click to remove the last effect.'
+        - '§e► 左键 添加一个药水效果.'
+        - '§e► 右键 移除最后一个药水效果.'
 
   ATTACK_DAMAGE:
     name: 'Attack Damage'
@@ -273,16 +273,16 @@ stats:
       - 'This restriction only applies to adventure mode.'
     options:
       lore-stat:
-        - '§7Current Value:'
+        - '§7当前值:'
         - '$list'
         - ''
-        - '§e► Click to add a new material.'
-        - '§e► Right click to remove the last material.'
+        - '§e► 左键 添加一个方块类型.'
+        - '§e► 右键 移除最后一个方块类型.'
       lore-empty:
-        - '§7Current Value: §cNone'
+        - '§7当前值: §c无'
         - ''
-        - '§e► Click to add a new material.'
-        - '§e► Right click to remove the last material.'
+        - '§e► 左键 添加一个方块类型.'
+        - '§e► 右键 移除最后一个方块类型.'
 
   CAN_DECONSTRUCT:
     name: 'Can Deconstruct?'
@@ -326,13 +326,13 @@ stats:
       - 'performs when right clicked.'
     options:
       lore-stat:
-        - '§7Current Commands: §c$list_size'
+        - '§7当前命令数量: §c$list_size'
         - ''
-        - '§e► Click to edit item commands.'
+        - '§e► 左键 编辑物品命令列表.'
       lore-empty:
-        - '§7Current Commands: §c0'
+        - '§7当前命令数量: §c0'
         - ''
-        - '§e► Click to edit item commands.'
+        - '§e► 左键 编辑物品命令列表.'
 
   COMPATIBLE_IDS:
     name: 'Compatible IDs'
@@ -341,16 +341,16 @@ stats:
       - 'compatible with.'
     options:
       lore-stat:
-        - '§7Current Value:'
+        - '§7当前值:'
         - '$list'
         - ''
-        - '§e► Click to add a new id.'
-        - '§e► Right click to remove the last id.'
+        - '§e► 左键 添加一个新的 id.'
+        - '§e► 右键 移除最后一个 id.'
       lore-empty:
-        - '§7Current Value: §cCompatible with any item'
+        - '§7当前值: §c与任意物品兼容'
         - ''
-        - '§e► Click to add a new id.'
-        - '§e► Right click to remove the last id.'
+        - '§e► 左键 添加一个新的 id.'
+        - '§e► 右键 移除最后一个 id.'
 
   COMPATIBLE_MATERIALS:
     name: 'Compatible Materials'
@@ -359,16 +359,16 @@ stats:
       - 'compatible with.'
     options:
       lore-stat:
-        - '§7Current Value:'
+        - '§7当前值:'
         - '$list'
         - ''
-        - '§e► Click to add a new material.'
-        - '§e► Right click to remove the last material.'
+        - '§e► 左键 添加一个物品类型.'
+        - '§e► 右键 移除最后一个物品类型.'
       lore-empty:
-        - '§7Current Value: §cCompatible with any material'
+        - '§7当前值: §c与任意物品类型兼容'
         - ''
-        - '§e► Click to add a new material.'
-        - '§e► Right click to remove the last material.'
+        - '§e► 左键 添加一个物品类型.'
+        - '§e► 右键 移除最后一个物品类型.'
 
   COMPATIBLE_TYPES:
     name: 'Compatible Types'
@@ -377,16 +377,16 @@ stats:
       - 'compatible with.'
     options:
       lore-stat:
-        - '§7Current Value:'
+        - '§7当前值:'
         - '$list'
         - ''
-        - '§e► Click to add a new type.'
-        - '§e► Right click to remove the last type.'
+        - '§e► 左键 添加一个类型.'
+        - '§e► 右键 移除最后一个类型.'
       lore-empty:
-        - '§7Current Value: §cCompatible with any item'
+        - '§7当前值: §c与任意物品兼容'
         - ''
-        - '§e► Click to add a new type.'
-        - '§e► Right click to remove the last type.'
+        - '§e► 左键 添加一个类型.'
+        - '§e► 右键 移除最后一个类型.'
 
   CRAFTING:
     name: 'Crafting'
@@ -395,11 +395,11 @@ stats:
       - 'Changing a recipe requires &o/mi reload recipes&7.'
     options:
       lore-stat:
-        - '§e► Click to access the crafting edition menu.'
-        - '§e► Right click to remove all crafting recipes.'
+        - '§e► 左键 打开合成配方编辑菜单.'
+        - '§e► 右键 移除所有合成配方.'
       lore-empty:
-        - '§e► Click to access the crafting edition menu.'
-        - '§e► Right click to remove all crafting recipes.'
+        - '§e► 左键 打开合成配方编辑菜单.'
+        - '§e► 右键 移除所有合成配方.'
 
   CRAFT_PERMISSION:
     name: 'Crafting Recipe Permission'
@@ -428,16 +428,16 @@ stats:
       - 'The custom sounds your item will use.'
     options:
       lore-stat:
-        - '§7Current Value:'
+        - '§7当前值:'
         - '$sound_list'
         - ''
-        - '§e► Click to access the sounds edition menu.'
-        - '§e► Right click to remove all custom sounds.'
+        - '§e► 左键 打开音效编辑菜单.'
+        - '§e► 右键 移除所有音效.'
       lore-empty:
-        - '§7Current Value: §cNone'
+        - '§7当前值: §c无'
         - ''
-        - '§e► Click to access the sounds edition menu.'
-        - '§e► Right click to remove all custom sounds.'
+        - '§e► 左键 打开音效编辑菜单.'
+        - '§e► 右键 移除所有音效.'
 
   DISABLE_DEATH_DROP:
     name: 'Disable Drop On Death'
@@ -470,15 +470,15 @@ stats:
       - 'In RGB.'
     options:
       lore-stat:
-        - '§7Current Value: §a$to_string'
+        - '§7当前值: §a$to_string'
         - ''
-        - '§e► Click to change this value.'
-        - '§e► Right click to remove the dye color.'
+        - '§e► 左键 更改数值.'
+        - '§e► 右键 移除染色颜色.'
       lore-empty:
-        - '§7Current Value: §cNone'
+        - '§7当前值: §c无'
         - ''
-        - '§e► Click to change this value.'
-        - '§e► Right click to remove the dye color.'
+        - '§e► 左键 更改数值.'
+        - '§e► 右键 移除染色颜色.'
 
   EFFECTS:
     name: 'Effects'
@@ -487,16 +487,16 @@ stats:
       - 'consumable item grants.'
     options:
       lore-stat:
-        - '§7Current Value:'
+        - '§7当前值:'
         - '$potion_list'
         - ''
-        - '§e► Click to add an effect.'
-        - '§e► Right click to remove the last effect.'
+        - '§e► 左键 添加一个药水效果.'
+        - '§e► 右键 移除最后一个药水效果.'
       lore-empty:
-        - '§7Current Value: §cNone'
+        - '§7当前值: §c无'
         - ''
-        - '§e► Click to add an effect.'
-        - '§e► Right click to remove the last effect.'
+        - '§e► 左键 添加一个药水效果.'
+        - '§e► 右键 移除最后一个药水效果.'
 
   ELEMENT:
     name: 'Elements'
@@ -504,16 +504,16 @@ stats:
       - 'The elements of your item.'
     options:
       lore-stat:
-        - '§7Current Value:'
+        - '§7当前值:'
         - '$stats'
         - ''
-        - '§e► Click to access the elements edition menu.'
-        - '§e► Right click to remove all the elements.'
+        - '§e► 左键 打开元素编辑菜单.'
+        - '§e► 右键 移除所有元素.'
       lore-empty:
-        - '§7Current Value: §cNone'
+        - '§7当前值: §c无'
         - ''
-        - '§e► Click to access the elements edition menu.'
-        - '§e► Right click to remove all the elements.'
+        - '§e► 左键 打开元素编辑菜单.'
+        - '§e► 右键 移除所有元素.'
 
   ENCHANTS:
     name: 'Enchantments'
@@ -521,16 +521,16 @@ stats:
       - 'The item enchants.'
     options:
       lore-stat:
-        - '§7Current Value:'
+        - '§7当前值:'
         - '$enchants'
         - ''
-        - '§e► Click to add an enchant.'
-        - '§e► Right click to remove the last enchant.'
+        - '§e► 左键 添加一个附魔.'
+        - '§e► 右键 移除最后一个附魔.'
       lore-empty:
-        - '§7Current Value: §cNone'
+        - '§7当前值: §c无'
         - ''
-        - '§e► Click to add an enchant.'
-        - '§e► Right click to remove the last enchant.'
+        - '§e► 左键 添加一个附魔.'
+        - '§e► 右键 移除最后一个附魔.'
 
   ENTITY_INTERACTION_RANGE:
     name: 'Entity Interaction Range'
@@ -574,16 +574,16 @@ stats:
       - 'sockets your weapon has.'
     options:
       lore-stat:
-        - '§7Current Value:'
+        - '§7当前值:'
         - '$list'
         - ''
-        - '§e► Click to add a gem socket.'
-        - '§e► Right click to remove the last socket.'
+        - '§e► 左键 添加一个宝石槽位.'
+        - '§e► 右键 移除最后一个宝石槽位.'
       lore-empty:
-        - '§7Current Value: §cNo Sockets'
+        - '§7当前值: §c没有槽位'
         - ''
-        - '§e► Click to add a gem socket.'
-        - '§e► Right click to remove the last socket.'
+        - '§e► 左键 添加一个宝石槽位.'
+        - '§e► 右键 移除最后一个宝石槽位.'
 
   GEM_UPGRADE_SCALING:
     name: 'Gem Upgrade Scaling'
@@ -674,11 +674,11 @@ stats:
       - '§9A tutorial is available on the wiki.'
     options:
       lore-stat:
-        - '§e► Left click to setup the item particles.'
-        - '§e► Right click to clear.'
+        - '§e► 左键 配置物品粒子选项.'
+        - '§e► 右键 清空粒子.'
       lore-empty:
-        - '§e► Left click to setup the item particles.'
-        - '§e► Right click to clear.'
+        - '§e► 左键 配置物品粒子选项.'
+        - '§e► 右键 清空粒子.'
 
   SET:
     name: 'Item Set'
@@ -706,16 +706,16 @@ stats:
       - 'on which your gem can be applied.'
     options:
       lore-stat:
-        - '§7Current Value:'
+        - '§7当前值:'
         - '$list'
         - ''
-        - '§e► Click to add a supported item type/set.'
-        - '§e► Right click to remove the last element.'
+        - '§e► 左键 添加一个支持的物品类型/集合.'
+        - '§e► 右键 移除最后一个元素.'
       lore-empty:
-        - '§7Current Value: §cCompatible with any type.'
+        - '§7当前值: §c与任意物品兼容.'
         - ''
-        - '§e► Click to add a supported item type/set.'
-        - '§e► Right click to remove the last element.'
+        - '§e► 左键 添加一个支持的物品类型/集合.'
+        - '§e► 右键 移除最后一个元素.'
 
   JUMP_STRENGTH:
     name: 'Jump Strength'
@@ -741,16 +741,16 @@ stats:
       - 'The item lore.'
     options:
       lore-stat:
-        - '§7Current Value:'
+        - '§7当前值:'
         - '$lore_list'
         - ''
-        - '§e► Click to add a line.'
-        - '§e► Right click to remove the last line.'
+        - '§e► 左键 添加一行.'
+        - '§e► 右键 移除最后一行.'
       lore-empty:
-        - '§7Current Value: §cNone'
+        - '§7当前值: §c无'
         - ''
-        - '§e► Click to add a line.'
-        - '§e► Right click to remove the last line.'
+        - '§e► 左键 添加一行.'
+        - '§e► 右键 移除最后一行.'
 
   LORE_FORMAT:
     name: 'Lore Format'
@@ -800,15 +800,15 @@ stats:
       - 'Your item material.'
     options:
       lore-stat:
-        - '§7Current Value: §a$material'
+        - '§7当前值: §a$material'
         - ''
-        - '§e► Left click to change this value.'
-        - '§e► Right click to remove this value.'
+        - '§e► 左键 更改数值.'
+        - '§e► 右键 移除数值.'
       lore-empty:
-        - '§7Current Value: §cNone'
+        - '§7当前值: §c无'
         - ''
-        - '§e► Left click to change this value.'
-        - '§e► Right click to remove this value.'
+        - '§e► 左键 更改数值.'
+        - '§e► 右键 移除数值.'
 
   MAX_ABSORPTION:
     name: 'Max Absorption'
@@ -896,16 +896,16 @@ stats:
       - 'Custom NBT Tags.'
     options:
       lore-stat:
-        - '§7Current Value:'
+        - '§7当前值:'
         - '$list'
         - ''
-        - '§e► Click to add a tag.'
-        - '§e► Right click to remove the last tag.'
+        - '§e► 左键 添加一个标签.'
+        - '§e► 右键 移除最后一个标签.'
       lore-empty:
-        - '§7Current Value: §cNone'
+        - '§7当前值: §c无'
         - ''
-        - '§e► Click to add a tag.'
-        - '§e► Right click to remove the last tag.'
+        - '§e► 左键 添加一个标签.'
+        - '§e► 右键 移除最后一个标签.'
 
   OXYGEN_BONUS:
     name: 'Bonus Oxygen'
@@ -925,16 +925,16 @@ stats:
       - 'item grants to the holder.'
     options:
       lore-stat:
-        - '§7Current Value:'
+        - '§7当前值:'
         - '$potion_list_without_duration'
         - ''
-        - '§e► Click to add an effect.'
-        - '§e► Right click to remove the last effect.'
+        - '§e► 左键 添加一个药水效果.'
+        - '§e► 右键 移除最后一个药水效果.'
       lore-empty:
-        - '§7Current Value: §cNone'
+        - '§7当前值: §c无'
         - ''
-        - '§e► Click to add an effect.'
-        - '§e► Right click to remove the last effect.'
+        - '§e► 左键 添加一个药水效果.'
+        - '§e► 右键 移除最后一个药水效果.'
 
   PERMISSION:
     name: 'Permission'
@@ -942,16 +942,16 @@ stats:
       - 'The permission needed to use this item.'
     options:
       lore-stat:
-        - '§7Current Value:'
+        - '§7当前值:'
         - '$list'
         - ''
-        - '§e► Click to add a compatible permission.'
-        - '§e► Right click to remove the last permission.'
+        - '§e► 左键 添加一个权限.'
+        - '§e► 右键 移除最后一个权限.'
       lore-empty:
-        - '§7Current Value: §cNone'
+        - '§7当前值: §c无'
         - ''
-        - '§e► Click to add a compatible permission.'
-        - '§e► Right click to remove the last permission.'
+        - '§e► 左键 添加一个权限.'
+        - '§e► 右键 移除最后一个权限.'
 
   PICKAXE_POWER:
     name: 'Pickaxe Power'
@@ -970,13 +970,13 @@ stats:
       lore-stat:
         - '§a$to_string'
         - ''
-        - '§e► Click to change this value.'
-        - '§e► Right click to remove the potion color.'
+        - '§e► 左键 更改数值.'
+        - '§e► 右键 移除药水颜色.'
       lore-empty:
         - '§cUncolored'
         - ''
-        - '§e► Click to change this value.'
-        - '§e► Right click to remove the potion color.'
+        - '§e► 左键 更改数值.'
+        - '§e► 右键 移除药水颜色.'
 
   POTION_EFFECT:
     name: 'Potion Effects'
@@ -986,16 +986,16 @@ stats:
       - 'Does NOT support tipped arrows.'
     options:
       lore-stat:
-        - '§7Current Value:'
+        - '§7当前值:'
         - '$potion_list'
         - ''
-        - '§e► Click to add an effect.'
-        - '§e► Right click to remove the last effect.'
+        - '§e► 左键 添加一个药水效果.'
+        - '§e► 右键 移除最后一个药水效果.'
       lore-empty:
-        - '§7Current Value: &cNone'
+        - '§7当前值: &cNone'
         - ''
-        - '§e► Click to add an effect.'
-        - '§e► Right click to remove the last effect.'
+        - '§e► 左键 添加一个药水效果.'
+        - '§e► 右键 移除最后一个药水效果.'
 
   PROJECTILE_PARTICLES:
     name: 'Projectile Particles'
@@ -1003,16 +1003,16 @@ stats:
       - 'The projectile particle that your weapon shoots'
     options:
       lore-stat:
-        - '§7Current Value: §a$particle'
+        - '§7当前值: §a$particle'
         - '$has_color$ §7Color: §a$color'
         - ''
-        - '§e► Left click to change this value.'
-        - '§e► Right click to remove this value.'
+        - '§e► 左键 更改数值.'
+        - '§e► 右键 移除数值.'
       lore-empty:
-        - '§7Current Value: &cNone'
+        - '§7当前值: &cNone'
         - ''
-        - '§e► Left click to change this value.'
-        - '§e► Right click to remove this value.'
+        - '§e► 左键 更改数值.'
+        - '§e► 右键 移除数值.'
 
   RANDOM_UNSOCKET:
     name: 'Random Unsocket'
@@ -1054,16 +1054,16 @@ stats:
       - 'for this item to activate.'
     options:
       lore-stat:
-        - '§7Current Value:'
+        - '§7当前值:'
         - '$list'
         - ''
-        - '§e► Click to add a biome.'
-        - '§e► Right click to remove the last biome.'
+        - '§e► 左键 添加一个生物群系.'
+        - '§e► 右键 移除最后一个生物群系.'
       lore-empty:
-        - '§7Current Value: §cNone'
+        - '§7当前值: §c无'
         - ''
-        - '§e► Click to add a biome.'
-        - '§e► Right click to remove the last biome.'
+        - '§e► 左键 添加一个生物群系.'
+        - '§e► 右键 移除最后一个生物群系.'
 
   REQUIRED_CLASS:
     name: 'Required Class'
@@ -1072,16 +1072,16 @@ stats:
       - 'profess to use your item.'
     options:
       lore-stat:
-        - '§7Current Value:'
+        - '§7当前值:'
         - '$list'
         - ''
-        - '§e► Click to add a class.'
-        - '§e► Right click to remove the last class.'
+        - '§e► 左键 添加一个 class.'
+        - '§e► 右键 移除最后一个 class.'
       lore-empty:
-        - '§7Current Value: §cNone'
+        - '§7当前值: §c无'
         - ''
-        - '§e► Click to add a class.'
-        - '§e► Right click to remove the last class.'
+        - '§e► 左键 添加一个 class.'
+        - '§e► 右键 移除最后一个 class.'
 
   LEVEL:
     name: 'Level'
@@ -1141,15 +1141,15 @@ stats:
       - '§6keeping gemstones intact (for example).'
     options:
       lore-stat:
-        - '§7Current Revision ID: §a$base_int'
+        - '§7当前修订版本 ID: §a$base_int'
         - ''
-        - '§e► Left click to increase this value.'
-        - '§e► Right click to decrease this value.'
+        - '§e► 左键 增加修订版本.'
+        - '§e► 右键 降低修订版本.'
       lore-empty:
-        - '§7Current Revision ID: §a1'
+        - '§7当前修订版本 ID: §a1'
         - ''
-        - '§e► Left click to increase this value.'
-        - '§e► Right click to decrease this value.'
+        - '§e► 左键 增加修订版本.'
+        - '§e► 右键 降低修订版本.'
 
   SAFE_FALL_DISTANCE:
     name: 'Safe Fall Distance'
@@ -1175,21 +1175,21 @@ stats:
       - 'of your shield.'
     options:
       lore-stat:
-        - '§7Current Value:'
-        - '§7* Base Color: $base_color'
+        - '§7当前值:'
+        - '§7* 基本颜色: $base_color'
         - '$pattern_list'
         - ''
-        - '§e► Left Click to change the shield color.'
-        - '§e► Shift Left Click to reset the shield color.'
-        - '§e► Right Click to add a pattern.'
-        - '§e► Drop to remove the last pattern.'
+        - '§e► 左键 更改盾牌颜色.'
+        - '§e► Shift+左键 重置盾牌颜色.'
+        - '§e► 右键 添加一个图案.'
+        - '§e► Q键丢弃 移除最后一个图案.'
       lore-empty:
-        - '§7Current Value: §cNone'
+        - '§7当前值: §c无'
         - ''
-        - '§e► Left Click to change the shield color.'
-        - '§e► Shift Left Click to reset the shield color.'
-        - '§e► Right Click to add a pattern.'
-        - '§e► Drop to remove the last pattern.'
+        - '§e► 左键 更改盾牌颜色.'
+        - '§e► Shift+左键 重置盾牌颜色.'
+        - '§e► 右键 添加一个图案.'
+        - '§e► Q键丢弃 移除最后一个图案.'
 
   SKULL_TEXTURE:
     name: 'Skull Texture'
@@ -1199,15 +1199,15 @@ stats:
       - 'texture URL directly (starting with https://...).'
     options:
       lore-stat:
-        - '§7Current Value: §aTexture value provided'
+        - '§7当前值: §a已提供材质'
         - ''
-        - '§e► Left click to change this value.'
-        - '§e► Right click to remove this value.'
+        - '§e► 左键 更改数值.'
+        - '§e► 右键 移除数值.'
       lore-empty:
-        - '§7Current Value: §cNone'
+        - '§7当前值: §c无'
         - ''
-        - '§e► Left click to change this value.'
-        - '§e► Right click to remove this value.'
+        - '§e► 左键 更改数值.'
+        - '§e► 右键 移除数值.'
 
   SNEAKING_SPEED:
     name: 'Sneaking Speed'
@@ -1353,11 +1353,11 @@ stats:
       - 'station. Upgrading may sometimes &cfail&7...'
     options:
       lore-stat:
-        - '§e► Left click to setup upgrading.'
-        - '§e► Right click to reset.'
+        - '§e► 左键 配置升级选项.'
+        - '§e► 右键 重置.'
       lore-empty:
-        - '§e► Left click to setup upgrading.'
-        - '§e► Right click to reset.'
+        - '§e► 左键 配置升级选项.'
+        - '§e► 右键 重置.'
 
   VANILLA_EATING:
     name: 'Vanilla Eating Animation'
