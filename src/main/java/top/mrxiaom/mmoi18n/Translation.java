@@ -35,6 +35,9 @@ public class Translation {
     private static final Map<String, AbstractLanguageHolder> holders = new HashMap<>();
     private static File file = null;
     private static PluginMain plugin;
+
+    private static final String[] commonTranslation = new String[5];
+
     /**
      * 注册枚举到语言管理器
      * @param enumType 枚举类型
@@ -69,7 +72,9 @@ public class Translation {
     private static void reloadEnum() {
         if (file == null || holders.isEmpty()) return;
         holderValues.clear();
-        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+        YamlConfiguration config = file.exists()
+                ? YamlConfiguration.loadConfiguration(file)
+                : new YamlConfiguration();
         config.setDefaults(new YamlConfiguration());
         for (AbstractLanguageHolder holder : holders.values()) {
             if (!config.contains(holder.key)) {
@@ -85,7 +90,7 @@ public class Translation {
         try {
             config.save(file);
         } catch (IOException e) {
-            plugin.getLogger().log(Level.WARNING, "更新语言文件时出现异常", e);
+            plugin.getLogger().log(Level.WARNING, "更新语言文件 gui.yml 时出现异常", e);
         }
     }
 
@@ -95,15 +100,28 @@ public class Translation {
         IProvider.createAllProviders(placeholderProviders);
     }
 
-    protected static void reloadConfig(ConfigurationSection config) {
-        Translation.commonExtraLoreStat.clear();
-        Translation.commonExtraLoreEmpty.clear();
-        ConfigurationSection section = config.getConfigurationSection("common-stats");
-        if (section != null) for (String key : section.getKeys(false)) {
-            Translation.commonExtraLoreStat.put(key, section.getStringList(key + ".lore-stat"));
-            Translation.commonExtraLoreEmpty.put(key, section.getStringList(key + ".lore-empty"));
+    protected static void reloadConfig(ConfigurationSection pluginConfig) {
+        File file = new File(plugin.getDataFolder(), "stats.yml");
+        if (!file.exists()) {
+            plugin.saveResource("stats.yml", true);
         }
-        Translation.translatedStatMap.clear();
+        if (!file.exists()) {
+            plugin.getLogger().log(Level.WARNING, "保存默认语言文件 stats.yml 保存失败");
+            return;
+        }
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+        config.setDefaults(new YamlConfiguration());
+        ConfigurationSection section;
+
+        // -------------- stats.yml ------------------
+        commonExtraLoreStat.clear();
+        commonExtraLoreEmpty.clear();
+        translatedStatMap.clear();
+        section = config.getConfigurationSection("common-stats");
+        if (section != null) for (String key : section.getKeys(false)) {
+            commonExtraLoreStat.put(key, section.getStringList(key + ".lore-stat"));
+            commonExtraLoreEmpty.put(key, section.getStringList(key + ".lore-empty"));
+        }
         section = config.getConfigurationSection("stats");
         if (section != null) for (String key : section.getKeys(false)) {
             String name = section.getString(key + ".name");
@@ -111,20 +129,28 @@ public class Translation {
             List<String> loreStat;
             List<String> loreEmpty;
             String type = section.getString(key + ".options.from-common");
-            if (type != null && Translation.commonExtraLoreStat.containsKey(type)) {
-                loreStat = Translation.commonExtraLoreStat.get(type);
-                loreEmpty = Translation.commonExtraLoreEmpty.get(type);
+            if (type != null && commonExtraLoreStat.containsKey(type)) {
+                loreStat = commonExtraLoreStat.get(type);
+                loreEmpty = commonExtraLoreEmpty.get(type);
             } else {
                 loreStat = section.getStringList(key + ".options.lore-stat");
                 loreEmpty = section.getStringList(key + ".options.lore-empty");
             }
-            Translation.translatedStatMap.put(key, new TranslatedStat(key, name, lore, loreStat, loreEmpty));
+            translatedStatMap.put(key, new TranslatedStat(key, name, lore, loreStat, loreEmpty));
         }
-        Translation.typeTranslation.clear();
-        section = config.getConfigurationSection("types");
+
+        // -------------- config.yml ------------------
+        typeTranslation.clear();
+        section = pluginConfig.getConfigurationSection("types");
         if (section != null) for (String key : section.getKeys(false)) {
-            Translation.typeTranslation.put(key, section.getString(key));
+            typeTranslation.put(key, section.getString(key));
         }
+        commonTranslation[0] = pluginConfig.getString("common.true", "§a是");
+        commonTranslation[1] = pluginConfig.getString("common.false", "§c否");
+        commonTranslation[2] = pluginConfig.getString("common.on", "§a开");
+        commonTranslation[3] = pluginConfig.getString("common.off", "§c关");
+        commonTranslation[4] = pluginConfig.getString("common.none", "§c无");
+        // ---------------- gui.yml -------------------
         reloadEnum();
     }
 
@@ -137,13 +163,11 @@ public class Translation {
     }
 
     public static String translateBoolean(boolean bool) {
-        // TODO: 添加到语言文件
-        return bool ? (ChatColor.GREEN + "是") : (ChatColor.RED + "否");
+        return commonTranslation[bool ? 0 : 1];
     }
 
     public static String translateBooleanOption(boolean bool) {
-        // TODO: 添加到语言文件
-        return bool ? (ChatColor.GREEN + "开") : (ChatColor.RED + "关");
+        return commonTranslation[bool ? 2 : 3];
     }
 
     public static String translateEnchant(Enchantment enchant) {
@@ -158,7 +182,7 @@ public class Translation {
 
     public static String translateEnum(@Nullable Enum<?> enumValue) {
         if (enumValue == null) {
-            return ChatColor.RED + "无"; // TODO: 添加到语言文件
+            return commonTranslation[4];
         }
         // TODO: 从配置文件读取枚举翻译
         // 大部分都来自原版 Minecraft

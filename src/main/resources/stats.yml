@@ -1,0 +1,1872 @@
+
+common-stats:
+  BOOLEAN_STAT:
+    lore-stat:
+      - '§7Current Value: $formatted'
+      - ''
+      - '§e► Left click to switch this value.'
+      - '§e► Right click to choose a probability to have this option.'
+    lore-empty:
+      - '§7Current Value: §cFalse'
+      - ''
+      - '§e► Left click to switch this value.'
+      - '§e► Right click to choose a probability to have this option.'
+
+  CHOOSE_STAT:
+    lore-stat:
+      - '§7Current Value: $found'
+      - ''
+      - '§e► Right click to return to default value.'
+      - '§e► Left click to cycle through the available options:'
+      - '$choices'
+    lore-empty:
+      - '§7Current Value: §cNone'
+      - ''
+      - '§e► Right click to return to default value.'
+      - '§e► Left click to cycle through the available options:'
+      - '$choices'
+
+  DOUBLE_STAT:
+    lore-stat:
+      - '$is_uniform$ §7Uniform: §a$min§7 -> §a$max'
+      - '$!is_uniform$ §7Base Value: §a$base $scale_formatted'
+      - '$!is_uniform$ $has_spread$ §7Spread: §a$spread_percent% §7(Max:§a$spread_max_percent%§7)'
+      - '$!is_uniform$ $has_min$ §7Min: §a$min'
+      - '$!is_uniform$ $has_max$ §7Max: §a$max'
+      - ''
+      - '§e► Left click to change this value.'
+      - '§e► Right click to remove this value.'
+    lore-empty:
+      - '§7Current Value: §a---'
+      - ''
+      - '§e► Left click to change this value.'
+      - '§e► Right click to remove this value.'
+
+  STRING_STAT:
+    lore-stat:
+      - '§7Current Value: §a$string_emit'
+      - ''
+      - '§e► Left click to change this value.'
+      - '§e► Right click to remove this value.'
+    lore-empty:
+      - '§7Current Value: §cNone'
+      - ''
+      - '§e► Left click to change this value.'
+      - '§e► Right click to remove this value.'
+
+  STRING_LIST_STAT:
+    lore-stat:
+      - '§7Current Value:'
+      - '$list'
+      - ''
+      - '§e► Click to add a permission.'
+      - '§e► Right click to remove the last permission.'
+    lore-empty:
+      - '§7Current Value: §cNone'
+      - ''
+      - '§e► Click to add a permission.'
+      - '§e► Right click to remove the last permission.'
+stats:
+  BLOCK_ID:
+    name: 'Block ID'
+    lore:
+      - 'This value determines which'
+      - 'custom block will get placed.'
+    options:
+      from-common: DOUBLE_STAT
+
+  GEN_TEMPLATE:
+    name: 'Gen Template'
+    lore:
+      - 'Can be set to any template'
+      - 'from gen-templates.yml.'
+    options:
+      from-common: STRING_STAT
+
+  MAX_HP:
+    name: 'Maximum XP'
+    lore:
+      - 'The maximum xp you will receive'
+      - 'for breaking this custom block.'
+    options:
+      from-common: DOUBLE_STAT
+
+  MIN_HP:
+    name: 'Minimum XP'
+    lore:
+      - 'The minimum xp you will receive'
+      - 'for breaking this custom block.'
+    options:
+      from-common: DOUBLE_STAT
+
+  REQUIRED_POWER:
+    name: 'Required Pickaxe Power'
+    lore:
+      - 'The required pickaxe power'
+      - 'needed to break this custom block.'
+    options:
+      from-common: DOUBLE_STAT
+
+  REQUIRE_POWER_TO_BREAK:
+    name: 'Require Power to Break'
+    lore:
+      - 'When enabled, the block will NOT break'
+      - 'if the player doesn''t have enough pickaxe'
+      - 'power, unlike vanilla block behaviour.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  ABILITY:
+    name: 'Item Abilities'
+    lore:
+      - 'Make your item cast amazing abilities'
+      - 'to kill monsters or buff yourself.'
+    options:
+      lore-stat:
+        - '§7Current Abilities: §6$abilities_size'
+        - ''
+        - '§e► Click to edit the item abilities.'
+      lore-empty:
+        - '§7Current Abilities: §60'
+        - ''
+        - '§e► Click to edit the item abilities.'
+
+  ON_LEFT_CLICK:
+    name: 'Left Click Action'
+    lore:
+      - 'ID of skill ran when left clicking. When used,'
+      - 'The item will naturally apply item costs like'
+      - 'mana, stamina, cooldown. This option overrides the'
+      - 'script provided by the item type.'
+    options:
+      from-common: STRING_STAT
+
+  ON_RIGHT_CLICK:
+    name: 'Right Click Action'
+    lore:
+      - 'ID of skill ran when right clicking. When used,'
+      - 'The item will naturally apply item costs like'
+      - 'mana, stamina, cooldown. This option overrides the'
+      - 'script provided by the item type.'
+    options:
+      from-common: STRING_STAT
+
+  AMPHIBIAN:
+    name: 'Amphibian'
+    lore:
+      - 'May this item only be used in specific'
+      - 'environments regarding liquids?'
+    options:
+      from-common: CHOOSE_STAT
+
+  ARMOR:
+    name: 'Armor'
+    lore:
+      - 'The armor given to the holder.'
+    options:
+      from-common: DOUBLE_STAT
+
+  ARMOR_TOUGHNESS:
+    name: 'Armor Toughness'
+    lore:
+      - 'Armor toughness reduces damage taken.'
+    options:
+      from-common: DOUBLE_STAT
+
+  ARROW_PARTICLES:
+    name: 'Arrow Particles'
+    lore:
+      - 'Particles that display around'
+      - 'the arrows your bow fires.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '§7* Particle: §6$particle'
+        - '§7* Amount: §f$amount'
+        - '§7* Offset: §f$offset'
+        - ''
+        - '$has_color$ §7* Color: §c§l$red§7 - §a§l$green§7 - §9§l$blue'
+        - '$!has_color$ §7* Speed: §f$speed'
+        - ''
+        - '§e► Click to edit.'
+      lore-empty:
+        - '§7Current Value: §cNone'
+        - ''
+        - '§e► Click to edit.'
+
+  ARROW_POTION_EFFECTS:
+    name: 'Arrow Potion Effects'
+    lore:
+      - 'The effects to be applied when'
+      - 'entities are shot by this bow.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '$potion_list'
+        - ''
+        - '§e► Click to add an effect.'
+        - '§e► Right click to remove the last effect.'
+      lore-empty:
+        - '§7Current Value: §cNone'
+        - ''
+        - '§e► Click to add an effect.'
+        - '§e► Right click to remove the last effect.'
+
+  ATTACK_DAMAGE:
+    name: 'Attack Damage'
+    lore:
+      - 'The amount of damage your weapon deals.'
+    options:
+      from-common: DOUBLE_STAT
+
+  ATTACK_SPEED:
+    name: 'Attack Speed'
+    lore:
+      - 'The speed at which your weapon strikes.'
+      - 'In attacks/sec.'
+    options:
+      from-common: DOUBLE_STAT
+
+  BLOCK_BREAK_SPEED:
+    name: 'Mining Speed'
+    lore:
+      - 'Additional block breaking speed. Bare hands'
+      - 'have a mining speed of 1'
+    options:
+      from-common: DOUBLE_STAT
+
+  BLOCK_INTERACTION_RANGE:
+    name: 'Block Interaction Range'
+    lore:
+      - 'Determines the maximum range the player can'
+      - 'interact with blocks. Ranges between 0 and 64,'
+      - 'with the default value being 4.5 in survival mode.'
+    options:
+      from-common: DOUBLE_STAT
+
+  BROWSER_IDX:
+    name: 'Browser Index'
+    lore:
+      - 'Used to display similar items together,'
+      - 'neatly in the GUI \u00a7a/mmoitems browse'
+      - ''
+      - 'Items with the same index are grouped.'
+    options:
+      from-common: DOUBLE_STAT
+
+  BURNING_TIME:
+    name: 'Burning Time'
+    lore:
+      - 'A factor to how long the player remains on fire'
+      - 'after being ignited. A factor of 0 removes'
+      - 'the entire burn time, a factor of 1 lets the Entity'
+      - 'burn the default fire time - larger values increase'
+      - 'the amount of time the entity remains on fire.'
+      - 'Default is 1, minimum is 0, maximum is 1024.'
+    options:
+      from-common: DOUBLE_STAT
+
+  CAN_BREAK:
+    name: 'Can Break?'
+    lore:
+      - 'The list of materials that this item can break.'
+      - 'This restriction only applies to adventure mode.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '$list'
+        - ''
+        - '§e► Click to add a new material.'
+        - '§e► Right click to remove the last material.'
+      lore-empty:
+        - '§7Current Value: §cNone'
+        - ''
+        - '§e► Click to add a new material.'
+        - '§e► Right click to remove the last material.'
+
+  CAN_DECONSTRUCT:
+    name: 'Can Deconstruct?'
+    lore:
+      - 'Players can deconstruct their item'
+      - 'using this consumable, creating'
+      - 'another random item.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  CAN_DESKIN:
+    name: 'Can Deskin?'
+    lore:
+      - 'Players can deskin their item'
+      - 'and get their skin back'
+      - 'from the item.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  CAN_IDENTIFY:
+    name: 'Can Identify?'
+    lore:
+      - 'Players can identify & make their'
+      - 'item usable using this consumable.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  CAN_UNSOCKET:
+    name: 'Can Unsocket?'
+    lore:
+      - 'This item, when used on another item, if'
+      - 'that other item has Gem Stones'
+      - 'may be used to remove those Gems.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  COMMANDS:
+    name: 'Commands'
+    lore:
+      - 'The commands your item'
+      - 'performs when right clicked.'
+    options:
+      lore-stat:
+        - '§7Current Commands: §c$list_size'
+        - ''
+        - '§e► Click to edit item commands.'
+      lore-empty:
+        - '§7Current Commands: §c0'
+        - ''
+        - '§e► Click to edit item commands.'
+
+  COMPATIBLE_IDS:
+    name: 'Compatible IDs'
+    lore:
+      - 'The item ids this skin is'
+      - 'compatible with.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '$list'
+        - ''
+        - '§e► Click to add a new id.'
+        - '§e► Right click to remove the last id.'
+      lore-empty:
+        - '§7Current Value: §cCompatible with any item'
+        - ''
+        - '§e► Click to add a new id.'
+        - '§e► Right click to remove the last id.'
+
+  COMPATIBLE_MATERIALS:
+    name: 'Compatible Materials'
+    lore:
+      - 'The item materials this skin is'
+      - 'compatible with.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '$list'
+        - ''
+        - '§e► Click to add a new material.'
+        - '§e► Right click to remove the last material.'
+      lore-empty:
+        - '§7Current Value: §cCompatible with any material'
+        - ''
+        - '§e► Click to add a new material.'
+        - '§e► Right click to remove the last material.'
+
+  COMPATIBLE_TYPES:
+    name: 'Compatible Types'
+    lore:
+      - 'The item types this skin is'
+      - 'compatible with.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '$list'
+        - ''
+        - '§e► Click to add a new type.'
+        - '§e► Right click to remove the last type.'
+      lore-empty:
+        - '§7Current Value: §cCompatible with any item'
+        - ''
+        - '§e► Click to add a new type.'
+        - '§e► Right click to remove the last type.'
+
+  CRAFTING:
+    name: 'Crafting'
+    lore:
+      - 'The crafting recipes of your item.'
+      - 'Changing a recipe requires &o/mi reload recipes&7.'
+    options:
+      lore-stat:
+        - '§e► Click to access the crafting edition menu.'
+        - '§e► Right click to remove all crafting recipes.'
+      lore-empty:
+        - '§e► Click to access the crafting edition menu.'
+        - '§e► Right click to remove all crafting recipes.'
+
+  CRAFT_PERMISSION:
+    name: 'Crafting Recipe Permission'
+    lore:
+      - 'The permission needed to craft this item.'
+      - 'Changing this value requires &o/mi reload recipes&7.'
+    options:
+      from-common: STRING_STAT
+
+  DURABILITY:
+    name: 'Custom Durability'
+    lore: []
+    options:
+      from-common: DOUBLE_STAT
+
+  CUSTOM_MODEL_DATA:
+    name: 'Custom Model Data'
+    lore:
+      - 'Your 1.14+ model data.'
+    options:
+      from-common: DOUBLE_STAT
+
+  SOUNDS:
+    name: 'Custom Sounds'
+    lore:
+      - 'The custom sounds your item will use.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '$sound_list'
+        - ''
+        - '§e► Click to access the sounds edition menu.'
+        - '§e► Right click to remove all custom sounds.'
+      lore-empty:
+        - '§7Current Value: §cNone'
+        - ''
+        - '§e► Click to access the sounds edition menu.'
+        - '§e► Right click to remove all custom sounds.'
+
+  DISABLE_DEATH_DROP:
+    name: 'Disable Drop On Death'
+    lore:
+      - 'Enable this to prevent this item'
+      - 'from dropping on the wielder''s death.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  DISPLAYED_TYPE:
+    name: 'Displayed Type'
+    lore:
+      - 'This option will only affect the'
+      - 'type displayed on the item lore.'
+    options:
+      from-common: STRING_STAT
+
+  NAME:
+    name: 'Display Name'
+    lore:
+      - 'The item display name.'
+    options:
+      from-common: STRING_STAT
+
+  DYE_COLOR:
+    name: 'Dye Color'
+    lore:
+      - 'The color of your item'
+      - '(for dyeable items).'
+      - 'In RGB.'
+    options:
+      lore-stat:
+        - '§7Current Value: §a$to_string'
+        - ''
+        - '§e► Click to change this value.'
+        - '§e► Right click to remove the dye color.'
+      lore-empty:
+        - '§7Current Value: §cNone'
+        - ''
+        - '§e► Click to change this value.'
+        - '§e► Right click to remove the dye color.'
+
+  EFFECTS:
+    name: 'Effects'
+    lore:
+      - 'The potion effects your'
+      - 'consumable item grants.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '$potion_list'
+        - ''
+        - '§e► Click to add an effect.'
+        - '§e► Right click to remove the last effect.'
+      lore-empty:
+        - '§7Current Value: §cNone'
+        - ''
+        - '§e► Click to add an effect.'
+        - '§e► Right click to remove the last effect.'
+
+  ELEMENT:
+    name: 'Elements'
+    lore:
+      - 'The elements of your item.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '$stats'
+        - ''
+        - '§e► Click to access the elements edition menu.'
+        - '§e► Right click to remove all the elements.'
+      lore-empty:
+        - '§7Current Value: §cNone'
+        - ''
+        - '§e► Click to access the elements edition menu.'
+        - '§e► Right click to remove all the elements.'
+
+  ENCHANTS:
+    name: 'Enchantments'
+    lore:
+      - 'The item enchants.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '$enchants'
+        - ''
+        - '§e► Click to add an enchant.'
+        - '§e► Right click to remove the last enchant.'
+      lore-empty:
+        - '§7Current Value: §cNone'
+        - ''
+        - '§e► Click to add an enchant.'
+        - '§e► Right click to remove the last enchant.'
+
+  ENTITY_INTERACTION_RANGE:
+    name: 'Entity Interaction Range'
+    lore:
+      - 'Determines the maximum range the player can interact'
+      - 'with entities. Ranges between 0 and 64, with the '
+      - 'default value being 3.'
+    options:
+      from-common: DOUBLE_STAT
+
+  EXPLOSION_KNOCKBACK_RESISTANCE:
+    name: 'Explosion Knockback Resistance'
+    lore:
+      - 'A factor to how much knockback an Entity takes'
+      - 'from an Explosion. A factor of 1 removes'
+      - 'the entire knockback, a factor of 0 means'
+      - 'no knockback reduction.'
+    options:
+      from-common: DOUBLE_STAT
+
+  FALL_DAMAGE_MULTIPLIER:
+    name: 'Fall Damage Multiplier'
+    lore:
+      - 'Multiply overall fall damage amount. Default is 1,'
+      - 'and the valid range is from 0 to 100.'
+    options:
+      from-common: DOUBLE_STAT
+
+  GEM_COLOR:
+    name: 'Gem Color'
+    lore:
+      - 'Defines the color of the socket in'
+      - 'which the gem can be applied.'
+    options:
+      from-common: STRING_STAT
+
+  GEM_SOCKETS:
+    name: 'Gem Sockets'
+    lore:
+      - 'The amount of gem'
+      - 'sockets your weapon has.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '$list'
+        - ''
+        - '§e► Click to add a gem socket.'
+        - '§e► Right click to remove the last socket.'
+      lore-empty:
+        - '§7Current Value: §cNo Sockets'
+        - ''
+        - '§e► Click to add a gem socket.'
+        - '§e► Right click to remove the last socket.'
+
+  GEM_UPGRADE_SCALING:
+    name: 'Gem Upgrade Scaling'
+    lore:
+      - 'Gem stones add their stats to items, but you may also'
+      - 'upgrade your items via crafting stations or consumables.'
+      - ''
+      - '§6Should this gem stone stats be affected by upgrading?'
+    options:
+      from-common: CHOOSE_STAT
+
+  GRANTED_PERMISSIONS:
+    name: 'Granted Permissions'
+    lore:
+      - 'A list of permissions that will,'
+      - 'be granted by the item.'
+    options:
+      from-common: STRING_LIST_STAT
+
+  GRAVITY:
+    name: 'Gravity'
+    lore:
+      - 'Controls blocks/tick^2 acceleration downward.'
+      - 'Default is 0.08, and the valid range is from -1 to +1.'
+    options:
+      from-common: DOUBLE_STAT
+
+  DURABILITY_BAR:
+    name: 'Hide Durability Bar'
+    lore:
+      - 'Enable this to have the green bar'
+      - 'hidden when using &ncustom&7 durability.'
+      - 'Does not work when using vanilla durability.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  HIDE_DYE:
+    name: 'Hide Dyed'
+    lore:
+      - 'Enable to hide the ''Dyed'' tag from the item.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  HIDE_ENCHANTS:
+    name: 'Hide Enchantments'
+    lore:
+      - 'Enable to completely hide your item'
+      - 'enchants. You can still see the glowing effect.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  HIDE_POTION_EFFECTS:
+    name: 'Hide Additional Tooltips'
+    lore:
+      - 'Hides potion effects & additional'
+      - 'vanilla tooltips from the item lore.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  HIDE_ARMOR_TRIM:
+    name: 'Hide Armor Trim'
+    lore:
+      - 'Hides armor trim from item lore.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  ITEM_DAMAGE:
+    name: 'Base Item Damage'
+    lore:
+      - 'Default item damage. This does &cNOT'
+      - 'impact the item''s max durability.'
+    options:
+      from-common: DOUBLE_STAT
+
+  # 内部状态
+  ITEM_LEVEL:
+    name: 'Item Level'
+    lore:
+      - 'The item level.'
+    options: {}
+
+  ITEM_PARTICLES:
+    name: 'Item Particles'
+    lore:
+      - 'The particles displayed when'
+      - 'holding/wearing your item.'
+      - ''
+      - '§9A tutorial is available on the wiki.'
+    options:
+      lore-stat:
+        - '§e► Left click to setup the item particles.'
+        - '§e► Right click to clear.'
+      lore-empty:
+        - '§e► Left click to setup the item particles.'
+        - '§e► Right click to clear.'
+
+  SET:
+    name: 'Item Set'
+    lore:
+      - 'Item sets can give to the player extra'
+      - 'bonuses that depend on how many items'
+      - 'from the same set your wear.'
+    options:
+      from-common: STRING_STAT
+
+  TIER:
+    name: 'Item Tier'
+    lore:
+      - 'The tier defines how rare your item is'
+      - 'and what item is dropped when your'
+      - 'item is deconstructed.'
+      - '&9Tiers can be configured in the tiers.yml file'
+    options:
+      from-common: STRING_STAT
+
+  ITEM_TYPE_RESTRICTION:
+    name: 'Item Type Restriction'
+    lore:
+      - 'This option defines the item types'
+      - 'on which your gem can be applied.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '$list'
+        - ''
+        - '§e► Click to add a supported item type/set.'
+        - '§e► Right click to remove the last element.'
+      lore-empty:
+        - '§7Current Value: §cCompatible with any type.'
+        - ''
+        - '§e► Click to add a supported item type/set.'
+        - '§e► Right click to remove the last element.'
+
+  JUMP_STRENGTH:
+    name: 'Jump Strength'
+    lore:
+      - 'This controls the base impulse from a jump'
+      - '(before jump boost or modifier on block). '
+      - 'Default is 0.42, and the valid range is from 0 to 32.'
+    options:
+      from-common: DOUBLE_STAT
+
+  KNOCKBACK_RESISTANCE:
+    name: 'Knockback Resistance'
+    lore:
+      - 'The chance of your item to block the knockback'
+      - 'from explosions, creepers...'
+      - '1.0 corresponds to 100%, 0.7 to 70%...'
+    options:
+      from-common: DOUBLE_STAT
+
+  LORE:
+    name: 'Lore'
+    lore:
+      - 'The item lore.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '$lore_list'
+        - ''
+        - '§e► Click to add a line.'
+        - '§e► Right click to remove the last line.'
+      lore-empty:
+        - '§7Current Value: §cNone'
+        - ''
+        - '§e► Click to add a line.'
+        - '§e► Right click to remove the last line.'
+
+  LORE_FORMAT:
+    name: 'Lore Format'
+    lore:
+      - 'The lore format decides'
+      - 'where each stat goes.'
+      - '&9Formats can be configured in'
+      - '&9the lore-formats folder'
+    options:
+      from-common: STRING_STAT
+
+  WILL_BREAK:
+    name: 'Lost when Broken?'
+    lore:
+      - 'If set to true, the item will be lost'
+      - 'once it reaches 0 durability.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  LUTE_ATTACK_EFFECT:
+    name: 'Lute Attack Effect'
+    lore:
+      - 'Changes how your lute behaves'
+      - 'when right clicked.'
+      - '§9Tip: /mi list lute'
+    options:
+      from-common: STRING_STAT
+
+  LUTE_ATTACK_SOUND:
+    name: 'Lute Attack Sound'
+    lore:
+      - 'The sound played when'
+      - 'basic attacking with this lute.'
+    options:
+      from-common: STRING_STAT
+
+  MANA_COST:
+    name: 'Mana Cost'
+    lore:
+      - 'Mana spent by your weapon to be used.'
+    options:
+      from-common: DOUBLE_STAT
+
+  MATERIAL:
+    name: 'Material'
+    lore:
+      - 'Your item material.'
+    options:
+      lore-stat:
+        - '§7Current Value: §a$material'
+        - ''
+        - '§e► Left click to change this value.'
+        - '§e► Right click to remove this value.'
+      lore-empty:
+        - '§7Current Value: §cNone'
+        - ''
+        - '§e► Left click to change this value.'
+        - '§e► Right click to remove this value.'
+
+  MAX_ABSORPTION:
+    name: 'Max Absorption'
+    lore:
+      - 'This does not provide permanent absorption'
+      - 'but rather increases your maximum amount'
+      - 'of absorption hearts you can have at any time.'
+    options:
+      from-common: DOUBLE_STAT
+
+  MAX_CONSUME:
+    name: 'Max Consume'
+    lore:
+      - 'Max amount of usage before'
+      - 'item disappears.'
+    options:
+      from-common: DOUBLE_STAT
+
+  MAX_HEALTH:
+    name: 'Max Health'
+    lore:
+      - 'The amount of health your item gives to the holder.'
+    options:
+      from-common: DOUBLE_STAT
+
+  MAX_DURABILITY:
+    name: 'Maximum Custom Durability'
+    lore:
+      - 'The amount of uses before your'
+      - 'item becomes unusable/breaks.'
+    options:
+      from-common: DOUBLE_STAT
+
+  MAX_ITEM_DAMAGE:
+    name: 'Maximum Vanilla Durability'
+    lore:
+      - 'Only available in 1.20.5+'
+      - 'Maximum amount of durability on your item.'
+      - 'This works using vanilla durability and is'
+      - 'much more stable than Custom Durability.'
+    options:
+      from-common: DOUBLE_STAT
+
+  MAX_STACK_SIZE:
+    name: 'Max Stack Size'
+    lore:
+      - 'Maximum amount of items which'
+      - 'can be stacked together (1.20.5+).'
+      - 'Maximum value is 99.'
+    options:
+      from-common: DOUBLE_STAT
+
+  MINING_EFFICIENCY:
+    name: 'Mining Efficiency'
+    lore:
+      - 'Mining speed factor added to the speed of'
+      - 'mining when using a tool that efficiently'
+      - 'mines a block. Default and minimum is 0,'
+      - 'maximum is 1024.'
+    options:
+      from-common: DOUBLE_STAT
+
+  MOVEMENT_EFFICIENCY:
+    name: 'Movement Efficiency'
+    lore:
+      - 'How efficiently the entity can move through'
+      - 'impeding terrain that slows down movement.'
+      - 'A factor of 1 removes all movement penalty,'
+      - 'a factor of 0 applies full movement penalty.'
+      - 'Default and minimum is 0, maximum is 1.'
+    options:
+      from-common: DOUBLE_STAT
+
+  MOVEMENT_SPEED:
+    name: 'Movement Speed'
+    lore:
+      - 'Increases the player''s walking speed.'
+      - 'Default MC walk speed is 0.1'
+    options:
+      from-common: DOUBLE_STAT
+
+  CUSTOM_NBT:
+    name: 'NBT Tags'
+    lore:
+      - 'Custom NBT Tags.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '$list'
+        - ''
+        - '§e► Click to add a tag.'
+        - '§e► Right click to remove the last tag.'
+      lore-empty:
+        - '§7Current Value: §cNone'
+        - ''
+        - '§e► Click to add a tag.'
+        - '§e► Right click to remove the last tag.'
+
+  OXYGEN_BONUS:
+    name: 'Bonus Oxygen'
+    lore:
+      - 'Factor to the chance an Entity has to not use up air'
+      - 'when underwater. 0 has no effect, values over 0 are used'
+      - 'in the following formula to determine the chance of'
+      - 'using up air: 1 / ( bonus_oxygen + 1 ).'
+      - 'Maximum is 1024.'
+    options:
+      from-common: DOUBLE_STAT
+
+  PERM_EFFECTS:
+    name: 'Permanent Effects'
+    lore:
+      - 'The potion effects your'
+      - 'item grants to the holder.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '$potion_list_without_duration'
+        - ''
+        - '§e► Click to add an effect.'
+        - '§e► Right click to remove the last effect.'
+      lore-empty:
+        - '§7Current Value: §cNone'
+        - ''
+        - '§e► Click to add an effect.'
+        - '§e► Right click to remove the last effect.'
+
+  PERMISSION:
+    name: 'Permission'
+    lore:
+      - 'The permission needed to use this item.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '$list'
+        - ''
+        - '§e► Click to add a compatible permission.'
+        - '§e► Right click to remove the last permission.'
+      lore-empty:
+        - '§7Current Value: §cNone'
+        - ''
+        - '§e► Click to add a compatible permission.'
+        - '§e► Right click to remove the last permission.'
+
+  PICKAXE_POWER:
+    name: 'Pickaxe Power'
+    lore:
+      - 'The breaking strength of the'
+      - 'item when mining custom blocks.'
+    options:
+      from-common: DOUBLE_STAT
+
+  POTION_COLOR:
+    name: 'Potion Color'
+    lore:
+      - 'The color of your potion.'
+      - '(Doesn''t impact the effects).'
+    options:
+      lore-stat:
+        - '§a$to_string'
+        - ''
+        - '§e► Click to change this value.'
+        - '§e► Right click to remove the potion color.'
+      lore-empty:
+        - '§cUncolored'
+        - ''
+        - '§e► Click to change this value.'
+        - '§e► Right click to remove the potion color.'
+
+  POTION_EFFECT:
+    name: 'Potion Effects'
+    lore:
+      - 'The effects of your potion.'
+      - '(May have an impact on color).'
+      - 'Does NOT support tipped arrows.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '$potion_list'
+        - ''
+        - '§e► Click to add an effect.'
+        - '§e► Right click to remove the last effect.'
+      lore-empty:
+        - '§7Current Value: &cNone'
+        - ''
+        - '§e► Click to add an effect.'
+        - '§e► Right click to remove the last effect.'
+
+  PROJECTILE_PARTICLES:
+    name: 'Projectile Particles'
+    lore:
+      - 'The projectile particle that your weapon shoots'
+    options:
+      lore-stat:
+        - '§7Current Value: §a$particle'
+        - '$has_color$ §7Color: §a$color'
+        - ''
+        - '§e► Left click to change this value.'
+        - '§e► Right click to remove this value.'
+      lore-empty:
+        - '§7Current Value: &cNone'
+        - ''
+        - '§e► Left click to change this value.'
+        - '§e► Right click to remove this value.'
+
+  RANDOM_UNSOCKET:
+    name: 'Random Unsocket'
+    lore:
+      - 'Number of gems (rounded down)'
+      - 'that will pop out of an item when'
+      - 'this is applied.'
+    options:
+      from-common: DOUBLE_STAT
+
+  REPAIR:
+    name: 'Repair Power'
+    lore:
+      - 'The flat amount of durability your item'
+      - 'can repair when set an item.'
+    options:
+      from-common: DOUBLE_STAT
+
+  REPAIR_PERCENT:
+    name: 'Repair Percentage'
+    lore:
+      - 'The percentage of total durability getting'
+      - 'repaired when dragged onto another item.'
+    options:
+      from-common: DOUBLE_STAT
+
+  REPAIR_TYPE:
+    name: 'Repair Reference'
+    lore:
+      - 'A repair consumable may only be used onto'
+      - 'an item with the same repair reference.'
+    options:
+      from-common: STRING_STAT
+
+  REQUIRED_BIOMES:
+    name: 'Required Biomes'
+    lore:
+      - 'The biome the player must be within'
+      - 'for this item to activate.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '$list'
+        - ''
+        - '§e► Click to add a biome.'
+        - '§e► Right click to remove the last biome.'
+      lore-empty:
+        - '§7Current Value: §cNone'
+        - ''
+        - '§e► Click to add a biome.'
+        - '§e► Right click to remove the last biome.'
+
+  REQUIRED_CLASS:
+    name: 'Required Class'
+    lore:
+      - 'The class you need to'
+      - 'profess to use your item.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '$list'
+        - ''
+        - '§e► Click to add a class.'
+        - '§e► Right click to remove the last class.'
+      lore-empty:
+        - '§7Current Value: §cNone'
+        - ''
+        - '§e► Click to add a class.'
+        - '§e► Right click to remove the last class.'
+
+  LEVEL:
+    name: 'Level'
+    lore:
+      - 'The level your item needs'
+      - 'in order to be used.'
+    options:
+      from-common: DOUBLE_STAT
+
+  RESTORE_FOOD:
+    name: 'Food Restoration'
+    lore:
+      - 'Food units given when consumed.'
+    options:
+      from-common: DOUBLE_STAT
+
+  RESTORE_HEALTH:
+    name: 'Health Restoration'
+    lore:
+      - 'Health given when consumed.'
+    options:
+      from-common: DOUBLE_STAT
+
+  RESTORE_MANA:
+    name: 'Restore Mana'
+    lore:
+      - 'The amount of mana'
+      - 'your consumable restores.'
+    options:
+      from-common: DOUBLE_STAT
+
+  RESTORE_SATURATION:
+    name: 'Saturation Restoration'
+    lore:
+      - 'Saturation given when consumed.'
+    options:
+      from-common: DOUBLE_STAT
+
+  RESTORE_STAMINA:
+    name: 'Restore Stamina'
+    lore:
+      - 'The amount of stamina/power'
+      - 'your consumable restores.'
+    options:
+      from-common: DOUBLE_STAT
+
+  REVISION_ID:
+    name: 'Revision ID'
+    lore:
+      - 'The Revision ID is used to determine'
+      - 'if an item is outdated or not. You'
+      - 'should increase this whenever'
+      - 'you make changes to your item!'
+      - ''
+      - '§6The updater is smart and will apply'
+      - '§6changes to the base stats of the item,'
+      - '§6keeping gemstones intact (for example).'
+    options:
+      lore-stat:
+        - '§7Current Revision ID: §a$base_int'
+        - ''
+        - '§e► Left click to increase this value.'
+        - '§e► Right click to decrease this value.'
+      lore-empty:
+        - '§7Current Revision ID: §a1'
+        - ''
+        - '§e► Left click to increase this value.'
+        - '§e► Right click to decrease this value.'
+
+  SAFE_FALL_DISTANCE:
+    name: 'Safe Fall Distance'
+    lore:
+      - 'Controls the fall distance after which'
+      - 'the player takes fall damage. Default is 3,'
+      - 'and the valid range is from -1024 to +1024.'
+    options:
+      from-common: DOUBLE_STAT
+
+  SCALE:
+    name: 'Scale'
+    lore:
+      - 'Allows changing the size of the player to '
+      - 'anywhere between 0.0625 and 16 times their default size.'
+    options:
+      from-common: DOUBLE_STAT
+
+  SHIELD_PATTERN:
+    name: 'Shield Pattern'
+    lore:
+      - 'The color & patterns'
+      - 'of your shield.'
+    options:
+      lore-stat:
+        - '§7Current Value:'
+        - '§7* Base Color: $base_color'
+        - '$pattern_list'
+        - ''
+        - '§e► Left Click to change the shield color.'
+        - '§e► Shift Left Click to reset the shield color.'
+        - '§e► Right Click to add a pattern.'
+        - '§e► Drop to remove the last pattern.'
+      lore-empty:
+        - '§7Current Value: §cNone'
+        - ''
+        - '§e► Left Click to change the shield color.'
+        - '§e► Shift Left Click to reset the shield color.'
+        - '§e► Right Click to add a pattern.'
+        - '§e► Drop to remove the last pattern.'
+
+  SKULL_TEXTURE:
+    name: 'Skull Texture'
+    lore:
+      - 'The skull texture §nvalue§7 which can be found on'
+      - 'head databases. 1.20+ users can also provide the'
+      - 'texture URL directly (starting with https://...).'
+    options:
+      lore-stat:
+        - '§7Current Value: §aTexture value provided'
+        - ''
+        - '§e► Left click to change this value.'
+        - '§e► Right click to remove this value.'
+      lore-empty:
+        - '§7Current Value: §cNone'
+        - ''
+        - '§e► Left click to change this value.'
+        - '§e► Right click to remove this value.'
+
+  SNEAKING_SPEED:
+    name: 'Sneaking Speed'
+    lore:
+      - 'The movement speed factor when sneaking.'
+      - 'A factor of 1 means sneaking is as fast as walking,'
+      - 'a factor of 0 means unable to move while sneaking.'
+      - 'Default is 0.3, minimum is 0 and maximum is 1.'
+    options:
+      from-common: DOUBLE_STAT
+
+  SOULBOUND_BREAK_CHANCE:
+    name: 'Soulbound Break Chance'
+    lore:
+      - 'The chance of breaking an item''s'
+      - 'soulbound when drag & drop''d on it.'
+      - 'This chance is lowered depending'
+      - 'on the soulbound''s level.'
+    options:
+      from-common: DOUBLE_STAT
+
+  SOULBINDING_CHANCE:
+    name: 'Soulbinding Chance'
+    lore:
+      - 'Defines the chance your item has to'
+      - 'link another item to your soul,'
+      - 'preventing other players from using it.'
+    options:
+      from-common: DOUBLE_STAT
+
+  # 内部状态
+  SOULBOUND:
+    name: 'Soulbound'
+    lore: []
+    options: {}
+
+  SOULBOUND_LEVEL:
+    name: 'Soulbinding Level'
+    lore:
+      - 'The soulbound level defines how much'
+      - 'damage players will take when trying'
+      - 'to use a soulbound item. It also determines'
+      - 'how hard it is to break the binding.'
+    options:
+      from-common: DOUBLE_STAT
+
+  STEP_HEIGHT:
+    name: 'Step Height'
+    lore:
+      - 'Determines the max height in blocks where'
+      - 'a mob can walk above without jumping.'
+      - 'Default is 0.6, and the valid range is from 0 to 10.'
+    options:
+      from-common: DOUBLE_STAT
+
+  # 内部状态
+  STORED_TAGS:
+    name: 'Stored Tags'
+    lore:
+      - 'You found a secret dev easter egg'
+      - 'introduced during the 2020 epidemic!'
+    options: {}
+
+  SUBMERGED_MINING_SPEED:
+    name: 'Submerged Mining Speed'
+    lore:
+      - 'The mining speed factor when submerged.'
+      - 'A factor of 1 means mining as fast submerged as on land,'
+      - 'a factor of 0 means unable to mine while submerged.'
+      - 'Note that this represents only the submersion factor itself,'
+      - 'and other factors(such as not touching the ground) also apply.'
+      - 'Default is 0.2, minimum is 0 and maximum is 20.'
+    options:
+      from-common: DOUBLE_STAT
+
+  SUCCESS_RATE:
+    name: 'Success Rate'
+    lore:
+      - 'The chance of your gem/skin to successfully'
+      - 'apply onto an item. This value is 100%'
+      - 'by default. If it is not successfully'
+      - 'applied, the gem/skin will be lost.'
+    options:
+      from-common: DOUBLE_STAT
+
+  SWEEPING_DAMAGE_RATIO:
+    name: 'Sweeping Damage Ratio'
+    lore:
+      - 'How much of the base attack damage that gets transferred'
+      - 'transfer to secondary targets in a sweep attack.'
+      - 'This is additive to the base attack of the sweep damage'
+      - 'itself of 1. A value of 0 means none of the base attack damage'
+      - 'is transferred (sweep damage is 1).'
+      - 'A value of 1 means all of the base attack damage is transferred.'
+      - 'Default and minimum value is 0, maximum value is 1.'
+    options:
+      from-common: DOUBLE_STAT
+
+  TOOLTIP:
+    name: 'Tooltip'
+    lore:
+      - 'The identifier of the custom tooltip texture'
+      - 'you''d like to use. Check the wiki for usage!'
+      - '&9Tooltips are setup in the tooltips.yml file'
+    options:
+      from-common: STRING_STAT
+
+  TRIM_MATERIAL:
+    name: 'Trim Material'
+    lore:
+      - 'Material to trim your armor with.'
+    options:
+      from-common: CHOOSE_STAT
+
+  TRIM_PATTERN:
+    name: 'Trim Pattern'
+    lore:
+      - 'Pattern of trimmed armor.'
+    options:
+      from-common: CHOOSE_STAT
+
+  UNBREAKABLE:
+    name: 'Unbreakable'
+    lore:
+      - 'Infinite durability if set to true.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  UNSTACKABLE:
+    name: 'Unstackable'
+    lore:
+      - 'This will make the item unable'
+      - 'to be stacked with itself.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  UPGRADE:
+    name: 'Item Upgrading'
+    lore:
+      - 'Upgrading your item improves its'
+      - 'current stats. It requires either a'
+      - 'consumable or a specific crafting '
+      - 'station. Upgrading may sometimes &cfail&7...'
+    options:
+      lore-stat:
+        - '§e► Left click to setup upgrading.'
+        - '§e► Right click to reset.'
+      lore-empty:
+        - '§e► Left click to setup upgrading.'
+        - '§e► Right click to reset.'
+
+  VANILLA_EATING:
+    name: 'Vanilla Eating Animation'
+    lore:
+      - 'When enabled, players have to wait'
+      - 'for the vanilla eating animation'
+      - 'in order to eat the consumable.'
+      - ''
+      - 'Only works on items that'
+      - 'can normally be eaten.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  WATER_MOVEMENT_EFFICIENCY:
+    name: 'Water Movement Efficiency'
+    lore:
+      - 'The movement speed factor when submerged.'
+      - 'The higher, the more of the underwater movement penalty is mitigated.'
+      - 'Note that this represents only the submersion factor itself,'
+      - 'and other factors (such as not touching the ground) also apply.'
+      - 'Default and minimum value is 0, maximum value is 1.'
+    options:
+      from-common: DOUBLE_STAT
+
+  DISABLE_INTERACTION:
+    name: 'Disable Interaction'
+    lore:
+      - 'Disable any unwanted interaction:'
+      - 'block placement, item use...'
+    options:
+      from-common: BOOLEAN_STAT
+
+  DISABLE_CRAFTING:
+    name: 'Disable Crafting'
+    lore:
+      - 'Players can''t use this item while crafting.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  DISABLE_SMELTING:
+    name: 'Disable Smelting'
+    lore:
+      - 'Players can''t use this item in furnaces.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  DISABLE_SMITHING:
+    name: 'Disable Smithing'
+    lore:
+      - 'Players can''t smith this item in smithing tables.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  DISABLE_ENCHANTING:
+    name: 'Disable Enchanting'
+    lore:
+      - 'Players can''t enchant this item.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  DISABLE_REPAIRING:
+    name: 'Disable Repairing'
+    lore:
+      - 'Players can''t use this item in anvils.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  DISABLE_ARROW_SHOOTING:
+    name: 'Disable Arrow Shooting'
+    lore:
+      - 'Players can''t shoot this'
+      - 'item using a bow.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  DISABLE_DROP:
+    name: 'Disable Item Dropping'
+    lore:
+      - 'Disables the dropping of this item!'
+    options:
+      from-common: BOOLEAN_STAT
+
+  DISABLE_ARROW_CONSUMPTION:
+    name: 'Disable Arrow Consumption'
+    lore:
+      - 'Disable arrow requirement and consumption.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  DISABLE_ATTACK_PASSIVE:
+    name: 'Disable On-Hit Effect'
+    lore:
+      - 'Disables on-hit effects granted by the item type.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  TWO_HANDED:
+    name: 'Two Handed'
+    lore:
+      - 'If set to true, a player will be'
+      - 'significantly slower if holding two'
+      - 'items, one being Two Handed.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  AUTOSMELT:
+    name: 'Autosmelt'
+    lore:
+      - 'If set to true, your tool will'
+      - 'automaticaly smelt mined ores.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  BOUNCING_CRACK:
+    name: 'Bouncing Crack'
+    lore:
+      - 'If set to true, your tool will'
+      - 'also break nearby blocks.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  REMOVE_ON_CRAFT:
+    name: 'Remove on Craft'
+    lore:
+      - 'If the item should be completely'
+      - 'removed when used in a recipe,'
+      - 'or if it should become an'
+      - 'empty bottle or bucket.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  INEDIBLE:
+    name: 'Inedible'
+    lore:
+      - 'Players won''t be able to right-click this consumable.'
+      - ''
+      - 'No effects of it will take place.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  HANDWORN:
+    name: 'Handworn'
+    lore:
+      - 'This item can be held along with a'
+      - 'two-handed weapon in the other hand.'
+    options:
+      from-common: BOOLEAN_STAT
+
+  BREAK_DOWNGRADE:
+    name: 'Downgrade when Broken'
+    lore:
+      - 'If this item''s durability reaches 0,'
+      - 'it will be fully repaired but also'
+      - 'downgraded by one level.'
+      - ''
+      - '&cIt will only break if it cannot be'
+      - '&cdowngraded further'
+      - ''
+      - 'Requires to define an &6Upgrade Template'
+      - 'Required to define &6Custom Durability'
+    options:
+      from-common: BOOLEAN_STAT
+
+  DEATH_DOWNGRADE:
+    name: 'Downgrade on Death'
+    lore:
+      - 'If the wearer of this item dies, it may'
+      - 'downgrade (based on &6Death Downgrade'
+      - '&6Chance &7stat)'
+      - ''
+      - 'Required to define an &6Upgrade Template'
+      - 'Requires keep-inventory gamerule. '
+    options:
+      from-common: BOOLEAN_STAT
+
+  CRITICAL_STRIKE_CHANCE:
+    name: 'Critical Strike Chance'
+    lore:
+      - 'Critical Strikes deal more damage.'
+      - 'In % chance.'
+    options:
+      from-common: DOUBLE_STAT
+
+  CRITICAL_STRIKE_POWER:
+    name: 'Critical Strike Power'
+    lore:
+      - 'The extra damage weapon crits deals.'
+      - '(Stacks with default value)'
+      - 'In %.'
+    options:
+      from-common: DOUBLE_STAT
+
+  SKILL_CRITICAL_STRIKE_CHANCE:
+    name: 'Skill Critical Strike Chance'
+    lore:
+      - 'Increases the chance of dealing skill crits (in %).'
+    options:
+      from-common: DOUBLE_STAT
+
+  SKILL_CRITICAL_STRIKE_POWER:
+    name: 'Skill Critical Strike Power'
+    lore:
+      - 'Extra damage dealt (in %) by skill crits.'
+      - '(Stacks with default value)'
+      - 'In %.'
+    options:
+      from-common: DOUBLE_STAT
+
+  BLOCK_POWER:
+    name: 'Block Power'
+    lore:
+      - 'The % of the damage your'
+      - 'armor/shield can block.'
+      - 'Default: 25%'
+    options:
+      from-common: DOUBLE_STAT
+
+  BLOCK_RATING:
+    name: 'Block Rating'
+    lore:
+      - 'The chance your piece of armor'
+      - 'has to block any entity attack.'
+    options:
+      from-common: DOUBLE_STAT
+
+  BLOCK_COOLDOWN_REDUCTION:
+    name: 'Block Cooldown Reduction'
+    lore:
+      - 'Reduces the blocking cooldown (%).'
+    options:
+      from-common: DOUBLE_STAT
+
+  DODGE_RATING:
+    name: 'Dodge Rating'
+    lore:
+      - 'The chance to dodge an attack.'
+      - 'Dodging completely negates'
+      - 'the attack damage.'
+    options:
+      from-common: DOUBLE_STAT
+
+  DODGE_COOLDOWN_REDUCTION:
+    name: 'Dodge Cooldown Reduction'
+    lore:
+      - 'Reduces the dodging cooldown (%).'
+    options:
+      from-common: DOUBLE_STAT
+
+  PARRY_RATING:
+    name: 'Parry Rating'
+    lore:
+      - 'The chance to parry an attack.'
+      - 'Parrying negates the damage'
+      - 'and knocks the attacker back.'
+    options:
+      from-common: DOUBLE_STAT
+
+  PARRY_COOLDOWN_REDUCTION:
+    name: 'Parry Cooldown Reduction'
+    lore:
+      - 'Reduces the parrying cooldown (%).'
+    options:
+      from-common: DOUBLE_STAT
+
+  COOLDOWN_REDUCTION:
+    name: 'Cooldown Reduction'
+    lore:
+      - 'Reduces cooldowns of item and player skills (%).'
+    options:
+      from-common: DOUBLE_STAT
+
+  RANGE:
+    name: 'Range'
+    lore:
+      - 'The range of your item attacks.'
+    options:
+      from-common: DOUBLE_STAT
+
+  STAMINA_COST:
+    name: 'Stamina Cost'
+    lore:
+      - 'Stamina spent by your weapon to be used.'
+    options:
+      from-common: DOUBLE_STAT
+
+  ARROW_VELOCITY:
+    name: 'Arrow Velocity'
+    lore:
+      - 'Determines how far your'
+      - 'weapon can shoot.'
+      - 'Default: 1.0'
+    options:
+      from-common: DOUBLE_STAT
+
+  PVE_DAMAGE:
+    name: 'PvE Damage'
+    lore:
+      - 'Additional damage against'
+      - 'non human entities in %.'
+    options:
+      from-common: DOUBLE_STAT
+
+  PVP_DAMAGE:
+    name: 'PvP Damage'
+    lore:
+      - 'Additional damage'
+      - 'against players in %.'
+    options:
+      from-common: DOUBLE_STAT
+
+  BLUNT_POWER:
+    name: 'Blunt Power'
+    lore:
+      - 'The radius of the AoE attack.'
+      - 'If set to 2.0, enemies within 2 blocks'
+      - 'around your target will take damage.'
+      - '&9This stat only applies to Blunt weapons.'
+    options:
+      from-common: DOUBLE_STAT
+
+  BLUNT_RATING:
+    name: 'Blunt Rating'
+    lore:
+      - 'The force of the blunt attack.'
+      - 'If set to 50%, enemies hit by the attack'
+      - 'will take 50% of the initial damage.'
+      - '&9This stat only applies to Blunt weapons.'
+    options:
+      from-common: DOUBLE_STAT
+
+  WEAPON_DAMAGE:
+    name: 'Weapon Damage'
+    lore:
+      - 'Additional on-hit weapon damage in %.'
+    options:
+      from-common: DOUBLE_STAT
+
+  SKILL_DAMAGE:
+    name: 'Skill Damage'
+    lore:
+      - 'Additional ability damage in %.'
+    options:
+      from-common: DOUBLE_STAT
+
+  PROJECTILE_DAMAGE:
+    name: 'Projectile Damage'
+    lore:
+      - 'Additional skill/weapon projectile damage.'
+    options:
+      from-common: DOUBLE_STAT
+
+  MAGIC_DAMAGE:
+    name: 'Magic Damage'
+    lore:
+      - 'Additional magic skill damage in %.'
+    options:
+      from-common: DOUBLE_STAT
+
+  PHYSICAL_DAMAGE:
+    name: 'Physical Damage'
+    lore:
+      - 'Additional skill/weapon physical damage.'
+    options:
+      from-common: DOUBLE_STAT
+
+  DEFENSE:
+    name: 'Defense'
+    lore:
+      - 'Reduces damage from any source.'
+      - 'Formula can be set in MMOLib Config.'
+    options:
+      from-common: DOUBLE_STAT
+
+  DAMAGE_REDUCTION:
+    name: 'Damage Reduction'
+    lore:
+      - 'Reduces damage from any source.'
+      - 'In %.'
+    options:
+      from-common: DOUBLE_STAT
+
+  FALL_DAMAGE_REDUCTION:
+    name: 'Fall Damage Reduction'
+    lore:
+      - 'Reduces fall damage.'
+      - 'In %.'
+    options:
+      from-common: DOUBLE_STAT
+
+  PROJECTILE_DAMAGE_REDUCTION:
+    name: 'Projectile Damage Reduction'
+    lore:
+      - 'Reduces projectile damage.'
+      - 'In %.'
+    options:
+      from-common: DOUBLE_STAT
+
+  PHYSICAL_DAMAGE_REDUCTION:
+    name: 'Physical Damage Reduction'
+    lore:
+      - 'Reduces physical damage.'
+      - 'In %.'
+    options:
+      from-common: DOUBLE_STAT
+
+  FIRE_DAMAGE_REDUCTION:
+    name: 'Fire Damage Reduction'
+    lore:
+      - 'Reduces fire damage.'
+      - 'In %.'
+    options:
+      from-common: DOUBLE_STAT
+
+  MAGIC_DAMAGE_REDUCTION:
+    name: 'Magic Damage Reduction'
+    lore:
+      - 'Reduce magic damage dealt by potions.'
+      - 'In %.'
+    options:
+      from-common: DOUBLE_STAT
+
+  PVE_DAMAGE_REDUCTION:
+    name: 'PvE Damage Reduction'
+    lore:
+      - 'Reduces damage dealt by mobs.'
+      - 'In %.'
+    options:
+      from-common: DOUBLE_STAT
+
+  PVP_DAMAGE_REDUCTION:
+    name: 'PvP Damage Reduction'
+    lore:
+      - 'Reduces damage dealt by players'
+      - 'In %.'
+    options:
+      from-common: DOUBLE_STAT
+
+  UNDEAD_DAMAGE:
+    name: 'Undead Damage'
+    lore:
+      - 'Deals additional damage to undead.'
+      - 'In %.'
+    options:
+      from-common: DOUBLE_STAT
+
+  LIFESTEAL:
+    name: 'Lifesteal'
+    lore:
+      - 'Percentage of damage you gain back as'
+      - 'health when inflicting weapon damage.'
+    options:
+      from-common: DOUBLE_STAT
+
+  SPELL_VAMPIRISM:
+    name: 'Spell Vampirism'
+    lore:
+      - 'Percentage of damage you gain back as'
+      - 'health when inflicting skill damage.'
+    options:
+      from-common: DOUBLE_STAT
+
+  MAX_MANA:
+    name: 'Max Mana'
+    lore:
+      - 'Adds mana to your max mana bar.'
+    options:
+      from-common: DOUBLE_STAT
+
+  ITEM_COOLDOWN:
+    name: 'Item Cooldown'
+    lore:
+      - 'This cooldown applies for consumables'
+      - 'as well as for item commands.'
+    options:
+      from-common: DOUBLE_STAT
+
+  NOTE_WEIGHT:
+    name: 'Note Weight'
+    lore:
+      - 'Defines how the projectile cast'
+      - 'by your lute tilts downwards.'
+    options:
+      from-common: DOUBLE_STAT
+
+  KNOCKBACK:
+    name: 'Knockback'
+    lore:
+      - 'Using this musket will knock'
+      - 'the user back if positive.'
+    options:
+      from-common: DOUBLE_STAT
+
+  RECOIL:
+    name: 'Recoil'
+    lore:
+      - 'Corresponds to the shooting innacuracy.'
+    options:
+      from-common: DOUBLE_STAT
+
+  DEATH_DOWNGRADE_CHANCE:
+    name: 'Death Downgrade Chance'
+    lore:
+      - 'Probability that an item with &cDowngrade '
+      - '&con Death&7 will be downgraded when the'
+      - 'player dies. '
+      - ''
+      - 'Exceeding 100% will for sure downgrade'
+      - 'one item, and roll again to downgrade'
+      - 'another (with the excess probability).'
+      - '&6The same item wont be downgraded twice.'
+    options:
+      from-common: DOUBLE_STAT
