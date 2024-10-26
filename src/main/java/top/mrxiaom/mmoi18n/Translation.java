@@ -1,5 +1,6 @@
 package top.mrxiaom.mmoi18n;
 
+import io.lumine.mythic.lib.MythicLib;
 import io.lumine.mythic.lib.UtilityMethods;
 import net.Indyuce.mmoitems.api.Type;
 import net.Indyuce.mmoitems.stat.type.ItemStat;
@@ -13,6 +14,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import top.mrxiaom.mmoi18n.gui.ItemBrowser;
 import top.mrxiaom.mmoi18n.language.AbstractLanguageHolder;
 import top.mrxiaom.mmoi18n.language.LanguageEnumAutoHolder;
 import top.mrxiaom.mmoi18n.placeholder.IProvider;
@@ -98,6 +100,7 @@ public class Translation {
         Translation.plugin = plugin;
         file = new File(plugin.getDataFolder(), "gui.yml");
         IProvider.createAllProviders(placeholderProviders);
+        register(ItemBrowser.Msg.class, ItemBrowser.Msg::holder);
     }
 
     protected static void reloadConfig(ConfigurationSection pluginConfig) {
@@ -163,11 +166,11 @@ public class Translation {
     }
 
     public static String translateBoolean(boolean bool) {
-        return commonTranslation[bool ? 0 : 1];
+        return commonTranslation[bool ? 0 : 1]; // 是|否
     }
 
     public static String translateBooleanOption(boolean bool) {
-        return commonTranslation[bool ? 2 : 3];
+        return commonTranslation[bool ? 2 : 3]; // 开|关
     }
 
     public static String translateEnchant(Enchantment enchant) {
@@ -182,7 +185,7 @@ public class Translation {
 
     public static String translateEnum(@Nullable Enum<?> enumValue) {
         if (enumValue == null) {
-            return commonTranslation[4];
+            return commonTranslation[4]; // 无
         }
         // TODO: 从配置文件读取枚举翻译
         // 大部分都来自原版 Minecraft
