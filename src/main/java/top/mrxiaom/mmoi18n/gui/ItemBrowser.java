@@ -198,7 +198,13 @@ public class ItemBrowser extends net.Indyuce.mmoitems.gui.ItemBrowser implements
          *          Displays all the items of the chosen Type
          *  ------------------------------
          */
-        String typeName = MythicLib.plugin.getAdventureParser().stripColors(type.getName());
+        String typeName;
+        {
+            String translated = translateType(type);
+            typeName = translated == null
+                    ? MythicLib.plugin.getAdventureParser().stripColors(type.getName())
+                    : translated;
+        }
         Inventory inv = Bukkit.createInventory(this, 54,
                 (deleteMode ? Msg.ITEM__TITLE_DELETE : Msg.ITEM__TITLE).str(typeName));
         /*
