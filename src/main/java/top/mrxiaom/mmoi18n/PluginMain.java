@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import de.tr7zw.changeme.nbtapi.utils.MinecraftVersion;
 import io.lumine.mythic.lib.UtilityMethods;
 import net.Indyuce.mmoitems.MMOItems;
+import net.Indyuce.mmoitems.stat.type.DoubleStat;
 import net.Indyuce.mmoitems.stat.type.InternalStat;
 import net.Indyuce.mmoitems.stat.type.ItemStat;
 import org.bukkit.Bukkit;
@@ -25,6 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 
 public class PluginMain extends JavaPlugin {
@@ -109,6 +111,22 @@ public class PluginMain extends JavaPlugin {
                 }
                 return true;
             }
+            if (args.length == 1 && "unused".equalsIgnoreCase(args[0])) {
+                Set<String> keys = Translation.allStats();
+                List<ItemStat<?, ?>> stats = MMOItems.plugin.getStats()
+                        .getAll().stream()
+                        .filter(stat -> !(stat instanceof InternalStat))
+                        .toList();
+                List<String> unused = keys.stream()
+                        .filter(it -> stats.stream().noneMatch(stat -> stat.getId().equals(it)))
+                        .toList();
+                if (unused.isEmpty()) {
+                    sender.sendMessage(ChatColor.GRAY + "未找到未使用的翻译配置");
+                } else {
+                    sender.sendMessage(ChatColor.YELLOW + "未使用的翻译配置如下: " + ChatColor.AQUA + String.join(ChatColor.WHITE + ", " + ChatColor.AQUA, unused));
+                }
+                return true;
+            }
         }
         return true;
     }
@@ -121,6 +139,7 @@ public class PluginMain extends JavaPlugin {
             if (args.length == 1) {
                 String arg = args[0].toLowerCase();
                 if ("translate".startsWith(arg)) list.add("translate");
+                if ("unused".startsWith(arg)) list.add("unused");
                 if ("reload".startsWith(arg)) list.add("reload");
             }
             return list;

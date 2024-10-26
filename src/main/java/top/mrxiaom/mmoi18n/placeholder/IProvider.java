@@ -23,7 +23,9 @@ public interface IProvider {
      * @param stat 物品Stat
      * @param raw 物品随机数据 (RandomStatData)
      * @param line 要替换的行
-     * @return 替换后的 Lore，可返回多行，使用换行符\n分隔
+     * @return 替换后的 Lore，可返回多行，使用<code>\n</code>分隔，<br>
+     * 返回 <code>null</code> 代表未替换，<br>
+     * 返回 {@link IProvider#DELETE_FLAG} 代表删除这一行
      */
     @Nullable
     String replaceLine(ItemStat stat, Object raw, String line);

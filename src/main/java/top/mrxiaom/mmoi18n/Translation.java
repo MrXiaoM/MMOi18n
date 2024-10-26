@@ -228,6 +228,10 @@ public class Translation {
         return list;
     }
 
+    public static Set<String> allStats() {
+        return translatedStatMap.keySet();
+    }
+
     @NotNull
     @SuppressWarnings({"rawtypes"})
     public static TranslatedStat getStat(ItemStat stat) {
