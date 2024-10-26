@@ -34,3 +34,19 @@ types:
   SKIN: Skin
   ACCESSORY: Accessory
   BLOCK: Block
+  GREATSWORD: Greatsword
+  LONG_SWORD: Long Sword
+  THRUSTING_SWORD: Thrusting Sword
+  AXE: Axe
+  GREATAXE: Greataxe
+  HALBERD: Halberd
+  LANCER: Lancer
+  GREATHAMMER: Greathammer
+  GREATSTAFF: Greatstaff
+  STAVE: Stave
+  TOME: Tome
+  TALISMAN: Talisman
+  WAND: Wand
+  GREATBOW: Greatbow
+  SHIELD: Shield
+  MATERIAL: Material
