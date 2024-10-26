@@ -114,19 +114,19 @@ stats:
       from-common: BOOLEAN_STAT
 
   ABILITY:
-    name: '物品能力'
+    name: '物品能力/技能'
     lore:
       - '让你的物品可以释放惊奇的能力，'
       - '用于击杀怪物或增益自身.'
     options:
       lore-stat:
-        - '§7当前能力数量: §6$abilities_size'
+        - '§7当前技能数量: §6$abilities_size'
         - ''
-        - '§e► 左键 编辑物品能力.'
+        - '§e► 左键 编辑物品技能.'
       lore-empty:
-        - '§7当前能力数量: §60'
+        - '§7当前技能数量: §60'
         - ''
-        - '§e► 左键 编辑物品能力.'
+        - '§e► 左键 编辑物品技能.'
 
   ON_LEFT_CLICK:
     name: '左键动作'
@@ -142,7 +142,7 @@ stats:
     name: '右键动作'
     lore:
       - '右键点击时运行的技能的ID. 使用时，'
-      - '物品会自然地消耗像是 mana, stamina,'
+      - '物品会自然地消耗像是 魔力(mana), 耐力(stamina),'
       - '冷却时间等数值. 这个选项由物品类型'
       - '提供的脚本进行重载.'
     options:
@@ -1198,10 +1198,9 @@ stats:
   SOULBOUND_LEVEL:
     name: '灵魂绑定等级'
     lore:
-      - 'The soulbound level defines how much'
-      - 'damage players will take when trying'
-      - 'to use a soulbound item. It also determines'
-      - 'how hard it is to break the binding.'
+      - '灵魂绑定等级决定了当玩家尝试使用'
+      - '一个灵魂绑定物品时，会收到多少伤害.'
+      - '它也决定了破坏绑定有多难.'
     options:
       from-common: DOUBLE_STAT
 
@@ -1234,73 +1233,69 @@ stats:
       from-common: DOUBLE_STAT
 
   SUCCESS_RATE:
-    name: 'Success Rate'
+    name: '成功率'
     lore:
-      - 'The chance of your gem/skin to successfully'
-      - 'apply onto an item. This value is 100%'
-      - 'by default. If it is not successfully'
-      - 'applied, the gem/skin will be lost.'
+      - '宝石/皮肤能成功添加到物品上的概率.'
+      - '默认值为 100%. 如果未能成功添加，'
+      - '宝石/皮肤将会消失.'
     options:
       from-common: DOUBLE_STAT
 
   SWEEPING_DAMAGE_RATIO:
-    name: 'Sweeping Damage Ratio'
+    name: '横扫伤害比率'
     lore:
-      - 'How much of the base attack damage that gets transferred'
-      - 'transfer to secondary targets in a sweep attack.'
-      - 'This is additive to the base attack of the sweep damage'
-      - 'itself of 1. A value of 0 means none of the base attack damage'
-      - 'is transferred (sweep damage is 1).'
-      - 'A value of 1 means all of the base attack damage is transferred.'
-      - 'Default and minimum value is 0, maximum value is 1.'
+      - '在横扫攻击中，多少的基础攻击伤害'
+      - '会转移到第二目标.'
+      - '这是对横扫攻击自身1伤害的附加伤害.'
+      - '设为 0，则不会有额外的伤害转移 (横扫伤害为 1).'
+      - '设为 1，则所有的基础伤害都会转移到第二目标.'
+      - '默认值和最小值为 0，最大值为 1.'
     options:
       from-common: DOUBLE_STAT
 
   TOOLTIP:
-    name: 'Tooltip'
+    name: '工具提示'
     lore:
-      - 'The identifier of the custom tooltip texture'
-      - 'you''d like to use. Check the wiki for usage!'
-      - '&9Tooltips are setup in the tooltips.yml file'
+      - '你想使用的自定义的鼠标悬停背景材质ID.'
+      - '用法详见wiki!'
+      - '&9工具提示在配置文件 tooltips.yml 中配置'
     options:
       from-common: STRING_STAT
 
   TRIM_MATERIAL:
-    name: 'Trim Material'
+    name: '纹饰材质'
     lore:
-      - 'Material to trim your armor with.'
+      - '盔甲纹饰材质.'
     options:
       from-common: CHOOSE_STAT
 
   TRIM_PATTERN:
-    name: 'Trim Pattern'
+    name: '纹饰图案'
     lore:
-      - 'Pattern of trimmed armor.'
+      - '盔甲纹饰图案.'
     options:
       from-common: CHOOSE_STAT
 
   UNBREAKABLE:
-    name: 'Unbreakable'
+    name: '不可破坏'
     lore:
-      - 'Infinite durability if set to true.'
+      - '开启后耐久无限.'
     options:
       from-common: BOOLEAN_STAT
 
   UNSTACKABLE:
-    name: 'Unstackable'
+    name: '不可堆叠'
     lore:
-      - 'This will make the item unable'
-      - 'to be stacked with itself.'
+      - '使得同种物品无法堆叠在一起.'
     options:
       from-common: BOOLEAN_STAT
 
   UPGRADE:
-    name: 'Item Upgrading'
+    name: '物品升级'
     lore:
-      - 'Upgrading your item improves its'
-      - 'current stats. It requires either a'
-      - 'consumable or a specific crafting '
-      - 'station. Upgrading may sometimes &cfail&7...'
+      - '升级物品提升它的当前属性.'
+      - '升级需要一个消耗品或者特定合成配方.'
+      - '升级有时可能&c失败&7，等等...'
     options:
       lore-stat:
         - '§e► 左键 配置升级选项.'
@@ -1310,513 +1305,497 @@ stats:
         - '§e► 右键 重置.'
 
   VANILLA_EATING:
-    name: 'Vanilla Eating Animation'
+    name: '原版食用动画'
     lore:
-      - 'When enabled, players have to wait'
-      - 'for the vanilla eating animation'
-      - 'in order to eat the consumable.'
+      - '启用后，玩家需要等待播放原版'
+      - '食用动画后才能消耗.'
       - ''
-      - 'Only works on items that'
-      - 'can normally be eaten.'
+      - '只对正常可食用的物品生效.'
     options:
       from-common: BOOLEAN_STAT
 
   WATER_MOVEMENT_EFFICIENCY:
-    name: 'Water Movement Efficiency'
+    name: '水下移动效率'
     lore:
-      - 'The movement speed factor when submerged.'
-      - 'The higher, the more of the underwater movement penalty is mitigated.'
-      - 'Note that this represents only the submersion factor itself,'
-      - 'and other factors (such as not touching the ground) also apply.'
-      - 'Default and minimum value is 0, maximum value is 1.'
+      - '在水下的移动速度数值.'
+      - '数值越高，在水下的移动惩罚越小.'
+      - '注意，这仅代表水下系数，'
+      - '其它因素(如不接触地面)也适用.'
+      - '默认值和最小值为 0，最大值为 1.'
     options:
       from-common: DOUBLE_STAT
 
   DISABLE_INTERACTION:
-    name: 'Disable Interaction'
+    name: '禁止交互'
     lore:
-      - 'Disable any unwanted interaction:'
-      - 'block placement, item use...'
+      - '禁用任何不想要的交互:'
+      - '方块放置、物品使用...'
     options:
       from-common: BOOLEAN_STAT
 
   DISABLE_CRAFTING:
-    name: 'Disable Crafting'
+    name: '禁止合成'
     lore:
-      - 'Players can''t use this item while crafting.'
+      - '玩家在合成界面禁止使用此物品.'
     options:
       from-common: BOOLEAN_STAT
 
   DISABLE_SMELTING:
-    name: 'Disable Smelting'
+    name: '禁止冶炼'
     lore:
-      - 'Players can''t use this item in furnaces.'
+      - '玩家不能在熔炉中使用此物品.'
     options:
       from-common: BOOLEAN_STAT
 
   DISABLE_SMITHING:
-    name: 'Disable Smithing'
+    name: '禁止锻造'
     lore:
-      - 'Players can''t smith this item in smithing tables.'
+      - '玩家不能在锻造台中使用此物品.'
     options:
       from-common: BOOLEAN_STAT
 
   DISABLE_ENCHANTING:
-    name: 'Disable Enchanting'
+    name: '禁止附魔'
     lore:
-      - 'Players can''t enchant this item.'
+      - '玩家不能附魔此物品.'
     options:
       from-common: BOOLEAN_STAT
 
   DISABLE_REPAIRING:
-    name: 'Disable Repairing'
+    name: '禁止修理'
     lore:
-      - 'Players can''t use this item in anvils.'
+      - '玩家不能在铁砧中使用此物品.'
     options:
       from-common: BOOLEAN_STAT
 
   DISABLE_ARROW_SHOOTING:
-    name: 'Disable Arrow Shooting'
+    name: '禁止射箭'
     lore:
-      - 'Players can''t shoot this'
-      - 'item using a bow.'
+      - '玩家不能使用弓把这个物品射出去.'
     options:
       from-common: BOOLEAN_STAT
 
   DISABLE_DROPING:
-    name: 'Disable Item Dropping'
+    name: '禁止丢弃'
     lore:
-      - 'Disables the dropping of this item!'
+      - '禁止丢弃这个物品!'
     options:
       from-common: BOOLEAN_STAT
 
   DISABLE_ARROW_CONSUMPTION:
-    name: 'Disable Arrow Consumption'
+    name: '禁止消耗箭'
     lore:
-      - 'Disable arrow requirement and consumption.'
+      - '去除箭的需求与消耗.'
     options:
       from-common: BOOLEAN_STAT
 
   DISABLE_ATTACK_PASSIVE:
-    name: 'Disable On-Hit Effect'
+    name: '禁止受击效果'
     lore:
-      - 'Disables on-hit effects granted by the item type.'
+      - '禁止此物品类别的受击效果.'
     options:
       from-common: BOOLEAN_STAT
 
   TWO_HANDED:
-    name: 'Two Handed'
+    name: '双手武器'
     lore:
-      - 'If set to true, a player will be'
-      - 'significantly slower if holding two'
-      - 'items, one being Two Handed.'
+      - '如果开启，玩家在手持两个物品，'
+      - '其中一个为双手武器时，将会'
+      - '显著地变得缓慢.'
     options:
       from-common: BOOLEAN_STAT
 
   AUTOSMELT:
-    name: 'Autosmelt'
+    name: '自动冶炼'
     lore:
-      - 'If set to true, your tool will'
-      - 'automaticaly smelt mined ores.'
+      - '如果开启，你的工具将会自动冶炼'
+      - '挖掘的矿石.'
     options:
       from-common: BOOLEAN_STAT
 
   BOUNCING_CRACK:
-    name: 'Bouncing Crack'
+    name: '弹跳裂缝'
     lore:
-      - 'If set to true, your tool will'
-      - 'also break nearby blocks.'
+      - '如果开启，你的工具会破坏临近方块.'
     options:
       from-common: BOOLEAN_STAT
 
   REMOVE_ON_CRAFT:
-    name: 'Remove on Craft'
+    name: '合成后移除'
     lore:
-      - 'If the item should be completely'
-      - 'removed when used in a recipe,'
-      - 'or if it should become an'
-      - 'empty bottle or bucket.'
+      - '物品是否在合成后被移除，该选项'
+      - '适用于合成后会变成空桶之类的物品.'
     options:
       from-common: BOOLEAN_STAT
 
   INEDIBLE:
-    name: 'Inedible'
+    name: '不可食用'
     lore:
-      - 'Players won''t be able to right-click this consumable.'
+      - '玩家不能右键这个消耗品.'
       - ''
-      - 'No effects of it will take place.'
+      - '没有效果会发生.'
     options:
       from-common: BOOLEAN_STAT
 
   HANDWORN:
-    name: 'Handworn'
+    name: '手持'
     lore:
-      - 'This item can be held along with a'
-      - 'two-handed weapon in the other hand.'
+      - '这个物品可在另一只手持有“双手武器”时'
+      - '被手持.'
     options:
       from-common: BOOLEAN_STAT
 
   BREAK_DOWNGRADE:
-    name: 'Downgrade when Broken'
+    name: '损毁时降级'
     lore:
-      - 'If this item''s durability reaches 0,'
-      - 'it will be fully repaired but also'
-      - 'downgraded by one level.'
+      - '如果这个物品的耐久越过了 0，它将会回满耐久'
+      - '但降低一级.'
       - ''
-      - '&cIt will only break if it cannot be'
-      - '&cdowngraded further'
+      - '&c如果它不能再降级了，它只会损毁.'
       - ''
-      - 'Requires to define an &6Upgrade Template'
-      - 'Required to define &6Custom Durability'
+      - '需要定义一个 &6升级模板'
+      - '需要定义 &6自定义耐久'
     options:
       from-common: BOOLEAN_STAT
 
   DEATH_DOWNGRADE:
-    name: 'Downgrade on Death'
+    name: '死亡时降级'
     lore:
-      - 'If the wearer of this item dies, it may'
-      - 'downgrade (based on &6Death Downgrade'
-      - '&6Chance &7stat)'
+      - '如果穿戴该物品的玩家死亡，物品可能'
+      - '会降级 (基于属性&6死亡降级概率&7)'
       - ''
-      - 'Required to define an &6Upgrade Template'
-      - 'Requires keep-inventory gamerule. '
+      - '需要定义一个 &6Upgrade Template'
+      - '需要在游戏规则开启 保留物品栏. '
     options:
       from-common: BOOLEAN_STAT
 
   CRITICAL_STRIKE_CHANCE:
-    name: 'Critical Strike Chance'
+    name: '暴击概率'
     lore:
-      - 'Critical Strikes deal more damage.'
-      - 'In % chance.'
+      - '暴击造成更多伤害'
+      - '几率单位为百分比.'
     options:
       from-common: DOUBLE_STAT
 
   CRITICAL_STRIKE_POWER:
-    name: 'Critical Strike Power'
+    name: '暴击'
     lore:
-      - 'The extra damage weapon crits deals.'
-      - '(Stacks with default value)'
-      - 'In %.'
+      - '武器暴击造成额外伤害.'
+      - '(与默认值堆叠)'
+      - '单位为百分比.'
     options:
       from-common: DOUBLE_STAT
 
   SKILL_CRITICAL_STRIKE_CHANCE:
-    name: 'Skill Critical Strike Chance'
+    name: '技能暴击概率'
     lore:
-      - 'Increases the chance of dealing skill crits (in %).'
+      - '增加造成技能暴击的概率 (单位为百分比).'
     options:
       from-common: DOUBLE_STAT
 
   SKILL_CRITICAL_STRIKE_POWER:
-    name: 'Skill Critical Strike Power'
+    name: '技能暴击'
     lore:
-      - 'Extra damage dealt (in %) by skill crits.'
-      - '(Stacks with default value)'
-      - 'In %.'
+      - '技能暴击造成的额外伤害 (单位为百分比).'
+      - '(与默认值堆叠)'
+      - '单位为百分比.'
     options:
       from-common: DOUBLE_STAT
 
   BLOCK_POWER:
-    name: 'Block Power'
+    name: '格挡'
     lore:
-      - 'The % of the damage your'
-      - 'armor/shield can block.'
-      - 'Default: 25%'
+      - '你的护甲/盾牌能阻挡的伤害百分比.'
+      - '默认值: 25%'
     options:
       from-common: DOUBLE_STAT
 
   BLOCK_RATING:
-    name: 'Block Rating'
+    name: '格挡几率'
     lore:
-      - 'The chance your piece of armor'
-      - 'has to block any entity attack.'
+      - '你的护甲能格挡任意实体攻击的几率.'
     options:
       from-common: DOUBLE_STAT
 
   BLOCK_COOLDOWN_REDUCTION:
-    name: 'Block Cooldown Reduction'
+    name: '格挡冷却减少'
     lore:
-      - 'Reduces the blocking cooldown (%).'
+      - '减少格挡冷却 (%)'
     options:
       from-common: DOUBLE_STAT
 
   DODGE_RATING:
-    name: 'Dodge Rating'
+    name: '闪避概率'
     lore:
-      - 'The chance to dodge an attack.'
-      - 'Dodging completely negates'
-      - 'the attack damage.'
+      - '闪避一次攻击的概率.'
+      - '闪避会完全无效化攻击伤害.'
     options:
       from-common: DOUBLE_STAT
 
   DODGE_COOLDOWN_REDUCTION:
-    name: 'Dodge Cooldown Reduction'
+    name: '闪避冷却减少'
     lore:
-      - 'Reduces the dodging cooldown (%).'
+      - '减少闪避冷却 (%).'
     options:
       from-common: DOUBLE_STAT
 
   PARRY_RATING:
-    name: 'Parry Rating'
+    name: '拦挡几率'
     lore:
-      - 'The chance to parry an attack.'
-      - 'Parrying negates the damage'
-      - 'and knocks the attacker back.'
+      - '拦挡一次攻击的几率.'
+      - '拦挡会无效化攻击伤害，并'
+      - '将攻击者击退回去.'
     options:
       from-common: DOUBLE_STAT
 
   PARRY_COOLDOWN_REDUCTION:
-    name: 'Parry Cooldown Reduction'
+    name: '拦挡冷却减少'
     lore:
-      - 'Reduces the parrying cooldown (%).'
+      - '减少拦挡冷却 (%).'
     options:
       from-common: DOUBLE_STAT
 
   COOLDOWN_REDUCTION:
-    name: 'Cooldown Reduction'
+    name: '冷却减少'
     lore:
-      - 'Reduces cooldowns of item and player skills (%).'
+      - '减少物品和玩家技能的冷却 (%).'
     options:
       from-common: DOUBLE_STAT
 
   RANGE:
-    name: 'Range'
+    name: '范围'
     lore:
-      - 'The range of your item attacks.'
+      - '物品攻击范围.'
     options:
       from-common: DOUBLE_STAT
 
   STAMINA_COST:
-    name: 'Stamina Cost'
+    name: '耐力消耗'
     lore:
-      - 'Stamina spent by your weapon to be used.'
+      - '使用武器消耗耐力值.'
     options:
       from-common: DOUBLE_STAT
 
   ARROW_VELOCITY:
-    name: 'Arrow Velocity'
+    name: '箭矢速度'
     lore:
-      - 'Determines how far your'
-      - 'weapon can shoot.'
+      - '决定了你的武器射出的箭最远'
+      - '能射多远.'
       - 'Default: 1.0'
     options:
       from-common: DOUBLE_STAT
 
   PVE_DAMAGE:
-    name: 'PvE Damage'
+    name: 'PvE 伤害'
     lore:
-      - 'Additional damage against'
-      - 'non human entities in %.'
+      - '对抗非人类实体时额外增加伤害.'
+      - '单位为百分比.'
     options:
       from-common: DOUBLE_STAT
 
   PVP_DAMAGE:
-    name: 'PvP Damage'
+    name: 'PvP 伤害'
     lore:
-      - 'Additional damage'
-      - 'against players in %.'
+      - '对抗人类实体时额外增加伤害.'
+      - '单位为百分比.'
     options:
       from-common: DOUBLE_STAT
 
   BLUNT_POWER:
-    name: 'Blunt Power'
+    name: '钝器'
     lore:
-      - 'The radius of the AoE attack.'
-      - 'If set to 2.0, enemies within 2 blocks'
-      - 'around your target will take damage.'
-      - '&9This stat only applies to Blunt weapons.'
+      - '群体攻击 (AoE) 的范围.'
+      - '设为 2.0，你的目标周围 2 格的敌人'
+      - '将会受到伤害.'
+      - '&9这个属性只能添加到 钝器.'
     options:
       from-common: DOUBLE_STAT
 
   BLUNT_RATING:
-    name: 'Blunt Rating'
+    name: '钝器比率'
     lore:
-      - 'The force of the blunt attack.'
-      - 'If set to 50%, enemies hit by the attack'
-      - 'will take 50% of the initial damage.'
-      - '&9This stat only applies to Blunt weapons.'
+      - '钝器攻击的力.'
+      - '如果设置为 50%，被攻击的敌人将会'
+      - '受到 50% 基础伤害.'
+      - '&9这个属性只能添加到 钝器.'
     options:
       from-common: DOUBLE_STAT
 
   WEAPON_DAMAGE:
-    name: 'Weapon Damage'
+    name: '武器伤害'
     lore:
-      - 'Additional on-hit weapon damage in %.'
+      - '额外的武器击打伤害，单位为百分比.'
     options:
       from-common: DOUBLE_STAT
 
   SKILL_DAMAGE:
-    name: 'Skill Damage'
+    name: '技能伤害'
     lore:
-      - 'Additional ability damage in %.'
+      - '额外的能力伤害，单位为百分比.'
     options:
       from-common: DOUBLE_STAT
 
   PROJECTILE_DAMAGE:
-    name: 'Projectile Damage'
+    name: '弹射物伤害'
     lore:
-      - 'Additional skill/weapon projectile damage.'
+      - '额外的技能/武器弹射物伤害'
     options:
       from-common: DOUBLE_STAT
 
   MAGIC_DAMAGE:
-    name: 'Magic Damage'
+    name: '魔法伤害'
     lore:
-      - 'Additional magic skill damage in %.'
+      - '额外的魔法技能伤害，单位为百分比.'
     options:
       from-common: DOUBLE_STAT
 
   PHYSICAL_DAMAGE:
-    name: 'Physical Damage'
+    name: '物理伤害'
     lore:
-      - 'Additional skill/weapon physical damage.'
+      - '额外的技能/武器物理伤害.'
     options:
       from-common: DOUBLE_STAT
 
   DEFENSE:
-    name: 'Defense'
+    name: '防御'
     lore:
-      - 'Reduces damage from any source.'
-      - 'Formula can be set in MMOLib Config.'
+      - '减少来自任何来源的伤害.'
+      - '公式可在 MythicLib 配置文件设定.'
     options:
       from-common: DOUBLE_STAT
 
   DAMAGE_REDUCTION:
-    name: 'Damage Reduction'
+    name: '伤害减少'
     lore:
-      - 'Reduces damage from any source.'
-      - 'In %.'
+      - '减少来自任何来源的伤害.'
+      - '单位为百分比.'
     options:
       from-common: DOUBLE_STAT
 
   FALL_DAMAGE_REDUCTION:
-    name: 'Fall Damage Reduction'
+    name: '摔落伤害减少'
     lore:
-      - 'Reduces fall damage.'
-      - 'In %.'
+      - '减少摔落伤害.'
+      - '单位为百分比.'
     options:
       from-common: DOUBLE_STAT
 
   PROJECTILE_DAMAGE_REDUCTION:
-    name: 'Projectile Damage Reduction'
+    name: '弹射物伤害减少'
     lore:
-      - 'Reduces projectile damage.'
-      - 'In %.'
+      - '减少弹射物伤害.'
+      - '单位为百分比.'
     options:
       from-common: DOUBLE_STAT
 
   PHYSICAL_DAMAGE_REDUCTION:
-    name: 'Physical Damage Reduction'
+    name: '物理伤害减少'
     lore:
-      - 'Reduces physical damage.'
-      - 'In %.'
+      - '减少物理伤害.'
+      - '单位为百分比.'
     options:
       from-common: DOUBLE_STAT
 
   FIRE_DAMAGE_REDUCTION:
-    name: 'Fire Damage Reduction'
+    name: '火焰伤害减少'
     lore:
-      - 'Reduces fire damage.'
-      - 'In %.'
+      - '减少火焰伤害.'
+      - '单位为百分比.'
     options:
       from-common: DOUBLE_STAT
 
   MAGIC_DAMAGE_REDUCTION:
-    name: 'Magic Damage Reduction'
+    name: '魔法伤害减少'
     lore:
-      - 'Reduce magic damage dealt by potions.'
-      - 'In %.'
+      - '减少药水造成的魔法伤害.'
+      - '单位为百分比.'
     options:
       from-common: DOUBLE_STAT
 
   PVE_DAMAGE_REDUCTION:
-    name: 'PvE Damage Reduction'
+    name: 'PvE 伤害减少'
     lore:
-      - 'Reduces damage dealt by mobs.'
-      - 'In %.'
+      - '减少怪物造成的伤害.'
+      - '单位为百分比.'
     options:
       from-common: DOUBLE_STAT
 
   PVP_DAMAGE_REDUCTION:
-    name: 'PvP Damage Reduction'
+    name: 'PvP 伤害减少'
     lore:
-      - 'Reduces damage dealt by players'
-      - 'In %.'
+      - '减少玩家造成的伤害.'
+      - '单位为百分比.'
     options:
       from-common: DOUBLE_STAT
 
   UNDEAD_DAMAGE:
-    name: 'Undead Damage'
+    name: '亡灵伤害'
     lore:
-      - 'Deals additional damage to undead.'
-      - 'In %.'
+      - '增加对亡灵生物的伤害.'
+      - '单位为百分比.'
     options:
       from-common: DOUBLE_STAT
 
   LIFESTEAL:
-    name: 'Lifesteal'
+    name: '生命汲取'
     lore:
-      - 'Percentage of damage you gain back as'
-      - 'health when inflicting weapon damage.'
+      - '当武器造成伤害时，多少百分比的伤害'
+      - '会转换为你的生命值为你回血.'
     options:
       from-common: DOUBLE_STAT
 
   SPELL_VAMPIRISM:
-    name: 'Spell Vampirism'
+    name: '法术吸血鬼'
     lore:
-      - 'Percentage of damage you gain back as'
-      - 'health when inflicting skill damage.'
+      - '当技能造成伤害时，多少百分比的伤害'
+      - '会转换为你的生命值为你回血.'
     options:
       from-common: DOUBLE_STAT
 
   MAX_MANA:
-    name: 'Max Mana'
+    name: '最大魔力'
     lore:
-      - 'Adds mana to your max mana bar.'
+      - '增大你的最大魔力值'
     options:
       from-common: DOUBLE_STAT
 
   ITEM_COOLDOWN:
-    name: 'Item Cooldown'
+    name: '物品冷却'
     lore:
-      - 'This cooldown applies for consumables'
-      - 'as well as for item commands.'
+      - '为消耗品和物品命令添加冷却.'
     options:
       from-common: DOUBLE_STAT
 
   NOTE_WEIGHT:
     name: 'Note Weight'
     lore:
-      - 'Defines how the projectile cast'
-      - 'by your lute tilts downwards.'
+      - '决定投射物如何根据 lute'
+      - '向下倾斜而触发.'
     options:
       from-common: DOUBLE_STAT
 
   KNOCKBACK:
-    name: 'Knockback'
+    name: '击退'
     lore:
-      - 'Using this musket will knock'
-      - 'the user back if positive.'
+      - '如果开启，使用火枪会击退使用者'
     options:
       from-common: DOUBLE_STAT
 
   RECOIL:
-    name: 'Recoil'
+    name: '后座力'
     lore:
-      - 'Corresponds to the shooting innacuracy.'
+      - '用于造成不准确的射击.'
     options:
       from-common: DOUBLE_STAT
 
   DEATH_DOWNGRADE_CHANCE:
-    name: 'Death Downgrade Chance'
+    name: '死亡降级概率'
     lore:
-      - 'Probability that an item with &cDowngrade '
-      - '&con Death&7 will be downgraded when the'
-      - 'player dies. '
+      - '与属性&6死亡时降级&7相配对的选项，'
+      - '玩家死亡时物品将会降级.'
       - ''
-      - 'Exceeding 100% will for sure downgrade'
-      - 'one item, and roll again to downgrade'
-      - 'another (with the excess probability).'
-      - '&6The same item wont be downgraded twice.'
+      - '超过 100% 将会必定降级一个物品，'
+      - '然后再 roll 一次降级另一个 (有超过概率).'
+      - '&6同一个物品不会降级两次.'
     options:
       from-common: DOUBLE_STAT
