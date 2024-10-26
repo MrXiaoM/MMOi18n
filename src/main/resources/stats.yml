@@ -30,7 +30,7 @@ common-stats:
     lore-stat:
       - '$is_uniform$ §7均匀随机: §a$min§7 -> §a$max'
       - '$!is_uniform$ §7基本值: §a$base $scale_formatted'
-      - '$!is_uniform$ $has_spread$ §7扩散: §a$spread_percent% §7(最大:§a$spread_max_percent%§7)'
+      - '$!is_uniform$ $has_spread$ §7扩散: §a$spread_percent% §7(最大:§a$max_spread_percent%§7)'
       - '$!is_uniform$ $has_min$ §7最小值: §a$min'
       - '$!is_uniform$ $has_max$ §7最大值: §a$max'
       - ''
