@@ -25,7 +25,7 @@ dependencies {
     compileOnly("net.Indyuce:MMOItems-API:6.10-SNAPSHOT")
 
     compileOnly("commons-lang:commons-lang:2.6")
-    implementation("de.tr7zw:item-nbt-api:2.12.3")
+    implementation("de.tr7zw:item-nbt-api:2.14.0")
     implementation("org.jetbrains:annotations:21.0.0")
 }
 val targetJavaVersion = 17
