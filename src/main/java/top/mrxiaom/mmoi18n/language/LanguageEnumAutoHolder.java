@@ -1,5 +1,7 @@
 package top.mrxiaom.mmoi18n.language;
 
+import com.google.common.collect.Lists;
+
 import java.util.List;
 
 public class LanguageEnumAutoHolder<T extends Enum<T>> extends AbstractLanguageHolder {
@@ -21,6 +23,6 @@ public class LanguageEnumAutoHolder<T extends Enum<T>> extends AbstractLanguageH
         return new LanguageEnumAutoHolder<>(e, true, defaultValue);
     }
     public static <T extends Enum<T>> LanguageEnumAutoHolder<T> wrap(Enum<T> e, String... defaultValue) {
-        return new LanguageEnumAutoHolder<>(e, true, defaultValue);
+        return new LanguageEnumAutoHolder<>(e, true, Lists.newArrayList(defaultValue));
     }
 }
