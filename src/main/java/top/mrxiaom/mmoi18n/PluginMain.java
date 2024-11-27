@@ -98,6 +98,11 @@ public class PluginMain extends JavaPlugin {
                 }
                 if (count > 0) {
                     try {
+                        config.setComments("stats", Lists.newArrayList(
+                                "这个文件使用 /mii translate 命令生成，插件只写不读。",
+                                "用于存储导出的当前未翻译的物品属性。",
+                                "如需翻译这些属性，请将本文件的各属性复制到 stats.yml 中再进行编辑。"
+                        ));
                         config.save(new File(getDataFolder(), "stats.untranslated.yml"));
                     } catch (IOException e) {
                         getLogger().log(Level.WARNING, "保存 stats.untranslated.yml 时出现一个异常", e);
