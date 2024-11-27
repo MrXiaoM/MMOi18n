@@ -58,6 +58,16 @@ public abstract class AbstractLanguageHolder {
                 .map(it -> replace(str(), replacements))
                 .collect(Collectors.toList());
     }
+    public String[] array() {
+        return list().toArray(new String[0]);
+    }
+    public String[] array(Object... args) {
+        return list(args).toArray(new String[0]);
+    }
+    @SafeVarargs
+    public final String[] array(Pair<String, Object>... replacements) {
+        return list(replacements).toArray(new String[0]);
+    }
 
     public static String replace(String s, Pair<String, Object>[] replacements) {
         for (Pair<String, Object> replacement : replacements) {

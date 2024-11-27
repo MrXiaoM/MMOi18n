@@ -29,4 +29,15 @@ public interface IHolderAccessor {
         System.arraycopy(replacements, 0, array, 0, replacements.length);
         return holder().list(array);
     }
+    default String[] array() {
+        return holder().array();
+    }
+    default String[] array(Object... args) {
+        return holder().array(args);
+    }
+    default String[] array(Pair... replacements) {
+        Pair<String, Object>[] array = new Pair[replacements.length];
+        System.arraycopy(replacements, 0, array, 0, replacements.length);
+        return holder().array(array);
+    }
 }

@@ -209,15 +209,10 @@ public abstract class EditionInventory extends net.Indyuce.mmoitems.gui.edition.
         ItemMeta getMeta = get.getItemMeta();
         if (getMeta != null) {
             getMeta.addItemFlags(ItemFlag.values());
-            getMeta.setDisplayName(ChatColor.GREEN + AltChar.fourEdgedClub + " 取得物品! " + AltChar.fourEdgedClub);
-            List<String> getLore = new ArrayList<>();
-            getLore.add(ChatColor.GRAY + "");
-            getLore.add(ChatColor.GRAY + "你也可以使用命令获取物品");
-            getLore.add(ChatColor.WHITE + "/mi give " + template.getType().getId() + " " + template.getId());
-            getLore.add(ChatColor.GRAY + "");
-            getLore.add(ChatColor.YELLOW + AltChar.smallListDash + " 左键取得物品.");
-            getLore.add(ChatColor.YELLOW + AltChar.smallListDash + " 右键取得物品并刷新数值.");
-            getMeta.setLore(getLore);
+            getMeta.setDisplayName(ItemEdition.Msg.ITEM__GET__DISPLAY.str());
+            getMeta.setLore(ItemEdition.Msg.ITEM__GET__LORE.list(
+                    "/mi give " + template.getType().getId() + " " + template.getId()
+            ));
         }
         get.setItemMeta(getMeta);
         ItemTag.put(get, "edition_get_the_item");
@@ -225,7 +220,7 @@ public abstract class EditionInventory extends net.Indyuce.mmoitems.gui.edition.
         if (displaysBack) {
             ItemStack back = new ItemStack(Material.BARRIER);
             ItemMeta backMeta = back.getItemMeta();
-            if (backMeta != null) backMeta.setDisplayName(ChatColor.GREEN + AltChar.rightArrow + " 返回");
+            if (backMeta != null) backMeta.setDisplayName(ItemEdition.Msg.BACK.str());
             back.setItemMeta(backMeta);
             ItemTag.put(back, "edition_back");
 

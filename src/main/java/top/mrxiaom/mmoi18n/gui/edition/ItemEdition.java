@@ -19,12 +19,47 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import top.mrxiaom.mmoi18n.Translation;
 import top.mrxiaom.mmoi18n.gui.ItemTag;
+import top.mrxiaom.mmoi18n.language.IHolderAccessor;
+import top.mrxiaom.mmoi18n.language.Language;
+import top.mrxiaom.mmoi18n.language.LanguageEnumAutoHolder;
 import top.mrxiaom.mmoi18n.placeholder.TranslatedStat;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static top.mrxiaom.mmoi18n.language.LanguageEnumAutoHolder.wrap;
+
 public class ItemEdition extends EditionInventory {
+    @Language(prefix = "gui.item-edition.")
+    public enum Msg implements IHolderAccessor {
+        TITLE("编辑物品: %s"),
+        DISPLAY_NO_STAT("&c- 没有物品状态 -"),
+        PREV_PAGE("&a上一页"),
+        NEXT_PAGE("&a下一页"),
+        NO_PERMISSION("&c杂鱼没有权限编辑这个状态哦."),
+        BACK("&a⇨返回"),
+        ITEM__GET__DISPLAY("&a✤ 取得物品! ✤"),
+        ITEM__GET__LORE("&7",
+                "&7你也可以使用命令获取物品",
+                "&f%s",
+                "&7",
+                "&e▸ 左键取得物品.",
+                "&e▸ 右键取得物品并刷新数值."),
+        ;
+        Msg(String defaultValue) {
+            holder = wrap(this, defaultValue);
+        }
+        Msg(String... defaultValue) {
+            holder = wrap(this, defaultValue);
+        }
+        Msg(List<String> defaultValue) {
+            holder = wrap(this, defaultValue);
+        }
+        private final LanguageEnumAutoHolder<Msg> holder;
+        public LanguageEnumAutoHolder<Msg> holder() {
+            return holder;
+        }
+    }
     private static final int[] slots = {19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43};
     private static final NamespacedKey STAT_ID_KEY = new NamespacedKey(MMOItems.plugin, "StatId");
 
@@ -34,7 +69,7 @@ public class ItemEdition extends EditionInventory {
 
     @Override
     public String getName() {
-        return "编辑物品: " + getEdited().getId();
+        return Msg.TITLE.str(getEdited().getId());
     }
 
     @Override
@@ -79,19 +114,19 @@ public class ItemEdition extends EditionInventory {
 
         ItemStack glass = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
         ItemMeta glassMeta = glass.getItemMeta();
-        if (glassMeta != null) glassMeta.setDisplayName(ChatColor.RED + "- 没有物品状态 -");
+        if (glassMeta != null) glassMeta.setDisplayName(Msg.DISPLAY_NO_STAT.str());
         glass.setItemMeta(glassMeta);
         ItemTag.put(glass, "no_item_state");
 
         ItemStack next = new ItemStack(Material.ARROW);
         ItemMeta nextMeta = next.getItemMeta();
-        if (nextMeta != null) nextMeta.setDisplayName(ChatColor.GREEN + "下一页");
+        if (nextMeta != null) nextMeta.setDisplayName(Msg.NEXT_PAGE.str());
         next.setItemMeta(nextMeta);
         ItemTag.put(next, "next_page");
 
         ItemStack previous = new ItemStack(Material.ARROW);
         ItemMeta previousMeta = previous.getItemMeta();
-        if (previousMeta != null) previousMeta.setDisplayName(ChatColor.GREEN + "上一页");
+        if (previousMeta != null) previousMeta.setDisplayName(Msg.PREV_PAGE.str());
         previous.setItemMeta(previousMeta);
         ItemTag.put(previous, "prev_page");
 
@@ -132,7 +167,7 @@ public class ItemEdition extends EditionInventory {
         if (MMOItems.plugin.hasPermissions() && MMOItems.plugin.getLanguage().opStatsEnabled
                 && MMOItems.plugin.getLanguage().opStats.contains(edited.getId())
                 && !MMOItems.plugin.getVault().getPermissions().has((Player) event.getWhoClicked(), "mmoitems.edit.op")) {
-            event.getWhoClicked().sendMessage(ChatColor.RED + "杂鱼没有权限编辑这个状态哦.");
+            event.getWhoClicked().sendMessage(Msg.NO_PERMISSION.str());
             return;
         }
 
