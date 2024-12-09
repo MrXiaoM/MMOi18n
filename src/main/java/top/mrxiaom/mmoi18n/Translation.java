@@ -3,9 +3,7 @@ package top.mrxiaom.mmoi18n;
 import io.lumine.mythic.lib.UtilityMethods;
 import net.Indyuce.mmoitems.api.Type;
 import net.Indyuce.mmoitems.stat.type.ItemStat;
-import org.bukkit.ChatColor;
-import org.bukkit.DyeColor;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.block.banner.PatternType;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -36,9 +34,18 @@ public class Translation {
     private static final Map<String, AbstractLanguageHolder> holders = new HashMap<>();
     private static File file = null;
     private static PluginMain plugin;
+    private static final boolean supportKeyed = isClassPresent("org.bukkit.Keyed");
 
     private static final String[] commonTranslation = new String[5];
 
+    public static boolean isClassPresent(String name) {
+        try {
+            Class.forName(name);
+            return true;
+        } catch (Throwable ignored) {
+            return false;
+        }
+    }
     /**
      * 注册枚举到语言管理器
      * @param enumType 枚举类型
@@ -182,10 +189,19 @@ public class Translation {
         return UtilityMethods.caseOnWords(effectType.getName().toLowerCase().replace("_", " "));
     }
 
-    public static String translateEnum(@Nullable Enum<?> enumValue) {
-        if (enumValue == null) {
+    public static String translateEnum(@Nullable Object value) {
+        if (value == null) {
             return commonTranslation[4]; // 无
         }
+        if (supportKeyed) {
+            if (value instanceof Keyed keyed) {
+                NamespacedKey key = keyed.getKey();
+                // TODO: 通过 key 读取枚举翻译
+                return ChatColor.GREEN + UtilityMethods.caseOnWords(key.getKey().toLowerCase().replace("_", " "));
+            }
+        }
+        if (!(value instanceof Enum<?> enumValue)) return commonTranslation[4];
+
         // TODO: 从配置文件读取枚举翻译
         // 大部分都来自原版 Minecraft
         if (enumValue instanceof Material) {
