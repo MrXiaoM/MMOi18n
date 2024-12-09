@@ -193,6 +193,17 @@ public class Translation {
         if (value == null) {
             return commonTranslation[4]; // 无
         }
+        // TODO: 从配置文件读取枚举翻译
+        // 大部分都来自原版 Minecraft
+        if (value instanceof Material) {
+
+        }
+        if (value instanceof PatternType) {
+
+        }
+        if (value instanceof DyeColor) {
+
+        }
         if (supportKeyed) {
             if (value instanceof Keyed keyed) {
                 NamespacedKey key = keyed.getKey();
@@ -200,20 +211,11 @@ public class Translation {
                 return ChatColor.GREEN + UtilityMethods.caseOnWords(key.getKey().toLowerCase().replace("_", " "));
             }
         }
-        if (!(value instanceof Enum<?> enumValue)) return commonTranslation[4];
-
-        // TODO: 从配置文件读取枚举翻译
-        // 大部分都来自原版 Minecraft
-        if (enumValue instanceof Material) {
-
+        if (value instanceof Enum<?> enumValue) {
+            return ChatColor.GREEN + UtilityMethods.caseOnWords(enumValue.name().toLowerCase().replace("_", " "));
+        } else {
+            return commonTranslation[4];
         }
-        if (enumValue instanceof PatternType) {
-
-        }
-        if (enumValue instanceof DyeColor) {
-
-        }
-        return ChatColor.GREEN + UtilityMethods.caseOnWords(enumValue.name().toLowerCase().replace("_", " "));
     }
 
     /**
