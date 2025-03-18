@@ -3,6 +3,7 @@ package top.mrxiaom.mmoi18n.gui.edition;
 import io.lumine.mythic.lib.MythicLib;
 import io.lumine.mythic.lib.api.util.AltChar;
 import io.lumine.mythic.lib.element.Element;
+import io.lumine.mythic.lib.gui.Navigator;
 import net.Indyuce.mmoitems.ItemStats;
 import net.Indyuce.mmoitems.MMOItems;
 import net.Indyuce.mmoitems.api.item.template.MMOItemTemplate;
@@ -33,8 +34,8 @@ public class ElementsEdition extends EditionInventory {
     private static final int[] INIT_SLOTS = {19, 28, 37};
     private static final int ELEMENTS_PER_PAGE = 3;
 
-    public ElementsEdition(Player player, MMOItemTemplate template) {
-        super(player, template);
+    public ElementsEdition(Navigator navigator, MMOItemTemplate template) {
+        super(navigator, template);
 
         elements.addAll(MythicLib.plugin.getElements().getAll());
         maxPage = 1 + (MythicLib.plugin.getElements().getAll().size() - 1) / ELEMENTS_PER_PAGE;
@@ -143,7 +144,7 @@ public class ElementsEdition extends EditionInventory {
             }
 
             registerTemplateEdition();
-            player.sendMessage(MMOItems.plugin.getPrefix() + ChatColor.RED + edited.getKey().getName() + " " + edited.getValue().getName() + ChatColor.GRAY + " successfully removed.");
+            getPlayer().sendMessage(MMOItems.plugin.getPrefix() + ChatColor.RED + edited.getKey().getName() + " " + edited.getValue().getName() + ChatColor.GRAY + " successfully removed.");
         }
     }
 }

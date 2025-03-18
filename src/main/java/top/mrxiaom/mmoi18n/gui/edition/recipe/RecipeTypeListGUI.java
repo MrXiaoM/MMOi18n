@@ -2,6 +2,7 @@ package top.mrxiaom.mmoi18n.gui.edition.recipe;
 
 import io.lumine.mythic.lib.api.util.ItemFactory;
 import io.lumine.mythic.lib.api.util.ui.SilentNumbers;
+import io.lumine.mythic.lib.gui.Navigator;
 import io.lumine.mythic.lib.version.VersionUtils;
 import net.Indyuce.mmoitems.api.item.template.MMOItemTemplate;
 import net.Indyuce.mmoitems.api.util.message.FFPMMOItems;
@@ -43,8 +44,8 @@ public class RecipeTypeListGUI extends EditionInventory {
      * @param player Player that is editing recipes
      * @param template Template being edited
      */
-    public RecipeTypeListGUI(@NotNull Player player, @NotNull MMOItemTemplate template) {
-        super(player, template);
+    public RecipeTypeListGUI(@NotNull Navigator navigator, @NotNull MMOItemTemplate template) {
+        super(navigator, template);
 
         // Start with defaults
         page = 0;
@@ -190,7 +191,7 @@ public class RecipeTypeListGUI extends EditionInventory {
                 if (recipeType != null) {
 
                     // Open that menu for the player
-                    new RecipeListGUI(player, template, recipeType).open(this);
+                    new RecipeListGUI(navigator, template, recipeType).open(this);
                 }
             }
         }

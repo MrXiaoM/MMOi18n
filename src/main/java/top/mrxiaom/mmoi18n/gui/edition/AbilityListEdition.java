@@ -2,6 +2,7 @@ package top.mrxiaom.mmoi18n.gui.edition;
 
 import io.lumine.mythic.lib.UtilityMethods;
 import io.lumine.mythic.lib.api.util.AltChar;
+import io.lumine.mythic.lib.gui.Navigator;
 import io.lumine.mythic.lib.skill.trigger.TriggerType;
 import net.Indyuce.mmoitems.MMOItems;
 import net.Indyuce.mmoitems.api.item.template.MMOItemTemplate;
@@ -29,8 +30,8 @@ public class AbilityListEdition extends EditionInventory {
 	private static final int[] slots = { 19, 20, 21, 22, 23, 24, 25 };
 	private static final NamespacedKey CONFIG_KEY = new NamespacedKey(MMOItems.plugin, "ConfigKey");
 
-	public AbilityListEdition(Player player, MMOItemTemplate template) {
-		super(player, template);
+	public AbilityListEdition(Navigator navigator, MMOItemTemplate template) {
+		super(navigator, template);
 	}
 
 	@Override
@@ -130,7 +131,7 @@ public class AbilityListEdition extends EditionInventory {
 			}
 
 			if (section.getKeys(false).size() > 6) {
-				player.sendMessage(MMOItems.plugin.getPrefix() + ChatColor.RED + "每个物品不能添加超过6个能力.");
+				getPlayer().sendMessage(MMOItems.plugin.getPrefix() + ChatColor.RED + "每个物品不能添加超过6个能力.");
 				return;
 			}
 
@@ -151,13 +152,13 @@ public class AbilityListEdition extends EditionInventory {
 		if (tag == null || tag.isEmpty()) return;
 
 		if (event.getAction() == InventoryAction.PICKUP_ALL)
-			new AbilityEdition(player, template, tag).open(this);
+			new AbilityEdition(getNavigator(), template, tag).open(this);
 
 		if (event.getAction() == InventoryAction.PICKUP_HALF) {
 			if (section != null && section.contains(tag)) {
 				getEditedSection().set("ability." + tag, null);
 				registerTemplateEdition();
-				player.sendMessage(MMOItems.plugin.getPrefix() + "成功移除能力 " + ChatColor.GOLD + tag + ChatColor.DARK_GRAY + " (内部ID)" + ChatColor.GRAY + ".");
+				getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "成功移除能力 " + ChatColor.GOLD + tag + ChatColor.DARK_GRAY + " (内部ID)" + ChatColor.GRAY + ".");
 			}
 		}
 	}

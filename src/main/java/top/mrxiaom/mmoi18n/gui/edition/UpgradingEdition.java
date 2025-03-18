@@ -2,6 +2,7 @@ package top.mrxiaom.mmoi18n.gui.edition;
 
 import io.lumine.mythic.lib.api.util.AltChar;
 import io.lumine.mythic.lib.api.util.ItemFactory;
+import io.lumine.mythic.lib.gui.Navigator;
 import net.Indyuce.mmoitems.ItemStats;
 import net.Indyuce.mmoitems.MMOItems;
 import net.Indyuce.mmoitems.api.Type;
@@ -26,8 +27,8 @@ import static top.mrxiaom.mmoi18n.Translation.translateBooleanOption;
 public class UpgradingEdition extends EditionInventory {
 	private static final ItemStack notAvailable = ItemFactory.of(Material.RED_STAINED_GLASS_PANE).name("&c不可用").build();
 
-	public UpgradingEdition(Player player, MMOItemTemplate template) {
-		super(player, template);
+	public UpgradingEdition(Navigator navigator, MMOItemTemplate template) {
+		super(navigator, template);
 	}
 
 	@Override
@@ -198,7 +199,7 @@ public class UpgradingEdition extends EditionInventory {
 			if (event.getAction() == InventoryAction.PICKUP_HALF && getEditedSection().contains("upgrade.success")) {
 				getEditedSection().set("upgrade.success", null);
 				registerTemplateEdition();
-				player.sendMessage(MMOItems.plugin.getPrefix() + "成功重置成功率配置.");
+				getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "成功重置成功率配置.");
 			}
 		}
 
@@ -209,7 +210,7 @@ public class UpgradingEdition extends EditionInventory {
 			if (event.getAction() == InventoryAction.PICKUP_HALF && getEditedSection().contains("upgrade.max")) {
 				getEditedSection().set("upgrade.max", null);
 				registerTemplateEdition();
-				player.sendMessage(MMOItems.plugin.getPrefix() + "成功重置升级最大值配置.");
+				getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "成功重置升级最大值配置.");
 			}
 		}
 
@@ -220,7 +221,7 @@ public class UpgradingEdition extends EditionInventory {
 			if (event.getAction() == InventoryAction.PICKUP_HALF && getEditedSection().contains("upgrade.min")) {
 				getEditedSection().set("upgrade.min", null);
 				registerTemplateEdition();
-				player.sendMessage(MMOItems.plugin.getPrefix() + "成功重置升级最小值配置.");
+				getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "成功重置升级最小值配置.");
 			}
 		}
 
@@ -231,7 +232,7 @@ public class UpgradingEdition extends EditionInventory {
 			if (event.getAction() == InventoryAction.PICKUP_HALF && getEditedSection().contains("upgrade.template")) {
 				getEditedSection().set("upgrade.template", null);
 				registerTemplateEdition();
-				player.sendMessage(MMOItems.plugin.getPrefix() + "成功重置升级模板配置.");
+				getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "成功重置升级模板配置.");
 			}
 		}
 
@@ -242,7 +243,7 @@ public class UpgradingEdition extends EditionInventory {
 			if (event.getAction() == InventoryAction.PICKUP_HALF && getEditedSection().contains("upgrade.reference")) {
 				getEditedSection().set("upgrade.reference", null);
 				registerTemplateEdition();
-				player.sendMessage(MMOItems.plugin.getPrefix() + "已成功重置升级参考.");
+				getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "已成功重置升级参考.");
 			}
 		}
 
@@ -250,7 +251,7 @@ public class UpgradingEdition extends EditionInventory {
 			boolean bool = !getEditedSection().getBoolean("upgrade.workbench");
 			getEditedSection().set("upgrade.workbench", bool);
 			registerTemplateEdition();
-			player.sendMessage(MMOItems.plugin.getPrefix()
+			getPlayer().sendMessage(MMOItems.plugin.getPrefix()
 					+ (bool ? "你的物品现在需要通过配方来升级." : "你的物品现在需要使用消耗品来升级."));
 		}
 
@@ -258,7 +259,7 @@ public class UpgradingEdition extends EditionInventory {
 			boolean bool = !getEditedSection().getBoolean("upgrade.destroy");
 			getEditedSection().set("upgrade.destroy", bool);
 			registerTemplateEdition();
-			player.sendMessage(MMOItems.plugin.getPrefix()
+			getPlayer().sendMessage(MMOItems.plugin.getPrefix()
 					+ (bool ? "你的物品现在会在升级失败后损毁." : "你的物品现在不会在升级失败后损毁."));
 		}
 	}

@@ -1,6 +1,7 @@
 package top.mrxiaom.mmoi18n;
 
 import io.lumine.mythic.lib.UtilityMethods;
+import io.lumine.mythic.lib.player.particle.ParticleEffectType;
 import net.Indyuce.mmoitems.api.Type;
 import net.Indyuce.mmoitems.stat.type.ItemStat;
 import org.bukkit.*;
@@ -203,6 +204,9 @@ public class Translation {
         }
         if (value instanceof DyeColor) {
 
+        }
+        if (value instanceof ParticleEffectType) {
+            return ((ParticleEffectType) value).getName();
         }
         if (supportKeyed) {
             if (value instanceof Keyed keyed) {

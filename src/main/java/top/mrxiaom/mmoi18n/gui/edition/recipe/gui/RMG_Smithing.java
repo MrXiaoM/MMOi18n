@@ -1,5 +1,6 @@
 package top.mrxiaom.mmoi18n.gui.edition.recipe.gui;
 
+import io.lumine.mythic.lib.gui.Navigator;
 import net.Indyuce.mmoitems.api.item.template.MMOItemTemplate;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -34,12 +35,12 @@ public class RMG_Smithing extends RecipeEditorGUI {
      * An editor for a Shaped Recipe. Because the recipe is loaded from the YML when this is created,
      * concurrent modifications of the same recipe are unsupported.
      *
-     * @param player Player editing the recipe ig
+     * @param navigator Player editing the recipe ig
      * @param template Template of which a recipe is being edited
      * @param recipeName Name of this recipe
      */
-    public RMG_Smithing(@NotNull Player player, @NotNull MMOItemTemplate template, @NotNull String recipeName, @NotNull RecipeRegistry recipeRegistry) {
-        super(player, template, recipeName, recipeRegistry);
+    public RMG_Smithing(@NotNull Navigator navigator, @NotNull MMOItemTemplate template, @NotNull String recipeName, @NotNull RecipeRegistry recipeRegistry) {
+        super(navigator, template, recipeName, recipeRegistry);
 
         // Get section and build interpreter
         ConfigurationSection crafting = RecipeEditorGUI.getSection(getEditedSection(), "crafting");

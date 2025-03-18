@@ -2,17 +2,17 @@ package top.mrxiaom.mmoi18n.gui.edition;
 
 import io.lumine.mythic.lib.UtilityMethods;
 import io.lumine.mythic.lib.api.util.AltChar;
+import io.lumine.mythic.lib.gui.Navigator;
+import io.lumine.mythic.lib.player.particle.ParticleEffectType;
 import net.Indyuce.mmoitems.ItemStats;
 import net.Indyuce.mmoitems.MMOItems;
 import net.Indyuce.mmoitems.api.item.template.MMOItemTemplate;
-import net.Indyuce.mmoitems.particle.api.ParticleType;
 import net.Indyuce.mmoitems.util.MMOUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -30,8 +30,8 @@ import static top.mrxiaom.mmoi18n.gui.ItemTag.put;
 public class ParticlesEdition extends EditionInventory {
     private static final NamespacedKey PATTERN_MODIFIED_KEY = new NamespacedKey(MMOItems.plugin, "PatternModifierId");
 
-    public ParticlesEdition(Player player, MMOItemTemplate template) {
-        super(player, template);
+    public ParticlesEdition(Navigator navigator, MMOItemTemplate template) {
+        super(navigator, template);
     }
 
     @Override
@@ -44,9 +44,9 @@ public class ParticlesEdition extends EditionInventory {
         int[] slots = {37, 38, 39, 40, 41, 42, 43};
         int n = 0;
 
-        @Nullable ParticleType particleType = null;
+        @Nullable ParticleEffectType particleType = null;
         try {
-            particleType = ParticleType.valueOf(getEditedSection().getString("item-particles.type"));
+            particleType = ParticleEffectType.get(getEditedSection().getString("item-particles.type"));
         } catch (Exception ignored) {
         }
 
@@ -59,7 +59,7 @@ public class ParticlesEdition extends EditionInventory {
             particleTypeItemLore.add(ChatColor.GRAY + "以什么图案，在何时显示或形成什么形状.");
             particleTypeItemLore.add("");
             particleTypeItemLore.add(ChatColor.GRAY + "当前值: "
-                    + (particleType == null ? ChatColor.RED + "未选择类型." : ChatColor.GOLD + particleType.getDefaultName()));
+                    + (particleType == null ? ChatColor.RED + "未选择类型." : ChatColor.GOLD + particleType.getName()));
             if (particleType != null) {
                 particleTypeItemLore.add("" + ChatColor.GRAY + ChatColor.ITALIC + particleType.getDescription());
             }
@@ -83,7 +83,7 @@ public class ParticlesEdition extends EditionInventory {
                     modifierItemLore.add("" + ChatColor.GRAY + ChatColor.ITALIC + "更改这个值可以轻微地自定义粒子图案.");
                     modifierItemLore.add("");
                     modifierItemLore.add(ChatColor.GRAY + "当前值: " + ChatColor.GOLD
-                            + (section.contains(modifier) ? section.getDouble(modifier) : particleType.getModifier(modifier)));
+                            + (section.contains(modifier) ? section.getDouble(modifier) : particleType.getDefaultModifierValue(modifier)));
                     modifierItemLore.add("");
                     modifierItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 左键 更改数值.");
                     modifierItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键 重置.");
@@ -173,7 +173,7 @@ public class ParticlesEdition extends EditionInventory {
                 if (getEditedSection().contains("item-particles.particle")) {
                     getEditedSection().set("item-particles.particle", null);
                     registerTemplateEdition();
-                    player.sendMessage(MMOItems.plugin.getPrefix() + "已成功重置粒子类型.");
+                    getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "已成功重置粒子类型.");
                 }
             }
         }
@@ -187,7 +187,7 @@ public class ParticlesEdition extends EditionInventory {
                 if (getEditedSection().contains("item-particles.color")) {
                     getEditedSection().set("item-particles.color", null);
                     registerTemplateEdition();
-                    player.sendMessage(MMOItems.plugin.getPrefix() + "已成功重置粒子颜色.");
+                    getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "已成功重置粒子颜色.");
                 }
             }
         }
@@ -195,10 +195,10 @@ public class ParticlesEdition extends EditionInventory {
         if (has(item, "particle_pattern")) {
             if (event.getAction() == InventoryAction.PICKUP_ALL) {
                 new StatEdition(this, ItemStats.ITEM_PARTICLES, "particle-type").enable("请在聊天栏发送你想要的粒子图案.");
-                player.sendMessage("");
-                player.sendMessage("" + ChatColor.GREEN + ChatColor.BOLD + "可用的粒子图案如下");
-                for (ParticleType type : ParticleType.values())
-                    player.sendMessage("* " + ChatColor.GREEN + type.name());
+                getPlayer().sendMessage("");
+                getPlayer().sendMessage("" + ChatColor.GREEN + ChatColor.BOLD + "可用的粒子图案如下");
+                for (ParticleEffectType type : ParticleEffectType.getAll())
+                    getPlayer().sendMessage("* " + ChatColor.GREEN + type.getId());
             }
 
             if (event.getAction() == InventoryAction.PICKUP_HALF) {
@@ -212,7 +212,7 @@ public class ParticlesEdition extends EditionInventory {
                             getEditedSection().set("item-particles." + key, null);
 
                     registerTemplateEdition();
-                    player.sendMessage(MMOItems.plugin.getPrefix() + "已成功重置粒子图案.");
+                    getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "已成功重置粒子图案.");
                 }
             }
         }
@@ -228,7 +228,7 @@ public class ParticlesEdition extends EditionInventory {
             if (getEditedSection().contains("item-particles." + tag)) {
                 getEditedSection().set("item-particles." + tag, null);
                 registerTemplateEdition();
-                player.sendMessage(MMOItems.plugin.getPrefix() + "已成功重置 " + ChatColor.GOLD + tag + ChatColor.GRAY + ".");
+                getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "已成功重置 " + ChatColor.GOLD + tag + ChatColor.GRAY + ".");
             }
         }
     }

@@ -1,6 +1,7 @@
 package top.mrxiaom.mmoi18n.gui.edition;
 
 import io.lumine.mythic.lib.api.util.AltChar;
+import io.lumine.mythic.lib.gui.Navigator;
 import net.Indyuce.mmoitems.ItemStats;
 import net.Indyuce.mmoitems.MMOItems;
 import net.Indyuce.mmoitems.api.item.template.MMOItemTemplate;
@@ -28,8 +29,8 @@ public class CommandListEdition extends EditionInventory {
 	private static final int[] slots = { 19, 20, 21, 22, 23, 24, 25, 28, 29, 33, 34, 37, 38, 42, 43 };
 	private static final NamespacedKey CONFIG_KEY = new NamespacedKey(MMOItems.plugin, "ConfigKey");
 
-	public CommandListEdition(Player player, MMOItemTemplate template) {
-		super(player, template);
+	public CommandListEdition(Navigator navigator, MMOItemTemplate template) {
+		super(navigator, template);
 	}
 
 	@Override
@@ -112,7 +113,7 @@ public class CommandListEdition extends EditionInventory {
 			if (section != null && section.contains(tag)) {
 				getEditedSection().set("commands." + tag, null);
 				registerTemplateEdition();
-				player.sendMessage(MMOItems.plugin.getPrefix() + "成功移除命令 " + ChatColor.GOLD + tag + ChatColor.DARK_GRAY
+				getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "成功移除命令 " + ChatColor.GOLD + tag + ChatColor.DARK_GRAY
 						+ " (内部ID)" + ChatColor.GRAY + ".");
 			}
 		}

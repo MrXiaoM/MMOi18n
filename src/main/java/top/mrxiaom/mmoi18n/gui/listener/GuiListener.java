@@ -1,6 +1,7 @@
 package top.mrxiaom.mmoi18n.gui.listener;
 
 import io.lumine.mythic.lib.api.item.NBTItem;
+import io.lumine.mythic.lib.gui.Navigator;
 import net.Indyuce.mmoitems.api.item.template.MMOItemTemplate;
 import net.Indyuce.mmoitems.util.MMOUtils;
 import org.bukkit.ChatColor;
@@ -51,7 +52,7 @@ public class GuiListener implements Listener {
 		if (holder instanceof InjectedInventory) return;
 		if (holder instanceof net.Indyuce.mmoitems.gui.ItemBrowser old) {
 			event.setCancelled(true);
-			new ItemBrowser(old.getPlayer(), old.getType()).open();
+			new ItemBrowser(old.getNavigator(), old.getType()).open();
 			return;
 		}
 		if (holder instanceof net.Indyuce.mmoitems.gui.edition.EditionInventory) {
@@ -59,27 +60,27 @@ public class GuiListener implements Listener {
 			if (holder instanceof net.Indyuce.mmoitems.gui.edition.AbilityEdition old) try {
 				Field field = old.getClass().getDeclaredField("configKey");
 				field.setAccessible(true);
-				new AbilityEdition(old.getPlayer(), old.getEdited(), (String) field.get(old)).open();
+				new AbilityEdition(old.getNavigator(), old.getEdited(), (String) field.get(old)).open();
 			} catch (ReflectiveOperationException e) {
 				handleError(player, e);
 			} else if (holder instanceof net.Indyuce.mmoitems.gui.edition.AbilityListEdition old) {
-				new AbilityListEdition(old.getPlayer(), old.getEdited()).open();
+				new AbilityListEdition(old.getNavigator(), old.getEdited()).open();
 			} else if (holder instanceof net.Indyuce.mmoitems.gui.edition.ArrowParticlesEdition old) {
-				new ArrowParticlesEdition(old.getPlayer(), old.getEdited()).open();
+				new ArrowParticlesEdition(old.getNavigator(), old.getEdited()).open();
 			} else if (holder instanceof net.Indyuce.mmoitems.gui.edition.CommandListEdition old) {
-				new CommandListEdition(old.getPlayer(), old.getEdited()).open();
+				new CommandListEdition(old.getNavigator(), old.getEdited()).open();
 			} else if (holder instanceof net.Indyuce.mmoitems.gui.edition.ElementsEdition old) {
-				new ElementsEdition(old.getPlayer(), old.getEdited()).open();
+				new ElementsEdition(old.getNavigator(), old.getEdited()).open();
 			} else if (holder instanceof net.Indyuce.mmoitems.gui.edition.ItemEdition old) {
-				new ItemEdition(old.getPlayer(), old.getEdited()).open();
+				new ItemEdition(old.getNavigator(), old.getEdited()).open();
 			} else if (holder instanceof net.Indyuce.mmoitems.gui.edition.ParticlesEdition old) {
-				new ParticlesEdition(old.getPlayer(), old.getEdited()).open();
+				new ParticlesEdition(old.getNavigator(), old.getEdited()).open();
 			} else if (holder instanceof net.Indyuce.mmoitems.gui.edition.RevisionInventory old) {
-				new RevisionInventory(old.getPlayer(), old.getEdited()).open();
+				new RevisionInventory(old.getNavigator(), old.getEdited()).open();
 			} else if (holder instanceof net.Indyuce.mmoitems.gui.edition.SoundsEdition old) {
-				new SoundsEdition(old.getPlayer(), old.getEdited()).open();
+				new SoundsEdition(old.getNavigator(), old.getEdited()).open();
 			} else if (holder instanceof net.Indyuce.mmoitems.gui.edition.UpgradingEdition old) {
-				new UpgradingEdition(old.getPlayer(), old.getEdited()).open();
+				new UpgradingEdition(old.getNavigator(), old.getEdited()).open();
 			}
 		}
 	}
@@ -112,19 +113,20 @@ public class GuiListener implements Listener {
 					event.getInventory().setItem(4, inv.getCachedItem());
 				}
 			}
+			Navigator navigator = inv.getNavigator();
 			MMOItemTemplate template = inv.getEdited();
 			if (ItemTag.has(item, "edition_back")) {
 				// Open the Item Browser yes
 				if (inv instanceof ItemEdition)
-					new ItemBrowser(player, template.getType()).open();
+					new ItemBrowser(navigator, template.getType()).open();
 					// Open the RECIPE TYPE BROWSER stat thing
 				else if ((inv instanceof RecipeListGUI))
-					new RecipeTypeListGUI(player, template).open(inv);
+					new RecipeTypeListGUI(navigator, template).open(inv);
 					// Open the RECIPE LIST thing
 				else if ((inv instanceof RecipeEditorGUI))
-					new RecipeListGUI(player, template, ((RecipeEditorGUI) inv).getRecipeRegistry()).open(inv);
+					new RecipeListGUI(navigator, template, ((RecipeEditorGUI) inv).getRecipeRegistry()).open(inv);
 					// Just open the ITEM EDITION I guess
-				else new ItemEdition(player, template).open(inv);
+				else new ItemEdition(navigator, template).open(inv);
 			}
 		}
 	}

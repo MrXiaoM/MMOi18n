@@ -2,6 +2,7 @@ package top.mrxiaom.mmoi18n.gui.edition;
 
 import io.lumine.mythic.lib.api.util.AltChar;
 import io.lumine.mythic.lib.api.util.ui.FriendlyFeedbackProvider;
+import io.lumine.mythic.lib.gui.Navigator;
 import io.lumine.mythic.lib.version.VInventoryView;
 import io.lumine.mythic.lib.version.VersionUtils;
 import net.Indyuce.mmoitems.MMOItems;
@@ -65,12 +66,12 @@ public abstract class EditionInventory extends net.Indyuce.mmoitems.gui.edition.
     private ItemStack cachedItem;
     private int previousPage;
 
-    public EditionInventory(@NotNull Player player, @NotNull MMOItemTemplate template) {
-        this(player, template, true);
+    public EditionInventory(@NotNull Navigator navigator, @NotNull MMOItemTemplate template) {
+        this(navigator, template, true);
     }
 
-    public EditionInventory(@NotNull Player player, @NotNull MMOItemTemplate template, boolean displaysBack) {
-        super(player, template, displaysBack);
+    public EditionInventory(@NotNull Navigator navigator, @NotNull MMOItemTemplate template, boolean displaysBack) {
+        super(navigator, template, displaysBack);
 
         this.displaysBack = displaysBack;
 

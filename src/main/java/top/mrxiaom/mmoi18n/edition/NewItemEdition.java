@@ -1,10 +1,10 @@
 package top.mrxiaom.mmoi18n.edition;
 
 
+import io.lumine.mythic.lib.gui.PluginInventory;
 import net.Indyuce.mmoitems.MMOItems;
 import net.Indyuce.mmoitems.api.edition.Edition;
 import net.Indyuce.mmoitems.api.edition.input.ChatEdition;
-import net.Indyuce.mmoitems.gui.PluginInventory;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import top.mrxiaom.mmoi18n.gui.ItemBrowser;

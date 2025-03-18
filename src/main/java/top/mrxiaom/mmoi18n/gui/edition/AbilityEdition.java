@@ -2,6 +2,7 @@ package top.mrxiaom.mmoi18n.gui.edition;
 
 import com.google.common.collect.Lists;
 import io.lumine.mythic.lib.UtilityMethods;
+import io.lumine.mythic.lib.gui.Navigator;
 import io.lumine.mythic.lib.skill.trigger.TriggerType;
 import net.Indyuce.mmoitems.ItemStats;
 import net.Indyuce.mmoitems.MMOItems;
@@ -97,8 +98,8 @@ public class AbilityEdition extends EditionInventory {
 	private static final int[] slots = { 23, 24, 25, 32, 33, 34, 41, 42, 43, 50, 51, 52 };
 	private static final NamespacedKey ABILITY_MOD_KEY = new NamespacedKey(MMOItems.plugin, "AbilityModifier");
 
-	public AbilityEdition(Player player, MMOItemTemplate template, String configKey) {
-		super(player, template);
+	public AbilityEdition(Navigator navigator, MMOItemTemplate template, String configKey) {
+		super(navigator, template);
 
 		this.configKey = configKey;
 	}
@@ -207,7 +208,7 @@ public class AbilityEdition extends EditionInventory {
 			return;
 
 		if (has(item, "edition_back")) {
-			new AbilityListEdition(player, template).open(this);
+			new AbilityListEdition(getNavigator(), template).open(this);
 			return;
 		}
 
@@ -225,7 +226,7 @@ public class AbilityEdition extends EditionInventory {
 					}
 
 					registerTemplateEdition();
-					player.sendMessage(Msg.ITEM__ABILITY__RESET.str(MMOItems.plugin.getPrefix()));
+					getPlayer().sendMessage(Msg.ITEM__ABILITY__RESET.str(MMOItems.plugin.getPrefix()));
 				}
 			}
 			return;
@@ -236,16 +237,16 @@ public class AbilityEdition extends EditionInventory {
 				new StatEdition(this, ItemStats.ABILITIES, configKey, "mode").enable(Msg.ITEM__CAST_MODE__TIPS.array());
 
 				for (String s : Msg.ITEM__CAST_MODE__LIST_HEADER.list())
-					player.sendMessage(s);
+					getPlayer().sendMessage(s);
 
 				for (TriggerType castMode : TriggerType.values())
-					player.sendMessage(Msg.ITEM__CAST_MODE__LIST_ITEM.str(castMode.name()));
+					getPlayer().sendMessage(Msg.ITEM__CAST_MODE__LIST_ITEM.str(castMode.name()));
 			}
 
 			if (event.getAction() == InventoryAction.PICKUP_HALF && getEditedSection().contains("ability." + configKey + ".mode")) {
 				getEditedSection().set("ability." + configKey + ".mode", null);
 				registerTemplateEdition();
-				player.sendMessage(Msg.ITEM__CAST_MODE__RESET.str(MMOItems.plugin.getPrefix()));
+				getPlayer().sendMessage(Msg.ITEM__CAST_MODE__RESET.str(MMOItems.plugin.getPrefix()));
 			}
 			return;
 		}
@@ -261,7 +262,7 @@ public class AbilityEdition extends EditionInventory {
 			if (getEditedSection().contains("ability." + configKey + "." + tag)) {
 				getEditedSection().set("ability." + configKey + "." + tag, null);
 				registerTemplateEdition();
-				player.sendMessage(Msg.ITEM__MODIFIER__RESET.str(
+				getPlayer().sendMessage(Msg.ITEM__MODIFIER__RESET.str(
 						MMOItems.plugin.getPrefix(),
 						UtilityMethods.caseOnWords(tag.replace("-", " "))
 				));

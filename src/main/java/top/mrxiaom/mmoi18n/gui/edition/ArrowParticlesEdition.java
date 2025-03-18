@@ -2,6 +2,7 @@ package top.mrxiaom.mmoi18n.gui.edition;
 
 import io.lumine.mythic.lib.UtilityMethods;
 import io.lumine.mythic.lib.api.util.AltChar;
+import io.lumine.mythic.lib.gui.Navigator;
 import net.Indyuce.mmoitems.ItemStats;
 import net.Indyuce.mmoitems.MMOItems;
 import net.Indyuce.mmoitems.api.item.template.MMOItemTemplate;
@@ -25,8 +26,8 @@ import static top.mrxiaom.mmoi18n.gui.ItemTag.has;
 import static top.mrxiaom.mmoi18n.gui.ItemTag.put;
 
 public class ArrowParticlesEdition extends EditionInventory {
-	public ArrowParticlesEdition(Player player, MMOItemTemplate template) {
-		super(player, template);
+	public ArrowParticlesEdition(Navigator navigator, MMOItemTemplate template) {
+		super(navigator, template);
 	}
 
 	@Override
@@ -158,7 +159,7 @@ public class ArrowParticlesEdition extends EditionInventory {
 				if (getEditedSection().contains("arrow-particles.particle")) {
 					getEditedSection().set("arrow-particles", null);
 					registerTemplateEdition();
-					player.sendMessage(MMOItems.plugin.getPrefix() + "成功重置粒子类型.");
+					getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "成功重置粒子类型.");
 				}
 			}
 		}
@@ -172,7 +173,7 @@ public class ArrowParticlesEdition extends EditionInventory {
 				if (getEditedSection().contains("arrow-particles.color")) {
 					getEditedSection().set("arrow-particles.color", null);
 					registerTemplateEdition();
-					player.sendMessage(MMOItems.plugin.getPrefix() + "成功重置粒子颜色.");
+					getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "成功重置粒子颜色.");
 				}
 			}
 		}
@@ -190,7 +191,7 @@ public class ArrowParticlesEdition extends EditionInventory {
 					if (getEditedSection().contains("arrow-particles." + type)) {
 						getEditedSection().set("arrow-particles." + type, null);
 						registerTemplateEdition();
-						player.sendMessage(MMOItems.plugin.getPrefix() + "成功重置" + translated + ".");
+						getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "成功重置" + translated + ".");
 					}
 				}
 			}

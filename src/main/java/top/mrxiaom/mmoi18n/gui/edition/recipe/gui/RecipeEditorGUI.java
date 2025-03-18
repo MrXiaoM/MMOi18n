@@ -9,6 +9,7 @@ import io.lumine.mythic.lib.api.util.ui.FriendlyFeedbackCategory;
 import io.lumine.mythic.lib.api.util.ui.FriendlyFeedbackProvider;
 import io.lumine.mythic.lib.api.util.ui.QuickNumberRange;
 import io.lumine.mythic.lib.api.util.ui.SilentNumbers;
+import io.lumine.mythic.lib.gui.Navigator;
 import io.lumine.mythic.lib.util.AdventureUtils;
 import io.lumine.mythic.lib.version.VersionUtils;
 import net.Indyuce.mmoitems.ItemStats;
@@ -66,8 +67,8 @@ public abstract class RecipeEditorGUI extends EditionInventory {
      * @param recipeName     Name of this particular Recipe
      * @param recipeRegistry Load/Save Information of this Recipe Type
      */
-    public RecipeEditorGUI(@NotNull Player player, @NotNull MMOItemTemplate template, @NotNull String recipeName, @NotNull RecipeRegistry recipeRegistry) {
-        super(player, template);
+    public RecipeEditorGUI(@NotNull Navigator navigator, @NotNull MMOItemTemplate template, @NotNull String recipeName, @NotNull RecipeRegistry recipeRegistry) {
+        super(navigator, template);
 
         // Store name
         this.recipeName = recipeName;

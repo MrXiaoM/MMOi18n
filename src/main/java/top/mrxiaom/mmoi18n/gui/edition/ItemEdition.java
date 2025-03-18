@@ -1,6 +1,7 @@
 package top.mrxiaom.mmoi18n.gui.edition;
 
 import io.lumine.mythic.lib.MythicLib;
+import io.lumine.mythic.lib.gui.Navigator;
 import io.lumine.mythic.lib.util.AdventureUtils;
 import io.lumine.mythic.lib.version.VersionUtils;
 import net.Indyuce.mmoitems.MMOItems;
@@ -63,8 +64,8 @@ public class ItemEdition extends EditionInventory {
     private static final int[] slots = {19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43};
     private static final NamespacedKey STAT_ID_KEY = new NamespacedKey(MMOItems.plugin, "StatId");
 
-    public ItemEdition(Player player, MMOItemTemplate template) {
-        super(player, template);
+    public ItemEdition(Navigator navigator, MMOItemTemplate template) {
+        super(navigator, template);
     }
 
     @Override

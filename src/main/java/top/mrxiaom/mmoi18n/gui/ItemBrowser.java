@@ -6,18 +6,19 @@ import com.google.gson.JsonObject;
 import io.lumine.mythic.lib.MythicLib;
 import io.lumine.mythic.lib.api.item.NBTItem;
 import io.lumine.mythic.lib.api.util.ui.SilentNumbers;
+import io.lumine.mythic.lib.gui.Navigator;
 import io.lumine.mythic.lib.util.AdventureUtils;
 import io.lumine.mythic.lib.version.VersionUtils;
 import net.Indyuce.mmoitems.MMOItems;
 import net.Indyuce.mmoitems.api.Type;
 import net.Indyuce.mmoitems.api.item.template.MMOItemTemplate;
+import net.Indyuce.mmoitems.api.player.PlayerData;
 import net.Indyuce.mmoitems.stat.BrowserDisplayIDX;
 import net.Indyuce.mmoitems.util.MMOUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
-import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -102,12 +103,12 @@ public class ItemBrowser extends net.Indyuce.mmoitems.gui.ItemBrowser implements
     private static final String CUSTOM_RP_DOWNLOAD_LINK = "https://www.dropbox.com/s/90w9pvdbfeyxu94/MICustomBlockPack.zip?dl=1";
     private static final NamespacedKey TYPE_ID_KEY = new NamespacedKey(MMOItems.plugin, "TypeId");
 
-    public ItemBrowser(Player player) {
-        this(player, null);
+    public ItemBrowser(@NotNull Navigator navigator) {
+        this(navigator, null);
     }
 
-    public ItemBrowser(Player player, Type type) {
-        super(player);
+    public ItemBrowser(@NotNull Navigator navigator, Type type) {
+        super(navigator, type);
         this.type = type;
         this.itemTypes = MMOItems.plugin.getTypes()
                 .getAll().stream()
@@ -318,7 +319,7 @@ public class ItemBrowser extends net.Indyuce.mmoitems.gui.ItemBrowser implements
                 continue;
             }
             // Build item -> any errors?
-            final ItemStack item = template.newBuilder(playerData.getRPG(), true).build().newBuilder().build();
+            final ItemStack item = template.newBuilder(PlayerData.get(playerData).getRPG(), true).build().newBuilder().build();
             if (item == null || item.getType().isAir() || !item.getType().isItem() || item.getItemMeta() == null) {
                 // Set Item
                 cached.put(template.getId(), error);
@@ -408,7 +409,7 @@ public class ItemBrowser extends net.Indyuce.mmoitems.gui.ItemBrowser implements
                 page--;
                 open();
             } else if (has(item, "back")) {
-                new ItemBrowser(getPlayer()).open();
+                getNavigator().popOpen();
             } else if (has(item, "cancel_deletion")) {
                 deleteMode = false;
                 open();
@@ -454,7 +455,7 @@ public class ItemBrowser extends net.Indyuce.mmoitems.gui.ItemBrowser implements
             } else if (type == null && !has(item, "browser_no_type")) {
                 ItemMeta meta = item.getItemMeta();
                 final String typeId = meta == null ? null : meta.getPersistentDataContainer().get(TYPE_ID_KEY, PersistentDataType.STRING);
-                new ItemBrowser(getPlayer(), MMOItems.plugin.getTypes().get(typeId)).open();
+                new ItemBrowser(getNavigator(), MMOItems.plugin.getTypes().get(typeId)).open();
             }
         }
 
@@ -467,11 +468,11 @@ public class ItemBrowser extends net.Indyuce.mmoitems.gui.ItemBrowser implements
             open();
         } else {
             if (event.getAction() == InventoryAction.PICKUP_ALL) {
-                getPlayer().getInventory().addItem(MMOItems.plugin.getItem(type, id, playerData));
+                getPlayer().getInventory().addItem(MMOItems.plugin.getItem(type, id, PlayerData.get(player)));
                 getPlayer().playSound(getPlayer().getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 2);
             }
             if (event.getAction() == InventoryAction.PICKUP_HALF) {
-                new ItemEdition(getPlayer(), MMOItems.plugin.getTemplates().getTemplate(type, id)).open();
+                new ItemEdition(getNavigator(), MMOItems.plugin.getTemplates().getTemplate(type, id)).open();
             }
         }
     }

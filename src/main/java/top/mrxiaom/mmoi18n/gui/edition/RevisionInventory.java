@@ -2,6 +2,7 @@ package top.mrxiaom.mmoi18n.gui.edition;
 
 import io.lumine.mythic.lib.api.util.ItemFactory;
 import io.lumine.mythic.lib.api.util.ui.SilentNumbers;
+import io.lumine.mythic.lib.gui.Navigator;
 import net.Indyuce.mmoitems.ItemStats;
 import net.Indyuce.mmoitems.MMOItems;
 import net.Indyuce.mmoitems.api.item.template.MMOItemTemplate;
@@ -41,8 +42,8 @@ public class RevisionInventory extends EditionInventory {
 
     static ItemStack revisionID;
 
-    public RevisionInventory(@NotNull Player player, @NotNull MMOItemTemplate template) {
-        super(player, template);
+    public RevisionInventory(@NotNull Navigator navigator, @NotNull MMOItemTemplate template) {
+        super(navigator, template);
 
         // If null
         if (revisionID == null) {
