@@ -1,6 +1,7 @@
 package top.mrxiaom.mmoi18n;
 
 import com.google.common.collect.Lists;
+import io.lumine.mythic.lib.player.particle.ParticleEffectType;
 import net.Indyuce.mmoitems.stat.type.ItemStat;
 import org.bukkit.configuration.ConfigurationSection;
 import top.mrxiaom.mmoi18n.gui.ItemBrowser;
@@ -13,6 +14,12 @@ import java.util.*;
 public class TranslationImpl extends Translation<ItemStat<?, ?>, TranslatedStat> {
     public TranslationImpl(CommonPluginMain<ItemStat<?, ?>, TranslatedStat> plugin) {
         super(plugin);
+        translateOthers = value -> {
+            if (value instanceof ParticleEffectType) {
+                return ((ParticleEffectType) value).getName();
+            }
+            return null;
+        };
     }
 
     @Override

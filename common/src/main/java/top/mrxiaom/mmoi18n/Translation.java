@@ -29,6 +29,7 @@ public abstract class Translation<ItemStat, TranslatedStat> {
 
     private static final Map<String, Object> holderValues = new HashMap<>();
     private static final Map<String, AbstractLanguageHolder> holders = new HashMap<>();
+    protected static Function<Object, String> translateOthers;
     private final @NotNull File file;
     private final @NotNull CommonPluginMain<ItemStat, TranslatedStat> plugin;
 
@@ -197,6 +198,12 @@ public abstract class Translation<ItemStat, TranslatedStat> {
         }
         if (value instanceof DyeColor) {
 
+        }
+        if (translateOthers != null) {
+            String apply = translateOthers.apply(value);
+            if (apply != null) {
+                return apply;
+            }
         }
         if (supportKeyed) {
             if (value instanceof Keyed keyed) {
