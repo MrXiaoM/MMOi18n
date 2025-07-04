@@ -1,0 +1,12 @@
+name: MMOi18n
+version: '${version}'
+main: top.mrxiaom.mmoi18n.PluginMain
+api-version: 1.14
+depend:
+  - MythicLib
+  - MMOItems
+authors: [ MrXiaoM ]
+commands:
+  mmoi18n:
+    description: Foo
+    aliases: [ mii ]
