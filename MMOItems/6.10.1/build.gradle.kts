@@ -8,15 +8,12 @@ val targetJavaVersion = 17
 version = "${version}_mi-6.10.1"
 
 repositories {
-    mavenCentral()
     maven("https://nexus.phoenixdevt.fr/repository/maven-public/") {
         mavenContent {
             includeModule("io.lumine", "MythicLib-dist")
             includeModule("net.Indyuce", "MMOItems-API")
         }
     }
-    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
-    maven("https://repo.codemc.org/repository/maven-releases/")
 }
 
 dependencies {
@@ -28,6 +25,7 @@ dependencies {
 
     compileOnly("commons-lang:commons-lang:2.6")
     implementation("org.jetbrains:annotations:24.0.0")
+    implementation("de.tr7zw:item-nbt-api:${nbtapi}")
     implementation(project(":common"))
 }
 java {
