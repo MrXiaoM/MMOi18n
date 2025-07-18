@@ -1,7 +1,7 @@
 allprojects {
     group = "top.mrxiaom"
     version = "1.0.3"
-    ext["nbtapi"] = "2.15.1"
+    ext["nbtapi"] = "2.15.2-SNAPSHOT"
 
     repositories {
         mavenCentral()
