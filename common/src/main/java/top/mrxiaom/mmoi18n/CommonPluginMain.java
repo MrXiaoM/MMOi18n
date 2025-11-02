@@ -1,7 +1,7 @@
 package top.mrxiaom.mmoi18n;
 
 import com.google.common.collect.Lists;
-import de.tr7zw.changeme.nbtapi.utils.MinecraftVersion;
+import de.tr7zw.nbtapi.utils.MinecraftVersion;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

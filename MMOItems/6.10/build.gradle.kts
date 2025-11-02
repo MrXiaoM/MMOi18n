@@ -24,8 +24,8 @@ dependencies {
     compileOnly("net.Indyuce:MMOItems-API:6.10-SNAPSHOT")
 
     compileOnly("commons-lang:commons-lang:2.6")
-    implementation("org.jetbrains:annotations:24.0.0")
-    implementation("de.tr7zw:item-nbt-api:${nbtapi}")
+    compileOnly("org.jetbrains:annotations:24.0.0")
+    compileOnly("de.tr7zw:item-nbt-api-plugin:${nbtapi}")
     implementation(project(":common"))
 }
 java {
@@ -39,18 +39,15 @@ java {
 tasks {
     shadowJar {
         archiveBaseName.set("MMOi18n")
-        archiveClassifier.set("")
-        destinationDirectory.set(rootProject.file("out"))
-        mapOf(
-            "org.intellij.lang.annotations" to "annotations.intellij",
-            "org.jetbrains.annotations" to "annotations.jetbrains",
-            "de.tr7zw.changeme.nbtapi" to "nbtapi",
-        ).forEach { (original, target) ->
-            relocate(original, "top.mrxiaom.mmoi18n.libs.$target")
-        }
+    }
+    val copyTask = create<Copy>("copyBuildArtifact") {
+        dependsOn(shadowJar)
+        from(shadowJar.get().outputs)
+        rename { "${shadowJar.get().archiveBaseName.get()}-$version.jar" }
+        into(rootProject.file("out"))
     }
     build {
-        dependsOn(shadowJar)
+        dependsOn(copyTask)
     }
     withType<JavaCompile>().configureEach {
         if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible) {

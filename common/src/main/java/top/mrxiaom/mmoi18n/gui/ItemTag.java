@@ -1,6 +1,6 @@
 package top.mrxiaom.mmoi18n.gui;
 
-import de.tr7zw.changeme.nbtapi.NBT;
+import de.tr7zw.nbtapi.NBT;
 import org.bukkit.inventory.ItemStack;
 
 public class ItemTag {

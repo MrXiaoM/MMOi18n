@@ -5,6 +5,7 @@ api-version: 1.14
 depend:
   - MythicLib
   - MMOItems
+  - NBTAPI
 authors: [ MrXiaoM ]
 commands:
   mmoi18n:
