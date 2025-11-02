@@ -1,6 +1,6 @@
 allprojects {
     group = "top.mrxiaom"
-    version = "1.0.3"
+    version = "1.0.4"
     ext["nbtapi"] = "2.15.3"
 
     repositories {
