@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-java@v6
         with:
           java-version: '21'
-          distribution: 'adopt'
+          distribution: 'temurin'
       - name: Build Plugin
         run: ./gradlew clean build
       - name: Upload Artifacts
