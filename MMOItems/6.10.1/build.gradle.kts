@@ -10,7 +10,7 @@ val miVersion = "6.10.1"
 repositories {
     maven("https://nexus.phoenixdevt.fr/repository/maven-public/") {
         mavenContent {
-            includeModule("io.lumine", "MythicLib-dist")
+            includeModule("io.lumine", "mythiclib-plugin")
             includeModule("net.Indyuce", "MMOItems-API")
         }
     }
@@ -20,7 +20,7 @@ dependencies {
     compileOnly("org.spigotmc:spigot-api:1.20.4-R0.1-SNAPSHOT")
 
     compileOnly("net.milkbowl.vault:VaultAPI:1.7")
-    compileOnly("io.lumine:MythicLib-dist:1.7.1-SNAPSHOT")
+    compileOnly("io.lumine:mythiclib-plugin:1.7.1-SNAPSHOT")
     compileOnly("net.Indyuce:MMOItems-API:${miVersion}-SNAPSHOT")
 
     compileOnly("commons-lang:commons-lang:2.6")
